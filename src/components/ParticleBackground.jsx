@@ -1,0 +1,26 @@
+import React from 'react';
+
+const ParticleBackground = () => {
+  return (
+    <div className="absolute inset-0 w-full h-full z-0">
+      {/* Animated background with CSS particles */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-50"></div>
+      
+      {/* Animated particles */}
+      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+      <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-purple-400 rounded-full animate-pulse delay-100"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-pink-400 rounded-full animate-pulse delay-200"></div>
+      <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-green-400 rounded-full animate-pulse delay-300"></div>
+      <div className="absolute bottom-1/3 right-1/2 w-2 h-2 bg-yellow-400 rounded-full animate-pulse delay-500"></div>
+      
+      {/* Additional animated elements */}
+      <div className="absolute top-1/6 left-1/6 w-1 h-1 bg-blue-300 rounded-full animate-pulse delay-700"></div>
+      <div className="absolute bottom-1/6 right-1/6 w-1.5 h-1.5 bg-purple-300 rounded-full animate-pulse delay-1000"></div>
+      <div className="absolute top-2/3 left-1/2 w-1 h-1 bg-pink-300 rounded-full animate-pulse delay-1200"></div>
+      <div className="absolute bottom-1/2 left-1/4 w-2 h-2 bg-green-300 rounded-full animate-pulse delay-1500"></div>
+      <div className="absolute top-1/5 right-1/5 w-1 h-1 bg-yellow-300 rounded-full animate-pulse delay-1800"></div>
+    </div>
+  );
+};
+
+export default ParticleBackground;
