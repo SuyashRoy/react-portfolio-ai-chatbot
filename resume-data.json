@@ -1,0 +1,29 @@
+{
+  "personalInfo": {},
+  "education": [
+    {
+      "degree": "University of Southern CaliforniaJanuary 2025-Present",
+      "institution": "Master of Science in Computer Science",
+      "year": "2025",
+      "gpa": "3.43/4.0"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Analyst Intern, TMT (Tech Media Telecommunications)January 2022-June 2022",
+      "position": "Bain Capability Network, Gurgaon, India",
+      "duration": "2022"
+    }
+  ],
+  "skills": {
+    "frontend": [
+      "Leveraged J2EE (Spring, Struts and Hibernate) along with ReactJS to design and setup UI Screen Integration for the 'CFO-",
+      "Languages: Python, Java, SQL, HTML, CSS, JavaScript, ReactJS",
+      "DevOps & Version Control: Git"
+    ],
+    "backend": [],
+    "tools": []
+  },
+  "projects": [],
+  "certifications": []
+}
