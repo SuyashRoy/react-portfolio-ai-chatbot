@@ -1,59 +1,69 @@
 import React from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 import ParticleBackground from '../components/ParticleBackground';
 
 const Education = () => {
+  const { isDarkMode } = useTheme();
   const educationData = [
     {
-      degree: "Bachelor of Science in Computer Science",
-      institution: "University Name",
-      year: "2021 - 2025",
-      gpa: "3.8/4.0",
-      description: "Focused on software engineering, algorithms, and data structures. Active in computer science clubs and hackathons.",
-      courses: ["Data Structures & Algorithms", "Software Engineering", "Database Systems", "Machine Learning", "Web Development"]
+      degree: "Master of Science in Computer Science",
+      institution: "University of Southern California",
+      year: "January 2025 - Present",
+      gpa: "3.43/4.0",
+      description: "Pursuing advanced studies in computer science with focus on software engineering, algorithms, and modern computing technologies.",
+      courses: ["Advanced Algorithms", "Software Engineering", "System Design", "Machine Learning", "Database Systems"]
     },
     {
-      degree: "High School Diploma",
-      institution: "High School Name",
-      year: "2017 - 2021",
-      gpa: "3.9/4.0",
-      description: "Graduated with honors, participated in robotics club and science fairs.",
-      courses: ["Advanced Mathematics", "Physics", "Chemistry", "Computer Science"]
+      degree: "Bachelor of Technology in Information Technology",
+      institution: "Kalinga Institute of Industrial Technology (KIIT)",
+      year: "2018 - 2022",
+      gpa: "9.19/10.0",
+      description: "Completed undergraduate studies in Information Technology with specialization in software development, data structures, and enterprise applications.",
+      courses: ["Data Structures & Algorithms", "Object-Oriented Programming", "Database Management", "Software Engineering", "Web Technologies", "Computer Networks"]
     }
   ];
 
   const certifications = [
     {
-      name: "AWS Certified Developer",
-      issuer: "Amazon Web Services",
-      date: "2024",
-      credential: "AWS-DEV-001"
+      name: "J2EE Enterprise Development",
+      issuer: "Professional Experience",
+      date: "2022",
+      credential: "BAIN-TMT-001"
     },
     {
-      name: "Google Cloud Professional Developer",
-      issuer: "Google Cloud",
-      date: "2023",
-      credential: "GCP-PD-002"
+      name: "ReactJS Development",
+      issuer: "Professional Experience",
+      date: "2022",
+      credential: "UI-INTEGRATION-002"
     },
     {
-      name: "React Developer Certification",
-      issuer: "Meta",
-      date: "2023",
-      credential: "META-REACT-003"
+      name: "Git Version Control",
+      issuer: "DevOps Experience",
+      date: "2022",
+      credential: "VCS-003"
     }
   ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+    <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
+      isDarkMode 
+        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
+        : 'bg-gradient-to-br from-orange-50 via-yellow-50 to-amber-50 text-gray-900'
+    }`}>
       <ParticleBackground />
       
-      <div className="relative z-10 container mx-auto px-4 py-16">
+      <div className="relative z-10 container mx-auto px-4 py-20 pt-24">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
+              isDarkMode 
+                ? 'from-emerald-400 via-teal-500 to-green-600' 
+                : 'from-emerald-600 via-teal-600 to-green-700'
+            } bg-clip-text text-transparent`}>
               Education
             </h1>
-            <p className="text-xl text-gray-300">
+            <p className={`text-xl ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               My academic journey and continuous learning
             </p>
           </div>
@@ -63,7 +73,7 @@ const Education = () => {
             <h2 className="text-3xl font-bold text-blue-400 mb-8 text-center">Academic Background</h2>
             <div className="space-y-8">
               {educationData.map((edu, index) => (
-                <div key={index} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700 hover:border-blue-500 transition-all duration-300">
+                <div key={index} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-600/30 hover:border-blue-500 transition-all duration-300">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
                       <h3 className="text-2xl font-bold text-white mb-2">{edu.degree}</h3>
@@ -116,7 +126,7 @@ const Education = () => {
           </div>
           
           {/* Learning Philosophy */}
-          <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-8 border border-slate-600/30">
             <h2 className="text-3xl font-bold text-pink-400 mb-6 text-center">Learning Philosophy</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>

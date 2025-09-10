@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 import ParticleBackground from '../components/ParticleBackground';
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const { isDarkMode } = useTheme();
 
   const projects = [
     {
@@ -87,17 +89,25 @@ const Projects = () => {
   const featuredProjects = projects.filter(project => project.featured);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+    <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
+      isDarkMode 
+        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
+        : 'bg-gradient-to-br from-orange-50 via-yellow-50 to-amber-50 text-gray-900'
+    }`}>
       <ParticleBackground />
       
-      <div className="relative z-10 container mx-auto px-4 py-16">
+      <div className="relative z-10 container mx-auto px-4 py-20 pt-24">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
+              isDarkMode 
+                ? 'from-emerald-400 via-teal-500 to-green-600' 
+                : 'from-emerald-600 via-teal-600 to-green-700'
+            } bg-clip-text text-transparent`}>
               Projects
             </h1>
-            <p className="text-xl text-gray-300">
+            <p className={`text-xl ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               A showcase of my work and creativity
             </p>
           </div>
@@ -107,7 +117,7 @@ const Projects = () => {
             <h2 className="text-3xl font-bold text-blue-400 mb-8 text-center">Featured Projects</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredProjects.map((project) => (
-                <div key={project.id} className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 group">
+                <div key={project.id} className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 group">
                   <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
                     <div className="text-6xl font-bold opacity-50">🚀</div>
                   </div>
@@ -178,7 +188,7 @@ const Projects = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProjects.map((project) => (
-                <div key={project.id} className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300 group">
+                <div key={project.id} className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300 group">
                   <div className="h-40 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
                     <div className="text-4xl font-bold opacity-50">💻</div>
                   </div>
@@ -230,7 +240,7 @@ const Projects = () => {
           </div>
           
           {/* Project Stats */}
-          <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-8 border border-slate-600/30">
             <h2 className="text-3xl font-bold text-pink-400 mb-6 text-center">Project Statistics</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="text-center">
