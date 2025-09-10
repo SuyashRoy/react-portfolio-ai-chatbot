@@ -1,19 +1,30 @@
 import React from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 import ParticleBackground from '../components/ParticleBackground';
 
 const About = () => {
+  const { isDarkMode } = useTheme();
+  
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+    <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
+      isDarkMode 
+        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
+        : 'bg-gradient-to-br from-orange-50 via-yellow-50 to-amber-50 text-gray-900'
+    }`}>
       <ParticleBackground />
       
-      <div className="relative z-10 container mx-auto px-4 py-16">
+      <div className="relative z-10 container mx-auto px-4 py-20 pt-24">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
+              isDarkMode 
+                ? 'from-emerald-400 via-teal-500 to-green-600' 
+                : 'from-emerald-600 via-teal-600 to-green-700'
+            } bg-clip-text text-transparent`}>
               About Me
             </h1>
-            <p className="text-xl text-gray-300">
+            <p className={`text-xl ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Get to know the person behind the code
             </p>
           </div>
@@ -22,23 +33,33 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             {/* Profile Image Placeholder */}
             <div className="flex justify-center">
-              <div className="w-80 h-80 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-6xl font-bold">
-                YC
+              <div className={`w-80 h-80 rounded-full flex items-center justify-center text-6xl font-bold ${
+                isDarkMode 
+                  ? 'bg-gradient-to-br from-emerald-500 to-teal-600' 
+                  : 'bg-gradient-to-br from-emerald-600 to-teal-700'
+              }`}>
+                <span className="text-white">SR</span>
               </div>
             </div>
             
             {/* About Text */}
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-blue-400 mb-6">My Story</h2>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                I'm a passionate full-stack developer with a deep love for creating innovative solutions. 
-                My journey in technology started with curiosity and has evolved into a career focused on 
-                building meaningful applications that make a difference.
+            <div className="space-y-6 text-center lg:text-left">
+              <h2 className={`text-3xl font-bold mb-6 ${
+                isDarkMode ? 'text-emerald-400' : 'text-emerald-600'
+              }`}>My Story</h2>
+              <p className={`text-lg leading-relaxed ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                I'm Suyash Roy, a passionate computer science professional currently pursuing my Master's degree 
+                at the University of Southern California. My journey in technology started with curiosity about 
+                how software systems work and has evolved into expertise in full-stack development and enterprise solutions.
               </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                When I'm not coding, you'll find me exploring the latest in AI technology, contributing 
-                to open-source projects, or sharing knowledge with the developer community. I believe 
-                in continuous learning and staying ahead of the curve in this ever-evolving field.
+              <p className={`text-lg leading-relaxed ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                With experience at Bain Capability Network and expertise in J2EE frameworks alongside modern technologies 
+                like ReactJS, I enjoy bridging the gap between complex backend systems and intuitive user interfaces. 
+                I believe in continuous learning and applying cutting-edge technologies to solve real-world problems.
               </p>
             </div>
           </div>
@@ -46,47 +67,75 @@ const About = () => {
           {/* Skills & Interests */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
             {/* Technical Skills */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
-              <h3 className="text-2xl font-bold text-purple-400 mb-6">Technical Skills</h3>
+            <div className={`backdrop-blur-sm rounded-xl p-8 ${
+              isDarkMode 
+                ? 'bg-slate-800/50 border-slate-600/30' 
+                : 'bg-white/70 border-stone-300/50'
+            } border`}>
+              <h3 className={`text-2xl font-bold mb-6 ${
+                isDarkMode ? 'text-emerald-400' : 'text-emerald-600'
+              }`}>Technical Skills</h3>
               <div className="space-y-4">
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-2">Frontend</h4>
-                  <p className="text-gray-300">React, Next.js, TypeScript, Tailwind CSS, Material-UI</p>
+                  <h4 className={`text-lg font-semibold mb-2 ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}>Frontend</h4>
+                  <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>ReactJS, HTML, CSS, JavaScript</p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-2">Backend</h4>
-                  <p className="text-gray-300">Node.js, Express, Python, PostgreSQL, MongoDB</p>
+                  <h4 className={`text-lg font-semibold mb-2 ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}>Backend</h4>
+                  <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>Java, Python, J2EE (Spring, Struts, Hibernate), SQL</p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-2">Tools & Others</h4>
-                  <p className="text-gray-300">Git, Docker, AWS, Firebase, Figma</p>
+                  <h4 className={`text-lg font-semibold mb-2 ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}>Tools & Version Control</h4>
+                  <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>Git, Development Tools, Enterprise Frameworks</p>
                 </div>
               </div>
             </div>
             
             {/* Interests */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
-              <h3 className="text-2xl font-bold text-pink-400 mb-6">Interests & Hobbies</h3>
+            <div className={`backdrop-blur-sm rounded-xl p-8 ${
+              isDarkMode 
+                ? 'bg-slate-800/50 border-slate-600/30' 
+                : 'bg-white/70 border-stone-300/50'
+            } border`}>
+              <h3 className={`text-2xl font-bold mb-6 ${
+                isDarkMode ? 'text-teal-400' : 'text-teal-600'
+              }`}>Professional Interests</h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span className="text-gray-300">Artificial Intelligence & Machine Learning</span>
+                  <div className={`w-2 h-2 rounded-full ${
+                    isDarkMode ? 'bg-emerald-400' : 'bg-emerald-600'
+                  }`}></div>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>Enterprise Software Development</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                  <span className="text-gray-300">Open Source Contributions</span>
+                  <div className={`w-2 h-2 rounded-full ${
+                    isDarkMode ? 'bg-teal-400' : 'bg-teal-600'
+                  }`}></div>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>Technology Consulting & Analysis</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
-                  <span className="text-gray-300">Tech Blogging & Mentoring</span>
+                  <div className={`w-2 h-2 rounded-full ${
+                    isDarkMode ? 'bg-green-400' : 'bg-green-600'
+                  }`}></div>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>Full-Stack Web Development</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span className="text-gray-300">Photography & Digital Art</span>
+                  <div className={`w-2 h-2 rounded-full ${
+                    isDarkMode ? 'bg-emerald-500' : 'bg-emerald-700'
+                  }`}></div>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>System Integration & Architecture</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-gray-300">Gaming & Game Development</span>
+                  <div className={`w-2 h-2 rounded-full ${
+                    isDarkMode ? 'bg-teal-500' : 'bg-teal-700'
+                  }`}></div>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>Continuous Learning & Innovation</span>
                 </div>
               </div>
             </div>
@@ -94,22 +143,42 @@ const About = () => {
           
           {/* Values */}
           <div className="text-center">
-            <h3 className="text-3xl font-bold text-white mb-8">My Values</h3>
+            <h3 className={`text-3xl font-bold mb-8 ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>My Values</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
+              <div className={`backdrop-blur-sm rounded-lg p-6 border ${
+                isDarkMode 
+                  ? 'bg-slate-800/30 border-slate-600/30' 
+                  : 'bg-white/50 border-stone-300/50'
+              }`}>
                 <div className="text-4xl mb-4">🚀</div>
-                <h4 className="text-xl font-semibold text-blue-400 mb-2">Innovation</h4>
-                <p className="text-gray-300">Always pushing boundaries and exploring new technologies</p>
+                <h4 className={`text-xl font-semibold mb-2 ${
+                  isDarkMode ? 'text-emerald-400' : 'text-emerald-600'
+                }`}>Innovation</h4>
+                <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>Always pushing boundaries and exploring new technologies</p>
               </div>
-              <div className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
+              <div className={`backdrop-blur-sm rounded-lg p-6 border ${
+                isDarkMode 
+                  ? 'bg-slate-800/30 border-slate-600/30' 
+                  : 'bg-white/50 border-stone-300/50'
+              }`}>
                 <div className="text-4xl mb-4">🤝</div>
-                <h4 className="text-xl font-semibold text-purple-400 mb-2">Collaboration</h4>
-                <p className="text-gray-300">Believing in the power of teamwork and shared knowledge</p>
+                <h4 className={`text-xl font-semibold mb-2 ${
+                  isDarkMode ? 'text-teal-400' : 'text-teal-600'
+                }`}>Collaboration</h4>
+                <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>Believing in the power of teamwork and shared knowledge</p>
               </div>
-              <div className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
+              <div className={`backdrop-blur-sm rounded-lg p-6 border ${
+                isDarkMode 
+                  ? 'bg-slate-800/30 border-slate-600/30' 
+                  : 'bg-white/50 border-stone-300/50'
+              }`}>
                 <div className="text-4xl mb-4">📚</div>
-                <h4 className="text-xl font-semibold text-pink-400 mb-2">Learning</h4>
-                <p className="text-gray-300">Continuous growth and staying curious about the world</p>
+                <h4 className={`text-xl font-semibold mb-2 ${
+                  isDarkMode ? 'text-green-400' : 'text-green-600'
+                }`}>Learning</h4>
+                <p className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>Continuous growth and staying curious about the world</p>
               </div>
             </div>
           </div>

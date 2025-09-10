@@ -5,7 +5,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hi! I'm your AI assistant. I can help you learn more about Suyash's background, skills, and experience. What would you like to know?",
+      text: "Hi! I'm Suyash Roy's portfolio assistant. I can help you learn more about his background, skills, and experience. What would you like to know?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -84,19 +84,19 @@ const Chatbot = () => {
     const message = userMessage.toLowerCase();
     
     if (message.includes('skill') || message.includes('technology')) {
-      return "Suyash is skilled in React, Node.js, TypeScript, Python, PostgreSQL, MongoDB, AWS, and many other modern technologies. He has 3+ years of experience in full-stack development.";
+      return "Suyash Roy is skilled in Python, Java, C#, .NET, React, Node.js, JavaScript, TypeScript, Azure, Cloud Computing, J2EE (Spring, Struts, Hibernate), and Git. He has extensive experience in full-stack development and enterprise software solutions.";
     } else if (message.includes('education') || message.includes('degree')) {
-      return "Suyash is pursuing a Bachelor of Science in Computer Science with a focus on software engineering, algorithms, and data structures. He maintains a 3.8/4.0 GPA and is active in computer science clubs.";
+      return "Suyash Roy is currently pursuing a Master of Science in Computer Science at USC (3.43/4.0 GPA) and completed his Bachelor of Technology in Information Technology from KIIT with an excellent 9.19/10.0 GPA.";
     } else if (message.includes('experience') || message.includes('work')) {
-      return "Suyash has worked as a Full-Stack Developer at Tech Company Inc., where he led development of scalable web applications. He also has experience as a Frontend Developer Intern and freelance web developer.";
+      return "Suyash Roy is currently a Software Engineer Intern at Tesla, and has previously worked at Microsoft, Eltropy as a Full Stack Engineer, and Bain Capability Network. He has 3+ years of experience with major tech companies.";
     } else if (message.includes('project')) {
-      return "Suyash has completed 20+ projects including AI-powered portfolio websites, e-commerce platforms, task management apps, and mobile banking applications. You can see detailed project information on the Projects page.";
+      return "Suyash Roy has worked on various projects including UI screen integration using ReactJS and J2EE frameworks. He specializes in building scalable web applications. You can see more details on the Projects page.";
     } else if (message.includes('contact') || message.includes('email')) {
-      return "You can reach Suyash at suyashroy4@gmail.com or through the contact form on this website. He's available for freelance projects and full-time opportunities.";
+      return "You can reach Suyash Roy at +1 (213)-348-0785, through his LinkedIn (linkedin.com/in/suyash-roy-8ab1461ba/), GitHub (github.com/SuyashRoy), or through the contact form on this website.";
     } else if (message.includes('hello') || message.includes('hi')) {
-      return "Hello! I'm here to help you learn more about Suyash. Feel free to ask about his skills, experience, education, or projects!";
+      return "Hello! I'm here to help you learn more about Suyash Roy. Feel free to ask about his skills, experience, education, or projects!";
     } else {
-      return "That's an interesting question! Based on Suyash's resume, I can help you with information about his technical skills, work experience, education background, or projects. What specific area would you like to know more about?";
+      return "That's an interesting question! Based on Suyash Roy's background, I can help you with information about his technical skills, work experience, education at USC, or projects. What specific area would you like to know more about?";
     }
   };
 
@@ -114,16 +114,16 @@ const Chatbot = () => {
     <div className="fixed bottom-6 right-6 z-50">
       {/* Chat Window */}
       {isOpen && (
-        <div className="bg-gray-800 border border-gray-700 rounded-xl shadow-2xl w-80 h-96 flex flex-col mb-4">
+        <div className="bg-gray-900/95 backdrop-blur-md border border-gray-600/50 rounded-xl shadow-2xl w-80 h-96 flex flex-col mb-4 transition-all duration-300 ease-in-out">
           {/* Header */}
-          <div className="bg-gradient-to-r from-red-400 to-rose-600 p-4 rounded-t-xl flex items-center justify-between">
+          <div className="bg-gradient-to-r from-slate-800 to-slate-700 p-4 rounded-t-xl flex items-center justify-between border-b border-gray-600/30">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                <span className="text-blue-600 font-bold text-sm">AI</span>
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">SR</span>
               </div>
               <div>
-                <h3 className="text-white font-semibold">AI Assistant</h3>
-                <p className="text-blue-100 text-xs">Powered by Gemini</p>
+                <h3 className="text-white font-semibold">Portfolio Assistant</h3>
+                <p className="text-gray-300 text-xs">Ask about Suyash Roy</p>
               </div>
             </div>
             <button
@@ -137,7 +137,7 @@ const Chatbot = () => {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-800/30">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -146,8 +146,8 @@ const Chatbot = () => {
                 <div
                   className={`max-w-xs px-4 py-2 rounded-lg ${
                     message.sender === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-700 text-gray-100'
+                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
+                      : 'bg-gray-700/80 text-gray-100 shadow-md'
                   }`}
                 >
                   <p className="text-sm">{message.text}</p>
@@ -173,20 +173,20 @@ const Chatbot = () => {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-gray-700">
+          <div className="p-4 border-t border-gray-600/30 bg-gray-800/30">
             <div className="flex space-x-2">
               <input
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask about Suyash..."
-                className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Ask about Suyash Roy..."
+                className="flex-1 px-3 py-2 bg-gray-700/60 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!inputMessage.trim()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed transition-all duration-200 shadow-md"
               >
                 <svg className="w-10 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path className="rotate-90" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 -7l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -200,7 +200,7 @@ const Chatbot = () => {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-gradient-to-r from-red-300 to-rose-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+        className="bg-gradient-to-r from-slate-700 to-slate-800 text-white p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-600/30 backdrop-blur-sm hover:from-slate-600 hover:to-slate-700"
       >
         {isOpen ? (
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
 import Chatbot from './components/Chatbot';
 import Home from './pages/Home';
@@ -9,10 +10,14 @@ import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 
-const App = () => {
+const AppContent = () => {
+  const { isDarkMode, colors } = useTheme();
+  
   return (
     <Router>
-      <div className="min-h-screen bg-gray-900">
+      <div className={`min-h-screen transition-colors duration-300 ${
+        isDarkMode ? 'bg-slate-900' : 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50'
+      }`}>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,6 +30,14 @@ const App = () => {
         <Chatbot />
       </div>
     </Router>
+  );
+};
+
+const App = () => {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 };
 

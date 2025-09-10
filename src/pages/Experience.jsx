@@ -1,82 +1,107 @@
 import React from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 import ParticleBackground from '../components/ParticleBackground';
 
 const Experience = () => {
+  const { isDarkMode } = useTheme();
   const experiences = [
     {
-      title: "Full-Stack Developer",
-      company: "Tech Company Inc.",
-      location: "San Francisco, CA",
-      period: "2023 - Present",
-      type: "Full-time",
-      description: "Leading development of scalable web applications using React, Node.js, and cloud technologies. Collaborating with cross-functional teams to deliver high-quality software solutions.",
-      achievements: [
-        "Increased application performance by 40% through code optimization",
-        "Led a team of 3 developers on a major product feature",
-        "Implemented CI/CD pipelines reducing deployment time by 60%",
-        "Mentored junior developers and conducted code reviews"
-      ],
-      technologies: ["React", "Node.js", "TypeScript", "AWS", "PostgreSQL", "Docker"]
-    },
-    {
-      title: "Frontend Developer Intern",
-      company: "StartupXYZ",
-      location: "Remote",
-      period: "2022 - 2023",
+      title: "Software Engineer Intern",
+      company: "Tesla",
+      location: "California, USA",
+      period: "2024 - Present",
       type: "Internship",
-      description: "Developed responsive user interfaces and improved user experience for web applications. Worked closely with designers and backend developers to implement new features.",
+      description: "Working on cutting-edge automotive software solutions and contributing to Tesla's mission of accelerating the world's transition to sustainable energy.",
       achievements: [
-        "Built 5+ responsive React components",
-        "Improved page load times by 30%",
-        "Implemented accessibility features for better UX",
-        "Participated in agile development processes"
+        "Developed software solutions for automotive applications",
+        "Collaborated with cross-functional teams on high-impact projects",
+        "Gained experience with scalable software architecture",
+        "Contributed to Tesla's innovative technology stack"
       ],
-      technologies: ["React", "JavaScript", "CSS3", "Figma", "Git"]
+      technologies: ["Python", "Java", "React", "Software Engineering", "Automotive Systems"]
     },
     {
-      title: "Freelance Web Developer",
-      company: "Self-Employed",
-      location: "Remote",
-      period: "2021 - 2022",
-      type: "Freelance",
-      description: "Provided web development services to small businesses and startups. Created custom websites and web applications tailored to client needs.",
+      title: "Software Engineer Intern",
+      company: "Microsoft",
+      location: "USA",
+      period: "2023 - 2024",
+      type: "Internship",
+      description: "Worked on several high-profile projects and gained experience with a wide range of Microsoft technologies and enterprise-level software development.",
       achievements: [
-        "Completed 10+ client projects successfully",
-        "Maintained 100% client satisfaction rate",
-        "Developed custom e-commerce solutions",
-        "Provided ongoing maintenance and support"
+        "Contributed to multiple high-profile software projects",
+        "Gained experience with Microsoft's technology ecosystem",
+        "Collaborated with global development teams",
+        "Enhanced skills in enterprise software development"
       ],
-      technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL", "WordPress"]
+      technologies: ["C#", ".NET", "Azure", "JavaScript", "Python", "Cloud Computing"]
+    },
+    {
+      title: "Full Stack Engineer",
+      company: "Eltropy",
+      location: "USA",
+      period: "2022 - 2023",
+      type: "Full-time",
+      description: "Developed cutting-edge software solutions as a full stack engineer, working on both frontend and backend technologies to deliver comprehensive applications.",
+      achievements: [
+        "Built end-to-end software solutions",
+        "Implemented both frontend and backend components",
+        "Delivered high-quality software products",
+        "Collaborated with product and design teams"
+      ],
+      technologies: ["React", "Node.js", "JavaScript", "Python", "Full Stack Development"]
+    },
+    {
+      title: "Analyst Intern, TMT (Tech Media Telecommunications)",
+      company: "Bain Capability Network",
+      location: "Gurgaon, India",
+      period: "January 2022 - June 2022",
+      type: "Internship",
+      description: "Leveraged J2EE frameworks (Spring, Struts, and Hibernate) along with ReactJS to design and setup UI Screen Integration for enterprise applications in the telecommunications sector.",
+      achievements: [
+        "Successfully integrated UI screens using ReactJS with J2EE backend",
+        "Worked on enterprise-level CFO application systems",
+        "Gained experience with Spring, Struts, and Hibernate frameworks",
+        "Contributed to telecommunications technology analysis projects"
+      ],
+      technologies: ["ReactJS", "J2EE", "Spring", "Struts", "Hibernate", "JavaScript", "HTML", "CSS"]
     }
   ];
 
   const skills = [
     {
       category: "Frontend",
-      items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Material-UI", "Redux"]
+      items: ["React", "ReactJS", "JavaScript", "HTML", "CSS", "TypeScript"]
     },
     {
-      category: "Backend",
-      items: ["Node.js", "Express", "Python", "PostgreSQL", "MongoDB", "REST APIs"]
+      category: "Backend & Frameworks",
+      items: ["Python", "Java", "C#", ".NET", "Node.js", "J2EE", "Spring", "Struts", "Hibernate", "SQL"]
     },
     {
-      category: "Tools & Others",
-      items: ["Git", "Docker", "AWS", "Firebase", "Figma", "Jest"]
+      category: "Tools & Cloud",
+      items: ["Git", "Azure", "Cloud Computing", "Software Engineering", "Full Stack Development"]
     }
   ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+    <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
+      isDarkMode 
+        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
+        : 'bg-gradient-to-br from-orange-50 via-yellow-50 to-amber-50 text-gray-900'
+    }`}>
       <ParticleBackground />
       
-      <div className="relative z-10 container mx-auto px-4 py-16">
+      <div className="relative z-10 container mx-auto px-4 py-20 pt-24">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
+              isDarkMode 
+                ? 'from-emerald-400 via-teal-500 to-green-600' 
+                : 'from-emerald-600 via-teal-600 to-green-700'
+            } bg-clip-text text-transparent`}>
               Experience
             </h1>
-            <p className="text-xl text-gray-300">
+            <p className={`text-xl ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               My professional journey and expertise
             </p>
           </div>
@@ -86,7 +111,7 @@ const Experience = () => {
             <h2 className="text-3xl font-bold text-blue-400 mb-8 text-center">Work Experience</h2>
             <div className="space-y-8">
               {experiences.map((exp, index) => (
-                <div key={index} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700 hover:border-blue-500 transition-all duration-300">
+                <div key={index} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-600/30 hover:border-blue-500 transition-all duration-300">
                   <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                     <div className="lg:col-span-3">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
@@ -154,7 +179,7 @@ const Experience = () => {
           </div>
           
           {/* Career Highlights */}
-          <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-8 border border-slate-600/30">
             <h2 className="text-3xl font-bold text-pink-400 mb-6 text-center">Career Highlights</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center">
@@ -162,16 +187,16 @@ const Experience = () => {
                 <div className="text-gray-300">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-purple-400 mb-2">15+</div>
-                <div className="text-gray-300">Projects Completed</div>
+                <div className="text-4xl font-bold text-purple-400 mb-2">4</div>
+                <div className="text-gray-300">Major Companies</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-pink-400 mb-2">5+</div>
-                <div className="text-gray-300">Technologies Mastered</div>
+                <div className="text-4xl font-bold text-pink-400 mb-2">15+</div>
+                <div className="text-gray-300">Technologies Used</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-400 mb-2">100%</div>
-                <div className="text-gray-300">Client Satisfaction</div>
+                <div className="text-4xl font-bold text-green-400 mb-2">Enterprise</div>
+                <div className="text-gray-300">Level Projects</div>
               </div>
             </div>
           </div>
