@@ -121,47 +121,57 @@ const Contact = () => {
     <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
       isDarkMode 
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950' 
-        : 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50'
+        : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50'
     }`}>
       <ParticleBackground />
       
       <div className="relative z-10 container mx-auto px-4 py-20 pt-24">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-20">
-            <h1 className={`text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r ${
+          <div className="text-center mb-16">
+            <div className="mb-6">
+              <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium ${
+                isDarkMode 
+                  ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                  : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+              }`}>
+                <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
+                Available for new opportunities
+              </span>
+            </div>
+            <h1 className={`text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-600' 
-                : 'from-emerald-600 via-teal-600 to-green-700'
+                : 'from-blue-400 to-blue-500'
             } bg-clip-text text-transparent`}>
-              Get In Touch
+              Let's Work Together
             </h1>
-            <p className={`text-xl md:text-2xl max-w-3xl mx-auto ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-700'
+            <p className={`text-lg md:text-xl max-w-2xl mx-auto leading-relaxed ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-600'
             }`}>
-              Have a project in mind or just want to chat? I'd love to hear from you. 
-              Let's build something extraordinary together.
+              Ready to bring your ideas to life? I'm here to help you build innovative solutions 
+              that make a real impact. Let's start a conversation.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
             {/* Contact Form */}
-            <div className="xl:col-span-2">
+            <div className="lg:col-span-3">
               <div className={`${
                 isDarkMode 
-                  ? 'bg-slate-800/50 border-slate-700/50' 
-                  : 'bg-white/70 border-amber-200/50'
-              } backdrop-blur-sm rounded-2xl p-8 md:p-12 border shadow-xl`}>
+                  ? 'bg-slate-800/60 border-slate-700/50' 
+                  : 'bg-white/90 border-slate-200/50'
+              } backdrop-blur-sm rounded-2xl p-8 md:p-10 border shadow-2xl`}>
                 <div className="mb-8">
-                  <h2 className={`text-3xl md:text-4xl font-bold mb-3 ${
+                  <h2 className={`text-2xl md:text-3xl font-bold mb-3 ${
                     isDarkMode ? 'text-white' : 'text-gray-900'
                   }`}>
                     Send a Message
                   </h2>
-                  <p className={`text-lg ${
+                  <p className={`text-base ${
                     isDarkMode ? 'text-gray-400' : 'text-gray-600'
                   }`}>
-                    Fill out the form below and I'll get back to you as soon as possible.
+                    I typically respond within 24 hours. Let's discuss your project!
                   </p>
                 </div>
                 
@@ -183,8 +193,8 @@ const Contact = () => {
                         className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 ${
                           isDarkMode 
                             ? 'bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-emerald-400 focus:bg-slate-700/70' 
-                            : 'bg-white/50 border-amber-200 text-gray-900 placeholder-gray-500 focus:border-emerald-500 focus:bg-white/80'
-                        } focus:outline-none focus:ring-0`}
+                            : 'bg-white border-slate-300 text-gray-900 placeholder-gray-500 focus:border-emerald-500 focus:bg-white'
+                        } focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
                         placeholder="Your full name"
                       />
                     </div>
@@ -205,8 +215,8 @@ const Contact = () => {
                         className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 ${
                           isDarkMode 
                             ? 'bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-emerald-400 focus:bg-slate-700/70' 
-                            : 'bg-white/50 border-amber-200 text-gray-900 placeholder-gray-500 focus:border-emerald-500 focus:bg-white/80'
-                        } focus:outline-none focus:ring-0`}
+                            : 'bg-white border-slate-300 text-gray-900 placeholder-gray-500 focus:border-emerald-500 focus:bg-white'
+                        } focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
                         placeholder="your@email.com"
                       />
                     </div>
@@ -299,12 +309,12 @@ const Contact = () => {
             </div>
             
             {/* Contact Information Sidebar */}
-            <div className="space-y-6">
+            <div className="lg:col-span-2 space-y-6">
               {/* Contact Details */}
               <div className={`${
                 isDarkMode 
                   ? 'bg-slate-800/50 border-slate-700/50' 
-                  : 'bg-white/70 border-amber-200/50'
+                  : 'bg-white/90 border-slate-200/50'
               } backdrop-blur-sm rounded-2xl p-6 border shadow-xl`}>
                 <h3 className={`text-2xl font-bold mb-6 ${
                   isDarkMode ? 'text-white' : 'text-gray-900'
@@ -320,7 +330,7 @@ const Contact = () => {
                       className={`flex items-start space-x-4 p-4 rounded-xl transition-all duration-300 group ${
                         isDarkMode 
                           ? 'hover:bg-slate-700/50 text-gray-300 hover:text-white' 
-                          : 'hover:bg-amber-50 text-gray-700 hover:text-gray-900'
+                          : 'hover:bg-slate-50 text-gray-700 hover:text-gray-900'
                       }`}
                     >
                       <div className={`flex-shrink-0 p-2 rounded-lg ${
@@ -350,7 +360,7 @@ const Contact = () => {
               <div className={`${
                 isDarkMode 
                   ? 'bg-slate-800/50 border-slate-700/50' 
-                  : 'bg-white/70 border-amber-200/50'
+                  : 'bg-white/90 border-slate-200/50'
               } backdrop-blur-sm rounded-2xl p-6 border shadow-xl`}>
                 <h3 className={`text-2xl font-bold mb-6 ${
                   isDarkMode ? 'text-white' : 'text-gray-900'
@@ -368,7 +378,7 @@ const Contact = () => {
                       className={`flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 ${
                         isDarkMode 
                           ? 'hover:bg-slate-700/50 text-gray-300' 
-                          : 'hover:bg-amber-50 text-gray-700'
+                          : 'hover:bg-slate-50 text-gray-700'
                       } ${social.color}`}
                     >
                       <div className="flex-shrink-0">
@@ -387,7 +397,7 @@ const Contact = () => {
               <div className={`${
                 isDarkMode 
                   ? 'bg-slate-800/50 border-slate-700/50' 
-                  : 'bg-white/70 border-amber-200/50'
+                  : 'bg-white/90 border-slate-200/50'
               } backdrop-blur-sm rounded-2xl p-6 border shadow-xl`}>
                 <h3 className={`text-2xl font-bold mb-6 ${
                   isDarkMode ? 'text-white' : 'text-gray-900'
@@ -419,13 +429,76 @@ const Contact = () => {
                 <div className={`mt-6 p-4 rounded-xl ${
                   isDarkMode 
                     ? 'bg-slate-700/50 text-gray-300' 
-                    : 'bg-amber-50 text-gray-700'
+                    : 'bg-slate-50 text-gray-700'
                 }`}>
                   <p className="text-sm">
                     <span className="font-semibold">Response Time:</span> Usually within 24 hours
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+          
+          {/* Quick Stats Section */}
+          <div className={`rounded-2xl p-8 border backdrop-blur-sm ${ 
+            isDarkMode 
+              ? 'bg-slate-800/40 border-slate-700/50' 
+              : 'bg-white/80 border-slate-200/50'
+          }`}>
+            <h3 className={`text-2xl font-bold mb-8 text-center ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>
+              Let's Connect
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className={`text-3xl font-bold mb-2 ${
+                  isDarkMode ? 'text-emerald-400' : 'text-blue-600'
+                }`}>24h</div>
+                <div className={`text-sm ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}>Response Time</div>
+              </div>
+              
+              <div className="text-center">
+                <div className={`text-3xl font-bold mb-2 ${
+                  isDarkMode ? 'text-blue-400' : 'text-blue-500'
+                }`}>100+</div>
+                <div className={`text-sm ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}>Projects Delivered</div>
+              </div>
+              
+              <div className="text-center">
+                <div className={`text-3xl font-bold mb-2 ${
+                  isDarkMode ? 'text-purple-400' : 'text-purple-400'
+                }`}>3+</div>
+                <div className={`text-sm ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}>Years Experience</div>
+              </div>
+              
+              <div className="text-center">
+                <div className={`text-3xl font-bold mb-2 ${
+                  isDarkMode ? 'text-pink-400' : 'text-pink-400'
+                }`}>Global</div>
+                <div className={`text-sm ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}>Remote Ready</div>
+              </div>
+            </div>
+            
+            <div className={`mt-8 p-4 rounded-xl text-center ${
+              isDarkMode 
+                ? 'bg-emerald-500/10 border border-emerald-500/20' 
+                : 'bg-blue-50 border border-blue-200'
+            }`}>
+              <p className={`${
+                isDarkMode ? 'text-emerald-400' : 'text-blue-700'
+              }`}>
+                <span className="font-semibold">💡 Pro Tip:</span> Include your project timeline and budget range for a faster, more personalized response!
+              </p>
             </div>
           </div>
         </div>

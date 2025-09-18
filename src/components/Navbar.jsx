@@ -22,17 +22,21 @@ const Navbar = () => {
 
   return (
     <nav className={`${
-      isDarkMode ? 'bg-slate-900/95 text-white border-slate-700/50' : 'bg-amber-50/95 text-gray-900 border-amber-300/50'
+      isDarkMode ? 'bg-slate-900/95 text-white border-slate-700/50' : 'bg-yellow-50/95 text-gray-900 border-yellow-200/50'
     } backdrop-blur-md fixed top-0 w-full shadow-xl z-40 border-b transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 w-full">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
-            <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+          <span className="text-transparent">S</span>
+            <div className={`w-8 h-8 bg-gradient-to-r ${
+              isDarkMode ? 'from-emerald-500 to-teal-600' : 'from-blue-500 to-blue-600'
+            } rounded-lg flex items-center justify-center `}>
               <span className="text-white font-bold text-sm">SR</span>
             </div>
+            <span className="text-transparent">R</span>
             <span className={`text-xl font-bold bg-gradient-to-r ${
-              isDarkMode ? 'from-emerald-400 to-teal-500' : 'from-emerald-600 to-teal-700'
+              isDarkMode ? 'from-emerald-400 to-teal-500' : 'from-blue-500 to-blue-600'
             } bg-clip-text text-transparent`}>
               Suyash Roy
             </span>
@@ -45,10 +49,10 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                  className={`w-35 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                     isActive(item.path)
-                      ? `${isDarkMode ? 'text-emerald-400 bg-emerald-500/10' : 'text-emerald-600 bg-emerald-100'}`
-                      : `${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-amber-100'}`
+                      ? `${isDarkMode ? 'text-emerald-400' : 'text-blue-600'}`
+                      : `${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`
                   }`}
                 >
                   {item.label}
@@ -61,8 +65,8 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-all duration-300 ${
-                isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-amber-100'
+              className={`p-2 rounded-lg transition-all duration-300 flex items-center ${
+                isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-blue-600 hover:text-blue-800 hover:bg-yellow-100'
               }`}
               aria-label="Toggle theme"
             >
@@ -82,8 +86,8 @@ const Navbar = () => {
           <div className="md:hidden flex items-center space-x-2 flex-shrink-0">
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-all duration-300 ${
-                isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-amber-100'
+              className={`p-2 rounded-lg transition-all duration-300 flex items-center ${
+                isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-blue-600 hover:text-blue-800 hover:bg-yellow-100'
               }`}
               aria-label="Toggle theme"
             >
@@ -100,7 +104,7 @@ const Navbar = () => {
             
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 rounded-lg transition-all duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-amber-100'} focus:outline-none`}
+              className={`p-2 rounded-lg transition-all duration-300 flex items-center ${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-yellow-100'} focus:outline-none`}
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMenuOpen ? (
@@ -117,9 +121,9 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 ${
-              isDarkMode ? 'bg-slate-800/50' : 'bg-amber-50/70'
+              isDarkMode ? 'bg-slate-800/50' : 'bg-yellow-50/90'
             } backdrop-blur-md rounded-lg mt-2 mb-4 border ${
-              isDarkMode ? 'border-slate-600/30' : 'border-amber-300/50'
+              isDarkMode ? 'border-slate-600/30' : 'border-yellow-200/50'
             }`}>
               {navItems.map((item) => (
                 <Link
@@ -128,8 +132,8 @@ const Navbar = () => {
                   onClick={() => setIsMenuOpen(false)}
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
                     isActive(item.path)
-                      ? `${isDarkMode ? 'text-emerald-400 bg-emerald-600/20' : 'text-emerald-600 bg-emerald-100'}`
-                      : `${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-amber-100'}`
+                      ? `${isDarkMode ? 'text-emerald-400 bg-emerald-600/20' : 'text-blue-600 bg-blue-100'}`
+                      : `${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-slate-100'}`
                   }`}
                 >
                   {item.label}

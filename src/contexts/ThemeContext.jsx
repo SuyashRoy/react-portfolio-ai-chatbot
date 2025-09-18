@@ -47,13 +47,14 @@ export const ThemeProvider = ({ children }) => {
       },
       // Light mode colors
       light: {
-        background: 'from-amber-50 via-orange-50 to-yellow-50',
-        surface: 'bg-white/70',
-        text: 'text-gray-900',
+        // background: 'from-gray-50 via-slate-50 to-blue-50',
+        background: 'bg-white',
+        surface: 'bg-white',
+        text: 'text-black',
         textSecondary: 'text-gray-700',
         accent: 'text-emerald-600',
-        border: 'border-amber-300/50',
-        navbar: 'bg-amber-50/95',
+        border: 'border-slate-200/50',
+        navbar: 'bg-white/95',
       },
     },
     gradients: {

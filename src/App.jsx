@@ -16,7 +16,7 @@ const AppContent = () => {
   return (
     <Router>
       <div className={`min-h-screen transition-colors duration-300 ${
-        isDarkMode ? 'bg-slate-900' : 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50'
+        isDarkMode ? 'bg-slate-900' : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50'
       }`}>
         <Navbar />
         <Routes>
