@@ -87,7 +87,7 @@ const Home = () => {
             </div>
             <div className="text-center">
               <div className={`text-3xl font-bold ${isDarkMode ? 'text-green-400' : 'text-blue-600'}`}>Actively Seeking</div>
-              <div className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Current Internship</div>
+              <div className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Internships</div>
             </div>
           </div>
         </div>
