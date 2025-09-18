@@ -10,8 +10,8 @@ const Education = () => {
       institution: "University of Southern California",
       year: "January 2025 - Present",
       gpa: "3.43/4.0",
-      description: "Pursuing advanced studies in computer science with focus on software engineering, algorithms, and modern computing technologies.",
-      courses: ["Advanced Algorithms", "Software Engineering", "System Design", "Machine Learning", "Database Systems"]
+      description: "Pursuing MS in Computer Science with focus on software engineering, algorithms, machine learning and modern technologies.",
+      courses: ["Analysis of Algorithms", "Foundations of Artificial Intelligence", "Information Retrieval", "Machine Learning", "Natural Language Processing"]
     },
     {
       degree: "Bachelor of Technology in Information Technology",
@@ -23,26 +23,26 @@ const Education = () => {
     }
   ];
 
-  const certifications = [
-    {
-      name: "J2EE Enterprise Development",
-      issuer: "Professional Experience",
-      date: "2022",
-      credential: "BAIN-TMT-001"
-    },
-    {
-      name: "ReactJS Development",
-      issuer: "Professional Experience",
-      date: "2022",
-      credential: "UI-INTEGRATION-002"
-    },
-    {
-      name: "Git Version Control",
-      issuer: "DevOps Experience",
-      date: "2022",
-      credential: "VCS-003"
-    }
-  ];
+  // const certifications = [
+  //   {
+  //     name: "J2EE Enterprise Development",
+  //     issuer: "Professional Experience",
+  //     date: "2022",
+  //     credential: "BAIN-TMT-001"
+  //   },
+  //   {
+  //     name: "ReactJS Development",
+  //     issuer: "Professional Experience",
+  //     date: "2022",
+  //     credential: "UI-INTEGRATION-002"
+  //   },
+  //   {
+  //     name: "Git Version Control",
+  //     issuer: "DevOps Experience",
+  //     date: "2022",
+  //     credential: "VCS-003"
+  //   }
+  // ];
 
   return (
     <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
@@ -52,8 +52,8 @@ const Education = () => {
     }`}>
       <ParticleBackground />
       
-      <div className="relative z-10 container mx-auto px-4 py-20 pt-24">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative z-10 mx-auto px-4 py-20 pt-24">
+        <div className="w-full mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
@@ -63,22 +63,20 @@ const Education = () => {
             } bg-clip-text text-transparent`}>
               Education
             </h1>
-            <p className={`text-xl ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              My academic journey and continuous learning
-            </p>
           </div>
           
           {/* Education Timeline */}
           <div className="mb-16">
-            <h2 className={`text-3xl font-bold mb-8 text-center ${
-              isDarkMode ? 'text-blue-400' : 'text-slate-600'
+            <div className="h-3"></div>
+            <h2 className={`text-3xl font-bold mb-8 text-center h-14 ${
+              isDarkMode ? 'text-teal-500' : 'text-sky-600'
             }`}>Academic Background</h2>
             <div className="space-y-8">
               {educationData.map((edu, index) => (
                 <div key={index} className={`backdrop-blur-sm rounded-xl p-8 border transition-all duration-300 ${
                   isDarkMode 
-                    ? 'bg-slate-800/50 border-slate-600/30 hover:border-blue-500' 
-                    : 'bg-white/80 border-slate-200/50 hover:border-blue-400'
+                    ? 'bg-slate-800/50 border-slate-600/30' 
+                    : 'bg-orange-100 border-slate-200/50  '
                 }`}>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
@@ -86,7 +84,7 @@ const Education = () => {
                         isDarkMode ? 'text-white' : 'text-gray-900'
                       }`}>{edu.degree}</h3>
                       <h4 className={`text-xl mb-2 text-center ${
-                        isDarkMode ? 'text-blue-400' : 'text-slate-600'
+                        isDarkMode ? 'text-emerald-400' : 'text-rose-700'
                       }`}>{edu.institution}</h4>
                       <p className={`mb-4 text-center ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
@@ -94,11 +92,11 @@ const Education = () => {
                       
                       <div className="mb-4">
                         <h5 className={`text-lg font-semibold mb-2 text-center ${
-                          isDarkMode ? 'text-purple-400' : 'text-purple-400'
+                          isDarkMode ? 'text-white' : 'text-grey-500'
                         }`}>Key Courses:</h5>
                         <div className="flex flex-wrap gap-2 justify-center">
                           {edu.courses.map((course, courseIndex) => (
-                            <span key={courseIndex} className={`px-3 py-1 rounded-full text-sm ${
+                            <span key={courseIndex} className={`px-3 py-1 rounded-full w-75 text-sm text-center ${
                               isDarkMode 
                                 ? 'bg-gray-700 text-gray-300' 
                                 : 'bg-slate-100 text-slate-700'
@@ -107,12 +105,13 @@ const Education = () => {
                             </span>
                           ))}
                         </div>
+                        <div className="h-4"></div>
                       </div>
                     </div>
                     
                     <div className="lg:col-span-1">
                       <div className={`rounded-lg p-4 h-full ${
-                        isDarkMode ? 'bg-gray-700/50' : 'bg-slate-100/70'
+                        isDarkMode ? 'bg-gray-700/50' : 'bg-orange-50'
                       }`}>
                         <div className="text-center">
                           <div className={`text-2xl font-bold mb-2 ${
@@ -128,13 +127,14 @@ const Education = () => {
                       </div>
                     </div>
                   </div>
+                  <div className={`h-4 ${isDarkMode ? 'bg-slate-950' : 'bg-yellow-50'}`}></div>
                 </div>
               ))}
             </div>
           </div>
           
           {/* Certifications */}
-          <div className="mb-16">
+          {/* <div className="mb-16">
             <h2 className={`text-3xl font-bold mb-8 text-center ${
               isDarkMode ? 'text-purple-400' : 'text-purple-400'
             }`}>Certifications</h2>
@@ -163,13 +163,13 @@ const Education = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
           
           {/* Learning Philosophy */}
           <div className={`backdrop-blur-sm rounded-xl p-8 border ${
             isDarkMode 
               ? 'bg-slate-800/30 border-slate-600/30' 
-              : 'bg-white/60 border-slate-200/50'
+              : 'bg-yellow-50 border-slate-200/50'
           }`}>
             <h2 className={`text-3xl font-bold mb-6 text-center ${
               isDarkMode ? 'text-pink-400' : 'text-pink-400'
@@ -183,8 +183,8 @@ const Education = () => {
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>
                   I believe that technology evolves rapidly, and staying current requires a commitment to 
-                  continuous learning. I regularly participate in online courses, attend tech conferences, 
-                  and contribute to open-source projects to expand my knowledge.
+                  continuous learning. I regularly participate in online courses, keep upto date with the latest technologies, 
+                  and work on projects to expand my knowledge.
                 </p>
               </div>
               <div>
@@ -195,8 +195,7 @@ const Education = () => {
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>
                   Theory without practice is incomplete. I prefer learning by building real projects, 
-                  solving actual problems, and working with teams. This approach helps me understand 
-                  not just how things work, but why they work that way.
+                  solving actual problems, and working with teams.
                 </p>
               </div>
             </div>
