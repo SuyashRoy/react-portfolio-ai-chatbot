@@ -48,7 +48,7 @@ const Education = () => {
     <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
       isDarkMode 
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
-        : 'bg-gradient-to-br from-orange-50 via-yellow-50 to-amber-50 text-gray-900'
+        : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 text-gray-900'
     }`}>
       <ParticleBackground />
       
@@ -59,7 +59,7 @@ const Education = () => {
             <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-600' 
-                : 'from-emerald-600 via-teal-600 to-green-700'
+                : 'from-blue-400 to-blue-500'
             } bg-clip-text text-transparent`}>
               Education
             </h1>
@@ -70,21 +70,39 @@ const Education = () => {
           
           {/* Education Timeline */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-blue-400 mb-8 text-center">Academic Background</h2>
+            <h2 className={`text-3xl font-bold mb-8 text-center ${
+              isDarkMode ? 'text-blue-400' : 'text-slate-600'
+            }`}>Academic Background</h2>
             <div className="space-y-8">
               {educationData.map((edu, index) => (
-                <div key={index} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-600/30 hover:border-blue-500 transition-all duration-300">
+                <div key={index} className={`backdrop-blur-sm rounded-xl p-8 border transition-all duration-300 ${
+                  isDarkMode 
+                    ? 'bg-slate-800/50 border-slate-600/30 hover:border-blue-500' 
+                    : 'bg-white/80 border-slate-200/50 hover:border-blue-400'
+                }`}>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
-                      <h3 className="text-2xl font-bold text-white mb-2">{edu.degree}</h3>
-                      <h4 className="text-xl text-blue-400 mb-2">{edu.institution}</h4>
-                      <p className="text-gray-300 mb-4">{edu.description}</p>
+                      <h3 className={`text-2xl font-bold mb-2 text-center ${
+                        isDarkMode ? 'text-white' : 'text-gray-900'
+                      }`}>{edu.degree}</h3>
+                      <h4 className={`text-xl mb-2 text-center ${
+                        isDarkMode ? 'text-blue-400' : 'text-slate-600'
+                      }`}>{edu.institution}</h4>
+                      <p className={`mb-4 text-center ${
+                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                      }`}>{edu.description}</p>
                       
                       <div className="mb-4">
-                        <h5 className="text-lg font-semibold text-purple-400 mb-2">Key Courses:</h5>
-                        <div className="flex flex-wrap gap-2">
+                        <h5 className={`text-lg font-semibold mb-2 text-center ${
+                          isDarkMode ? 'text-purple-400' : 'text-purple-400'
+                        }`}>Key Courses:</h5>
+                        <div className="flex flex-wrap gap-2 justify-center">
                           {edu.courses.map((course, courseIndex) => (
-                            <span key={courseIndex} className="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">
+                            <span key={courseIndex} className={`px-3 py-1 rounded-full text-sm ${
+                              isDarkMode 
+                                ? 'bg-gray-700 text-gray-300' 
+                                : 'bg-slate-100 text-slate-700'
+                            }`}>
                               {course}
                             </span>
                           ))}
@@ -93,11 +111,19 @@ const Education = () => {
                     </div>
                     
                     <div className="lg:col-span-1">
-                      <div className="bg-gray-700/50 rounded-lg p-4 h-full">
+                      <div className={`rounded-lg p-4 h-full ${
+                        isDarkMode ? 'bg-gray-700/50' : 'bg-slate-100/70'
+                      }`}>
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-green-400 mb-2">{edu.gpa}</div>
-                          <div className="text-gray-300 mb-4">GPA</div>
-                          <div className="text-lg font-semibold text-white">{edu.year}</div>
+                          <div className={`text-2xl font-bold mb-2 ${
+                            isDarkMode ? 'text-green-400' : 'text-blue-500'
+                          }`}>{edu.gpa}</div>
+                          <div className={`mb-4 ${
+                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                          }`}>GPA</div>
+                          <div className={`text-lg font-semibold ${
+                            isDarkMode ? 'text-white' : 'text-gray-900'
+                          }`}>{edu.year}</div>
                         </div>
                       </div>
                     </div>
@@ -109,16 +135,30 @@ const Education = () => {
           
           {/* Certifications */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-purple-400 mb-8 text-center">Certifications</h2>
+            <h2 className={`text-3xl font-bold mb-8 text-center ${
+              isDarkMode ? 'text-purple-400' : 'text-purple-400'
+            }`}>Certifications</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {certifications.map((cert, index) => (
-                <div key={index} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition-all duration-300">
+                <div key={index} className={`backdrop-blur-sm rounded-xl p-6 border transition-all duration-300 ${
+                  isDarkMode 
+                    ? 'bg-gray-800/50 border-gray-700 hover:border-purple-500' 
+                    : 'bg-white/80 border-slate-200/50 hover:border-purple-400'
+                }`}>
                   <div className="text-center">
                     <div className="text-3xl mb-4">🏆</div>
-                    <h3 className="text-xl font-bold text-white mb-2">{cert.name}</h3>
-                    <p className="text-blue-400 mb-2">{cert.issuer}</p>
-                    <p className="text-gray-300 mb-2">{cert.date}</p>
-                    <p className="text-sm text-gray-400">ID: {cert.credential}</p>
+                    <h3 className={`text-xl font-bold mb-2 ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>{cert.name}</h3>
+                    <p className={`mb-2 ${
+                      isDarkMode ? 'text-blue-400' : 'text-slate-600'
+                    }`}>{cert.issuer}</p>
+                    <p className={`mb-2 ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>{cert.date}</p>
+                    <p className={`text-sm ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                    }`}>ID: {cert.credential}</p>
                   </div>
                 </div>
               ))}
@@ -126,20 +166,34 @@ const Education = () => {
           </div>
           
           {/* Learning Philosophy */}
-          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-8 border border-slate-600/30">
-            <h2 className="text-3xl font-bold text-pink-400 mb-6 text-center">Learning Philosophy</h2>
+          <div className={`backdrop-blur-sm rounded-xl p-8 border ${
+            isDarkMode 
+              ? 'bg-slate-800/30 border-slate-600/30' 
+              : 'bg-white/60 border-slate-200/50'
+          }`}>
+            <h2 className={`text-3xl font-bold mb-6 text-center ${
+              isDarkMode ? 'text-pink-400' : 'text-pink-400'
+            }`}>Learning Philosophy</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-semibold text-white mb-4">Continuous Learning</h3>
-                <p className="text-gray-300 leading-relaxed">
+                <h3 className={`text-xl font-semibold mb-4 text-center ${
+                  isDarkMode ? 'text-white' : 'text-gray-900'
+                }`}>Continuous Learning</h3>
+                <p className={`leading-relaxed text-center ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}>
                   I believe that technology evolves rapidly, and staying current requires a commitment to 
                   continuous learning. I regularly participate in online courses, attend tech conferences, 
                   and contribute to open-source projects to expand my knowledge.
                 </p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-white mb-4">Hands-On Experience</h3>
-                <p className="text-gray-300 leading-relaxed">
+                <h3 className={`text-xl font-semibold mb-4 text-center ${
+                  isDarkMode ? 'text-white' : 'text-gray-900'
+                }`}>Hands-On Experience</h3>
+                <p className={`leading-relaxed text-center ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}>
                   Theory without practice is incomplete. I prefer learning by building real projects, 
                   solving actual problems, and working with teams. This approach helps me understand 
                   not just how things work, but why they work that way.

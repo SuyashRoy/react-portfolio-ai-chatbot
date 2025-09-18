@@ -30,8 +30,8 @@ body.dark {
 }
 
 body.light {
-  background: linear-gradient(135deg, #fffbeb 0%, #fff7ed 25%, #fef3c7 75%, #fefce8 100%);
-  color: #1c1917;
+  background: linear-gradient(135deg, #fefce8 0%, #fef3c7 25%, #fed7aa 75%, #fdba74 100%);
+  color: #1f2937;
 }
 
 /* Custom scrollbar */

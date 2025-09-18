@@ -38,4 +38,53 @@
     transform: rotate(45deg);
     filter: blur(5px);
   }
+
+  /* Light mode particles - subtle and professional */
+  .light-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #f59e0b, #d97706, #92400e);
+    border-radius: 50%;
+    animation: flutter-light 4s ease-in-out infinite;
+    box-shadow: 0 0 8px 3px rgba(245, 158, 11, 0.2);
+    opacity: 0.6;
+  }
+
+  /* Light particle animation - more gentle and professional */
+  @keyframes flutter-light {
+    0% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+      opacity: 0.4;
+    }
+    25% {
+      transform: translate(50px, -30px) rotate(90deg) scale(1.1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translate(100px, 20px) rotate(180deg) scale(0.9);
+      opacity: 0.8;
+    }
+    75% {
+      transform: translate(150px, -10px) rotate(270deg) scale(1.05);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(200px, 40px) rotate(360deg) scale(1);
+      opacity: 0.3;
+    }
+  }
+
+  /* Light particle subtle glow effect */
+  .light-particle::after {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
   

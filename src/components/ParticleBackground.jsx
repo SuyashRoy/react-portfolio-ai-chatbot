@@ -25,29 +25,35 @@
 
 // export default ParticleBackground;
 
-// 
 import React from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 import './particles.css'; // Import custom animations
 
 const ParticleBackground = () => {
+  const { isDarkMode } = useTheme();
+
   return (
     <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-50"></div>
+      {/* Background gradient - theme aware */}
+      <div className={`absolute inset-0 ${
+        isDarkMode 
+          ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-50' 
+          : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 opacity-30'
+      }`}></div>
 
-      {/* Glowing snowflakes */}
-      <div className="snowflake" style={{ top: '20%', left: '10%', animationDelay: '0s' }}></div>
-      <div className="snowflake" style={{ top: '25%', right: '30%', animationDelay: '0.4s' }}></div>
-      <div className="snowflake" style={{ bottom: '15%', left: '50%', animationDelay: '0.8s' }}></div>
-      <div className="snowflake" style={{ top: '40%', right: '10%', animationDelay: '1.2s' }}></div>
-      <div className="snowflake" style={{ bottom: '10%', right: '40%', animationDelay: '1.6s' }}></div>
+      {/* Theme-aware particles */}
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ top: '20%', left: '10%', animationDelay: '0s' }}></div>
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ top: '25%', right: '30%', animationDelay: '0.4s' }}></div>
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ bottom: '15%', left: '50%', animationDelay: '0.8s' }}></div>
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ top: '40%', right: '10%', animationDelay: '1.2s' }}></div>
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ bottom: '10%', right: '40%', animationDelay: '1.6s' }}></div>
 
-      {/* Additional glowing snowflakes */}
-      <div className="snowflake" style={{ top: '60%', left: '70%', animationDelay: '2s' }}></div>
-      <div className="snowflake" style={{ bottom: '20%', left: '15%', animationDelay: '2.4s' }}></div>
-      <div className="snowflake" style={{ top: '50%', right: '55%', animationDelay: '2.8s' }}></div>
-      <div className="snowflake" style={{ bottom: '5%', left: '30%', animationDelay: '3.2s' }}></div>
-      <div className="snowflake" style={{ top: '80%', right: '20%', animationDelay: '3.6s' }}></div>
+      {/* Additional theme-aware particles */}
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ top: '60%', left: '70%', animationDelay: '2s' }}></div>
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ bottom: '20%', left: '15%', animationDelay: '2.4s' }}></div>
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ top: '50%', right: '55%', animationDelay: '2.8s' }}></div>
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ bottom: '5%', left: '30%', animationDelay: '3.2s' }}></div>
+      <div className={`${isDarkMode ? 'snowflake' : 'light-particle'}`} style={{ top: '80%', right: '20%', animationDelay: '3.6s' }}></div>
     </div>
   );
 };

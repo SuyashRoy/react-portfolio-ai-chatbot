@@ -10,7 +10,7 @@ const Home = () => {
     <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
       isDarkMode 
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
-        : 'bg-gradient-to-br from-orange-50 via-yellow-50 to-amber-50 text-gray-900'
+        : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 text-gray-900'
     }`}>
       <ParticleBackground />
       {/* <div className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-6xl font-bold">
@@ -20,10 +20,10 @@ const Home = () => {
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 pt-16">
         <div className="text-center max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className={`text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r ${
+            <h1 className={`text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r leading-tight ${
               isDarkMode 
-                ? 'from-emerald-400 via-teal-500 to-green-600' 
-                : 'from-emerald-600 via-teal-600 to-green-700'
+                ? 'from-emerald-400 via-teal-500 to-green-500' 
+                : 'from-blue-400 to-blue-500'
             } bg-clip-text text-transparent`}>
               Hi, I'm Suyash Roy
             </h1>
@@ -32,17 +32,18 @@ const Home = () => {
             }`}>
               Computer Science Graduate Student & Software Developer
             </p>
-            <p className={`text-lg mb-12 max-w-2xl mx-auto h-16 ${
+            <p className={`text-lg mb-12 max-w-2xl mx-auto h-16 leading-relaxed flex ${
               isDarkMode ? 'text-gray-400' : 'text-gray-600'
             }`}>
+            <span className="flex items-center text-transparent">text transparent</span>
               Currently pursuing MS in Computer Science at USC. Experienced in enterprise software development 
               with expertise in J2EE frameworks and modern web technologies.
             </p>
           </div>
-          
+          <div className="h-10"></div>
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center my-8">
-            <Link 
+            {/* <Link 
               to="/projects" 
               className={`px-12 py-4 mx-4 text-center rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl ${
                 isDarkMode 
@@ -51,31 +52,41 @@ const Home = () => {
               }`}
             >
               View My Work
+            </Link> */}
+            <Link 
+              to="/projects" 
+              className={`w-40 px-12 py-4 mx-4 text-center rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
+                isDarkMode 
+                  ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 
+                  : 'border-2 border-blue-500/60 text-gray-900 hover:bg-blue-100 hover:border-blue-500'
+              }`}
+            >
+              View My Work
             </Link>
             <Link 
               to="/contact" 
-              className={`px-12 py-4 mx-4 text-center rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
+              className={`w-40 px-12 py-4 mx-4 text-center rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
                 isDarkMode 
                   ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 
-                  : 'border-2 border-emerald-600/60 text-gray-900 hover:bg-emerald-100 hover:border-emerald-500'
+                  : 'border-2 border-blue-500/60 text-gray-900 hover:bg-blue-100 hover:border-blue-500'
               }`}
             >
               Get In Touch
             </Link>
           </div>
-          
+          <div className="h-5"></div>
           {/* Quick Stats */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
             <div className="text-center">
-              <div className={`text-3xl font-bold ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>MS</div>
+              <div className={`text-3xl font-bold ${isDarkMode ? 'text-emerald-400' : 'text-blue-700'}`}>MS</div>
               <div className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Computer Science at USC</div>
             </div>
             <div className="text-center">
-              <div className={`text-3xl font-bold ${isDarkMode ? 'text-teal-400' : 'text-teal-600'}`}>3.43/4.0</div>
+              <div className={`text-3xl font-bold ${isDarkMode ? 'text-teal-400' : 'text-blue-500'}`}>3.43/4.0</div>
               <div className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>MS GPA</div>
             </div>
             <div className="text-center">
-              <div className={`text-3xl font-bold ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}>Tesla</div>
+              <div className={`text-3xl font-bold ${isDarkMode ? 'text-green-400' : 'text-blue-600'}`}>Actively Seeking</div>
               <div className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Current Internship</div>
             </div>
           </div>

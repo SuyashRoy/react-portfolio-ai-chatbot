@@ -92,7 +92,7 @@ const Projects = () => {
     <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
       isDarkMode 
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
-        : 'bg-gradient-to-br from-orange-50 via-yellow-50 to-amber-50 text-gray-900'
+        : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 text-gray-900'
     }`}>
       <ParticleBackground />
       
@@ -103,7 +103,7 @@ const Projects = () => {
             <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-600' 
-                : 'from-emerald-600 via-teal-600 to-green-700'
+                : 'from-blue-300 to-blue-400'
             } bg-clip-text text-transparent`}>
               Projects
             </h1>
