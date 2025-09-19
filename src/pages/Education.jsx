@@ -6,19 +6,19 @@ const Education = () => {
   const { isDarkMode } = useTheme();
   const educationData = [
     {
-      degree: "Master of Science in Computer Science",
+      degree: "MS in Computer Science",
       institution: "University of Southern California",
       year: "January 2025 - Present",
       gpa: "3.43/4.0",
-      description: "Pursuing MS in Computer Science with focus on software engineering, algorithms, machine learning and modern technologies.",
-      courses: ["Analysis of Algorithms", "Foundations of Artificial Intelligence", "Information Retrieval", "Machine Learning", "Natural Language Processing"]
+      description: "Pursuing MS in Computer Science with focus on software engineering, algorithms, machine learning and modern technologies. Emphasizing practical applications and research in AI systems. Developing expertise in cutting-edge computational methods.",
+      courses: ["Analysis of Algorithms", "Foundations of Artificial Intelligence", "Information Retrieval and Web Search Engines", "Machine Learning for Data Science", "Natural Language Processing"]
     },
     {
-      degree: "Bachelor of Technology in Information Technology",
+      degree: "BTech. in Information Technology",
       institution: "Kalinga Institute of Industrial Technology (KIIT)",
       year: "2018 - 2022",
       gpa: "9.19/10.0",
-      description: "Completed undergraduate studies in Information Technology with specialization in software development, data structures, and enterprise applications.",
+      description: "Completed undergraduate studies in Information Technology with specialization in software development, data structures, and enterprise applications. Built strong foundation in programming and system design.",
       courses: ["Data Structures & Algorithms", "Object-Oriented Programming", "Database Management", "Software Engineering", "Web Technologies", "Computer Networks"]
     }
   ];
@@ -71,66 +71,78 @@ const Education = () => {
             <h2 className={`text-3xl font-bold mb-8 text-center h-14 ${
               isDarkMode ? 'text-teal-500' : 'text-sky-600'
             }`}>Academic Background</h2>
-            <div className="space-y-8">
+            <div className="flex flex-col lg:flex-row justify-center items-stretch gap-8">
               {educationData.map((edu, index) => (
-                <div key={index} className={`backdrop-blur-sm rounded-xl p-8 border transition-all duration-300 ${
+                <div key={index} className={`backdrop-blur-sm rounded-xl p-6 border transition-all duration-300 w-full max-w-md h-full flex flex-col ${
                   isDarkMode 
                     ? 'bg-slate-800/50 border-slate-600/30' 
-                    : 'bg-orange-100 border-slate-200/50  '
+                    : 'bg-orange-100 border-slate-200/50'
                 }`}>
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-2">
-                      <h3 className={`text-2xl font-bold mb-2 text-center ${
-                        isDarkMode ? 'text-white' : 'text-gray-900'
-                      }`}>{edu.degree}</h3>
-                      <h4 className={`text-xl mb-2 text-center ${
-                        isDarkMode ? 'text-emerald-400' : 'text-rose-700'
-                      }`}>{edu.institution}</h4>
-                      <p className={`mb-4 text-center ${
+                  {/* Institution Image */}
+                  <div className="mb-6 text-center">
+                    <img 
+                      src={index === 0 ? "/USC-EG-GC-Campus-3@2x.jpg" : "/KIIT-Campus-Front-Library-1200x416.jpg"} 
+                      alt={edu.institution}
+                      className="w-full h-32 object-cover rounded-lg mb-3"
+                    />
+                  </div>
+                  
+                  {/* Education Details */}
+                  <div className="text-center flex-grow flex flex-col">
+                    <h3 className={`text-xl font-bold mb-6 ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>{edu.degree}</h3>
+                    
+                    <h4 className={`text-lg mb-6 h-7 ${
+                      isDarkMode ? 'text-emerald-400' : 'text-rose-700'
+                    }`}>{edu.institution}</h4>
+                    {/* GPA - Centered */}
+                    <div className="text-center mb-6 h-8">
+                      <div className={`text-lg font-semibold ${
+                        isDarkMode ? 'text-green-400' : 'text-blue-500'
+                      }`}>GPA: {edu.gpa}</div>
+                    </div>
+                    {/* Year */}
+                    <div className="text-center mb-6">
+                      <div className={`text-sm ${
                         isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}>{edu.description}</p>
-                      
-                      <div className="mb-4">
-                        <h5 className={`text-lg font-semibold mb-2 text-center ${
-                          isDarkMode ? 'text-white' : 'text-grey-500'
-                        }`}>Key Courses:</h5>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                          {edu.courses.map((course, courseIndex) => (
-                            <span key={courseIndex} className={`px-3 py-1 rounded-full w-75 text-sm text-center ${
-                              isDarkMode 
-                                ? 'bg-gray-700 text-gray-300' 
-                                : 'bg-slate-100 text-slate-700'
-                            }`}>
-                              {course}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="h-4"></div>
-                      </div>
+                      }`}>{edu.year}</div>
                     </div>
                     
-                    <div className="lg:col-span-1">
-                      <div className={`rounded-lg p-4 h-full ${
-                        isDarkMode ? 'bg-gray-700/50' : 'bg-orange-50'
-                      }`}>
-                        <div className="text-center">
-                          <div className={`text-2xl font-bold mb-2 ${
-                            isDarkMode ? 'text-green-400' : 'text-blue-500'
-                          }`}>{edu.gpa}</div>
-                          <div className={`mb-4 ${
-                            isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                          }`}>GPA</div>
-                          <div className={`text-lg font-semibold ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
-                          }`}>{edu.year}</div>
-                        </div>
+                    <p className={`mb-8 text-sm leading-relaxed h-28 ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>{edu.description}</p>
+                    
+                    {/* Divider Line */}
+                    <div className={`w-full h-px my-8 ${
+                      isDarkMode ? 'bg-gray-600' : 'bg-gray-300'
+                    }`}></div>
+                    
+                    {/* Key Courses Section */}
+                    <div className="mt-auto">
+                      <h5 className={`text-md font-semibold mb-4 text-center h-8 ${
+                        isDarkMode ? 'text-white' : 'text-gray-500'
+                      }`}>Key Courses</h5>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        {edu.courses.map((course, courseIndex) => (
+                          <span key={courseIndex} className={`px-2 py-1 rounded-full text-xs ${
+                            isDarkMode 
+                              ? 'bg-gray-700 text-gray-300' 
+                              : 'bg-slate-100 text-slate-700'
+                          }`}>
+                          <span className='text-transparent'>SR</span>
+                            {course}
+                          <span className='text-transparent'>SR</span>
+                          </span>
+                        ))}
                       </div>
+                      <div className='h-5'></div>
                     </div>
                   </div>
-                  <div className={`h-4 ${isDarkMode ? 'bg-slate-950' : 'bg-yellow-50'}`}></div>
                 </div>
               ))}
             </div>
+            <div className="h-7"></div>
           </div>
           
           {/* Certifications */}
@@ -166,7 +178,7 @@ const Education = () => {
           </div> */}
           
           {/* Learning Philosophy */}
-          <div className={`backdrop-blur-sm rounded-xl p-8 border ${
+          <div className={`backdrop-blur-sm rounded-xl p-8 ${
             isDarkMode 
               ? 'bg-slate-800/30 border-slate-600/30' 
               : 'bg-yellow-50 border-slate-200/50'
@@ -183,8 +195,7 @@ const Education = () => {
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>
                   I believe that technology evolves rapidly, and staying current requires a commitment to 
-                  continuous learning. I regularly participate in online courses, keep upto date with the latest technologies, 
-                  and work on projects to expand my knowledge.
+                  continuous learning. I regularly keep up to date with the latest technologies to expand my knowledge.
                 </p>
               </div>
               <div>
