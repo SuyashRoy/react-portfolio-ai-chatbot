@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
 // Dynamic import for pdf-parse to avoid ES module issues
@@ -26,6 +27,15 @@ const PORT = process.env.PORT || 5000;
 
 // Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'demo-key');
+
+// Configure email transporter
+const transporter = nodemailer.createTransporter({
+  service: 'gmail', // You can change this to your preferred service
+  auth: {
+    user: process.env.EMAIL_USER, // Your email
+    pass: process.env.EMAIL_PASS, // Your app password
+  },
+});
 
 // Middleware
 app.use(cors());
@@ -243,6 +253,53 @@ function generateFallbackResponse(message, resumeData) {
     return "That's an interesting question! I can help you with information about Yugesh's technical skills, work experience, education background, or projects. What specific area would you like to know more about?";
   }
 }
+
+// Contact form endpoint
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, subject, message } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'All fields are required' 
+      });
+    }
+
+    // Email options
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: 'suyashroy4@gmail.com', // Your email where you want to receive messages
+      subject: `Portfolio Contact: ${subject}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+        <hr>
+        <p><small>Sent from your portfolio website contact form</small></p>
+      `,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
+    res.json({ 
+      success: true, 
+      message: 'Email sent successfully!' 
+    });
+
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to send email. Please try again.' 
+    });
+  }
+});
 
 // Catch all handler: send back React's index.html file for any non-API routes
 app.get('*', (req, res) => {

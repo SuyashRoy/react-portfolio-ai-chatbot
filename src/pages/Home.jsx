@@ -6,8 +6,15 @@ import ParticleBackground from '../components/ParticleBackground';
 const Home = () => {
   const { isDarkMode } = useTheme();
   
+  const scrollDown = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
+  
   return (
-    <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
+    <div className={`relative transition-colors duration-300 ${
       isDarkMode 
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
         : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 text-gray-900'
@@ -42,7 +49,7 @@ const Home = () => {
           </div>
           <div className="h-10"></div>
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center my-8">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center my-8 flex-wrap">
             {/* <Link 
               to="/projects" 
               className={`px-12 py-4 mx-4 text-center rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl ${
@@ -91,14 +98,70 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="animate-bounce">
-          <svg className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-gray-700'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Scroll Indicator */}
+      <div className="bottom-10 absolute items-center justify-center flex flex-col">
+      {/* container left-1/2 transform z-50 flex flex-col items-center */}
+        <p className={`text-sm mb-4 font-medium drop-shadow-lg h-8 ${
+          isDarkMode ? 'text-gray-200' : 'text-gray-700'
+        }`}>
+          Scroll down to know more
+        </p>
+        <button 
+          onClick={scrollDown}
+          className={`animate-bounce p-3 rounded-full transition-all duration-300 hover:scale-110 drop-shadow-lg `}
+          aria-label="Scroll down"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
+        </button>
+      </div>
+      </div>
+
+      
+      
+      {/* Bottom Section - Continue to About */}
+      <div className={`relative z-10 min-h-screen flex items-center justify-center px-4 ${
+        isDarkMode 
+          ? 'bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950' 
+          : 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100'
+      }`}>
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="mb-12">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r ${
+              isDarkMode 
+                ? 'from-emerald-400 via-teal-500 to-green-500' 
+                : 'from-blue-500 to-blue-600'
+            } bg-clip-text text-transparent`}>
+              Ready to Learn More?
+            </h2>
+            <p className={`text-xl mb-12 leading-relaxed ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              Discover my journey, skills, and experiences in detail
+            </p>
+          </div>
+          <div className="h-5"></div>
+          <Link 
+            to="/about" 
+            className={`inline-block px-16 py-5 text-center rounded-full font-semibold text-xl shadow-lg hover:shadow-xl ${
+              isDarkMode 
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white hover:from-emerald-700 hover:to-teal-800' 
+                : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800'
+            }`}
+          >
+          <span className="text-transparent">SR</span>
+            Continue to About
+          <span className="text-transparent">SR</span>
+          </Link>
+          <div className="h-2"></div>
+          <div className="mt-16">
+            <p className={`text-sm ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}>
+              Scroll down or click above to continue your exploration
+            </p>
+          </div>
         </div>
       </div>
     </div>

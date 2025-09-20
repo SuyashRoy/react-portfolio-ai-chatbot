@@ -25,15 +25,33 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+        console.error('Failed to send email:', result.error);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
       
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus(null), 3000);
-    }, 2000);
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus(null), 5000);
+    }
   };
 
   const contactInfo = [
@@ -47,17 +65,6 @@ const Contact = () => {
       value: "suyashroy4@gmail.com",
       link: "mailto:suyashroy4@gmail.com",
       description: "Drop me a line anytime"
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-        </svg>
-      ),
-      title: "Phone",
-      value: "+1 (213) 348-0785",
-      link: "tel:+12133480785",
-      description: "Available during business hours"
     },
     {
       icon: (
@@ -81,41 +88,20 @@ const Contact = () => {
       value: "Connect with me",
       link: "https://linkedin.com/in/suyash-roy-8ab1461ba/",
       description: "Professional networking"
-    }
-  ];
-
-  const socialLinks = [
+    },
     {
-      name: "GitHub",
       icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
           <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
         </svg>
       ),
-      url: "https://github.com/SuyashRoy",
-      color: isDarkMode ? "hover:text-gray-300" : "hover:text-gray-700"
-    },
-    {
-      name: "LinkedIn",
-      icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-      ),
-      url: "https://linkedin.com/in/suyash-roy-8ab1461ba/",
-      color: isDarkMode ? "hover:text-blue-400" : "hover:text-blue-600"
-    },
-    {
-      name: "Email",
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-      url: "mailto:suyashroy4@gmail.com",
-      color: isDarkMode ? "hover:text-emerald-400" : "hover:text-emerald-600"
+      title: "GitHub",
+      value: "View my repositories",
+      link: "https://github.com/SuyashRoy",
+      description: "Check out my code"
     }
   ];
+
 
   return (
     <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
@@ -125,53 +111,47 @@ const Contact = () => {
     }`}>
       <ParticleBackground />
       
-      <div className="relative z-10 container mx-auto px-4 py-20 pt-24">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative z-10 mx-auto px-4 py-20 pt-24">
+        <div className="">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="mb-6">
-              <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium ${
-                isDarkMode 
-                  ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
-                  : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-              }`}>
-                <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
-                Available for new opportunities
-              </span>
+            <div className="mb-6 h-20">
             </div>
-            <h1 className={`text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
+            <h1 className={`text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r h-20 ${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-600' 
                 : 'from-blue-400 to-blue-500'
             } bg-clip-text text-transparent`}>
               Let's Work Together
             </h1>
-            <p className={`text-lg md:text-xl max-w-2xl mx-auto leading-relaxed ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              Ready to bring your ideas to life? I'm here to help you build innovative solutions 
-              that make a real impact. Let's start a conversation.
-            </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-7 gap-10 mb-16">
             {/* Contact Form */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-start-2 lg:col-span-3">
+              {/* Send a Message Card */}
               <div className={`${
                 isDarkMode 
                   ? 'bg-slate-800/60 border-slate-700/50' 
                   : 'bg-white/90 border-slate-200/50'
               } backdrop-blur-sm rounded-2xl p-8 md:p-10 border shadow-2xl`}>
                 <div className="mb-8">
-                  <h2 className={`text-2xl md:text-3xl font-bold mb-3 ${
+                  <h2 className={`text-2xl md:text-3xl font-bold mb-3 h-10 text-center ${
                     isDarkMode ? 'text-white' : 'text-gray-900'
                   }`}>
                     Send a Message
                   </h2>
-                  <p className={`text-base ${
+                  
+                  {/* Horizontal line */}
+                  <div className={`border-t mb-4 h-2 ${
+                    isDarkMode ? 'border-gray-600' : 'border-gray-300'
+                  }`}></div>
+                  
+                  <p className={`text-base h-10 ${
                     isDarkMode ? 'text-gray-400' : 'text-gray-600'
                   }`}>
-                    I typically respond within 24 hours. Let's discuss your project!
+                  <span className='text-transparent text-sm'>S</span>
+                    Let's discuss your project!
                   </p>
                 </div>
                 
@@ -221,7 +201,7 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  
+                  <div className='h-4'></div>
                   <div>
                     <label htmlFor="subject" className={`block text-sm font-semibold mb-3 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
@@ -243,7 +223,7 @@ const Contact = () => {
                       placeholder="What would you like to discuss?"
                     />
                   </div>
-                  
+                  <div className='h-4'></div>
                   <div>
                     <label htmlFor="message" className={`block text-sm font-semibold mb-3 ${
                       isDarkMode ? 'text-gray-300' : 'text-gray-700'
@@ -269,10 +249,10 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] ${
+                    className={`w-full py-4 px-8 rounded-xl font-semibold text-lg ${
                       isSubmitting
                         ? 'bg-gray-500 cursor-not-allowed text-gray-300'
-                        : `bg-gradient-to-r from-emerald-600 via-teal-600 to-green-600 hover:from-emerald-700 hover:via-teal-700 hover:to-green-700 text-white shadow-lg hover:shadow-xl ${
+                        : `bg-gradient-to-r from-emerald-600 via-teal-600 to-green-600 hover:from-emerald-700 hover:via-teal-700 hover:to-green-700 text-white shadow-lg ${
                             isDarkMode ? 'shadow-emerald-500/25' : 'shadow-emerald-600/25'
                           }`
                     }`}
@@ -304,13 +284,28 @@ const Contact = () => {
                       </div>
                     </div>
                   )}
+                  
+                  {submitStatus === 'error' && (
+                    <div className={`p-4 rounded-xl border ${
+                      isDarkMode 
+                        ? 'bg-red-500/10 border-red-500/30 text-red-400' 
+                        : 'bg-red-50 border-red-200 text-red-700'
+                    }`}>
+                      <div className="flex items-center">
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        <span className="font-medium">Failed to send message. Please try again or contact me directly.</span>
+                      </div>
+                    </div>
+                  )}
                 </form>
               </div>
+
             </div>
             
             {/* Contact Information Sidebar */}
-            <div className="lg:col-span-2 space-y-6">
-              {/* Contact Details */}
+            <div className="lg:col-span-2">
               <div className={`${
                 isDarkMode 
                   ? 'bg-slate-800/50 border-slate-700/50' 
@@ -321,7 +316,7 @@ const Contact = () => {
                 }`}>
                   Contact Information
                 </h3>
-                
+                <div className='h-2'></div>
                 <div className="space-y-4">
                   {contactInfo.map((info, index) => (
                     <a
@@ -340,14 +335,17 @@ const Contact = () => {
                       }`}>
                         {info.icon}
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 h-23.5">
                         <h4 className="font-semibold text-sm uppercase tracking-wide opacity-60">
+                          <span className='text-transparent'>S</span>
                           {info.title}
                         </h4>
                         <p className="font-medium text-lg group-hover:text-emerald-500 transition-colors">
+                        <span className='text-transparent'>S</span>
                           {info.value}
                         </p>
                         <p className="text-sm opacity-75">
+                        <span className='text-transparent'>S</span>
                           {info.description}
                         </p>
                       </div>
@@ -355,90 +353,9 @@ const Contact = () => {
                   ))}
                 </div>
               </div>
-              
-              {/* Social Links */}
-              <div className={`${
-                isDarkMode 
-                  ? 'bg-slate-800/50 border-slate-700/50' 
-                  : 'bg-white/90 border-slate-200/50'
-              } backdrop-blur-sm rounded-2xl p-6 border shadow-xl`}>
-                <h3 className={`text-2xl font-bold mb-6 ${
-                  isDarkMode ? 'text-white' : 'text-gray-900'
-                }`}>
-                  Connect with Me
-                </h3>
-                
-                <div className="space-y-3">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 ${
-                        isDarkMode 
-                          ? 'hover:bg-slate-700/50 text-gray-300' 
-                          : 'hover:bg-slate-50 text-gray-700'
-                      } ${social.color}`}
-                    >
-                      <div className="flex-shrink-0">
-                        {social.icon}
-                      </div>
-                      <span className="font-medium">{social.name}</span>
-                      <svg className="w-4 h-4 ml-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Availability Status */}
-              <div className={`${
-                isDarkMode 
-                  ? 'bg-slate-800/50 border-slate-700/50' 
-                  : 'bg-white/90 border-slate-200/50'
-              } backdrop-blur-sm rounded-2xl p-6 border shadow-xl`}>
-                <h3 className={`text-2xl font-bold mb-6 ${
-                  isDarkMode ? 'text-white' : 'text-gray-900'
-                }`}>
-                  Availability
-                </h3>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                      Available for new projects
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                    <span className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                      Open to collaborations
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-                    <span className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                      Interested in full-time roles
-                    </span>
-                  </div>
-                </div>
-                
-                <div className={`mt-6 p-4 rounded-xl ${
-                  isDarkMode 
-                    ? 'bg-slate-700/50 text-gray-300' 
-                    : 'bg-slate-50 text-gray-700'
-                }`}>
-                  <p className="text-sm">
-                    <span className="font-semibold">Response Time:</span> Usually within 24 hours
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
-          
+          <div className='h-10'></div>
           {/* Quick Stats Section */}
           <div className={`rounded-2xl p-8 border backdrop-blur-sm ${ 
             isDarkMode 
@@ -450,12 +367,12 @@ const Contact = () => {
             }`}>
               Let's Connect
             </h3>
-            
+            <div className='h-3'></div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="text-center">
                 <div className={`text-3xl font-bold mb-2 ${
                   isDarkMode ? 'text-emerald-400' : 'text-blue-600'
-                }`}>24h</div>
+                }`}>48h</div>
                 <div className={`text-sm ${
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>Response Time</div>
@@ -464,10 +381,10 @@ const Contact = () => {
               <div className="text-center">
                 <div className={`text-3xl font-bold mb-2 ${
                   isDarkMode ? 'text-blue-400' : 'text-blue-500'
-                }`}>100+</div>
+                }`}>10+</div>
                 <div className={`text-sm ${
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>Projects Delivered</div>
+                }`}>Cases Delivered</div>
               </div>
               
               <div className="text-center">
@@ -494,15 +411,16 @@ const Contact = () => {
                 ? 'bg-emerald-500/10 border border-emerald-500/20' 
                 : 'bg-blue-50 border border-blue-200'
             }`}>
-              <p className={`${
+              {/* <p className={`${
                 isDarkMode ? 'text-emerald-400' : 'text-blue-700'
               }`}>
                 <span className="font-semibold">💡 Pro Tip:</span> Include your project timeline and budget range for a faster, more personalized response!
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
       </div>
+      <div className='h-5'></div>
     </div>
   );
 };
