@@ -1,90 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import ParticleBackground from '../components/ParticleBackground';
 
 const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const { isDarkMode } = useTheme();
 
   const projects = [
     {
       id: 1,
       title: "AI-Powered Portfolio Website",
-      description: "A modern portfolio website with AI chatbot integration, meteor shower animations, and responsive design.",
-      image: "/api/placeholder/400/300",
+      description: "A modern portfolio website with AI chatbot integration with particle animations, AI-powered chatbot and responsive design.",
+      image: "/pexels-googledeepmind-17483868.jpg",
       technologies: ["React", "Node.js", "Tailwind CSS", "Gemini AI", "TSParticles"],
       category: "web",
-      github: "https://github.com/username/portfolio",
+      github: "https://github.com/SuyashRoy/react-portfolio-ai-chatbot",
       live: "https://portfolio-demo.com",
       featured: true
     },
     {
       id: 2,
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
-      image: "/api/placeholder/400/300",
-      technologies: ["React", "Express", "MongoDB", "Stripe", "JWT"],
+      title: "InstaCam",
+      description: "InstaCam is a social media app. It is made using React library and routing is done using React router. This app talks to a backend express app to fetch all the dynamic data from MongoDB atlas using the mongoose library.",
+      image: "/pexels-pixabay-270408.jpg",
+      technologies: ["React", "Express", "MongoDB", "Redux"],
       category: "web",
-      github: "https://github.com/username/ecommerce",
+      github: "https://github.com/SuyashRoy/instacam",
       live: "https://ecommerce-demo.com",
       featured: true
     },
     {
       id: 3,
-      title: "Task Management App",
-      description: "Collaborative task management application with real-time updates, team collaboration, and project tracking.",
-      image: "/api/placeholder/400/300",
-      technologies: ["Next.js", "TypeScript", "PostgreSQL", "Socket.io", "Prisma"],
+      title: "Mental Health Medical RAG with Semantic Analysis",
+      description: "A group project where we are building a medical RAG with semantic analysis to analyse and classify the concern levels regarding mental health via social media posts.",
+      image: "/pexels-googledeepmind-18069362.jpg",
+      technologies: ["Machine Learning", "TypeScript", "SQL", "Natural Language Processing", "Big Data Analytics"],
       category: "web",
       github: "https://github.com/username/taskmanager",
       live: "https://taskmanager-demo.com",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "Weather Dashboard",
-      description: "Real-time weather dashboard with location-based forecasts, interactive maps, and data visualization.",
-      image: "/api/placeholder/400/300",
-      technologies: ["React", "D3.js", "OpenWeather API", "Chart.js", "Geolocation"],
-      category: "web",
-      github: "https://github.com/username/weather",
-      live: "https://weather-demo.com",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Mobile Banking App",
-      description: "Secure mobile banking application with biometric authentication, transaction history, and bill payments.",
-      image: "/api/placeholder/400/300",
-      technologies: ["React Native", "Node.js", "PostgreSQL", "Biometric Auth", "Encryption"],
-      category: "mobile",
-      github: "https://github.com/username/banking",
-      live: null,
       featured: true
-    },
-    {
-      id: 6,
-      title: "Machine Learning Model",
-      description: "Predictive analytics model for customer behavior analysis using machine learning algorithms.",
-      image: "/api/placeholder/400/300",
-      technologies: ["Python", "Scikit-learn", "Pandas", "NumPy", "Jupyter"],
-      category: "ai",
-      github: "https://github.com/username/ml-model",
-      live: null,
-      featured: false
     }
   ];
 
-  const categories = [
-    { id: 'all', name: 'All Projects' },
-    { id: 'web', name: 'Web Applications' },
-    { id: 'mobile', name: 'Mobile Apps' },
-    { id: 'ai', name: 'AI/ML Projects' }
-  ];
-
-  const filteredProjects = selectedCategory === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === selectedCategory);
 
   const featuredProjects = projects.filter(project => project.featured);
 
@@ -96,173 +52,137 @@ const Projects = () => {
     }`}>
       <ParticleBackground />
       
-      <div className="relative z-10 container mx-auto px-4 py-20 pt-24">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative z-10 mx-auto px-4 py-20 pt-24">
+        <div>
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
+          <div className="text-center mb-16 h-20">
+            <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-600' 
                 : 'from-blue-300 to-blue-400'
             } bg-clip-text text-transparent`}>
               Projects
             </h1>
-            <p className={`text-xl ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              A showcase of my work and creativity
-            </p>
           </div>
-          
           {/* Featured Projects */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-blue-400 mb-8 text-center">Featured Projects</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {featuredProjects.map((project) => (
-                <div key={project.id} className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 group">
-                  <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                    <div className="text-6xl font-bold opacity-50">🚀</div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
-                    
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech, index) => (
-                        <span key={index} className="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    <div className="flex space-x-4">
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center space-x-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
-                      >
-                        <span>📁</span>
-                        <span>Code</span>
-                      </a>
-                      {project.live && (
-                        <a 
-                          href={project.live} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
-                        >
-                          <span>🌐</span>
-                          <span>Live Demo</span>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* All Projects */}
-          <div className="mb-16">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-              <h2 className="text-3xl font-bold text-purple-400 mb-4 md:mb-0">All Projects</h2>
-              
-              {/* Category Filter */}
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
-                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                      selectedCategory === category.id
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                    }`}
-                  >
-                    {category.name}
-                  </button>
-                ))}
-              </div>
-            </div>
+          <div className="mb-16 relative">
+            <h2 className= {`text-5xl font-bold ${isDarkMode ? 'text-emerald-400' : 'text-red-500'} mb-8 text-center h-25`}>Featured Projects</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProjects.map((project) => (
-                <div key={project.id} className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300 group">
-                  <div className="h-40 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
-                    <div className="text-4xl font-bold opacity-50">💻</div>
+            {/* Continuous vertical dotted line */}
+            <div className={`absolute left-1/2 transform -translate-x-1/2 w-px border-l-2 border-dotted ${
+              isDarkMode ? 'border-blue-400' : 'border-red-600'
+            }`} style={{
+              top: '120px',
+              height: `${featuredProjects.length * 600 + (featuredProjects.length - 1) * 96}px`
+            }}></div>
+            
+            <div className="flex flex-col items-center relative z-10">
+              {featuredProjects.map((project, index) => (
+                <React.Fragment key={project.id}>
+                  {/* Diamond marker */}
+                  <div className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rotate-45 ${
+                    isDarkMode ? 'bg-blue-400' : 'bg-red-600'
+                  } z-20`} style={{
+                    top: `${120 + index * 696 + 350}px`
+                  }}></div>
+                  
+                  <div className={`backdrop-blur-sm rounded-xl overflow-hidden border transition-all duration-300 group w-full max-w-lg mb-12 ${
+                    isDarkMode 
+                      ? 'bg-slate-800/50 border-slate-600/30 hover:border-emerald-500' 
+                      : 'bg-orange-100 border-slate-200/50 hover:border-red-600'
+                  }`} style={{
+                    marginLeft: index % 2 === 0 ? 'calc(15% - 192px)' : 'calc(50% + 32px)',
+                    marginRight: index % 2 === 0 ? 'calc(50% + 32px)' : 'calc(15% - 192px)'
+                  }}>
+                  <div className="h-72 overflow-hidden relative">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Status button */}
+                    <div className="absolute top-4 right-4">
+                      <span className="bg-black text-white border-2 border-white px-4 py-2 rounded-lg text-sm font-bold">
+                      <span className='text-transparent'>SR</span>
+                        {project.id === 1 ? 'Completed' : 
+                         project.id === 2 ? 'Completed' : 
+                         project.id === 3 ? 'In Progress' : ''}
+                         <span className='text-transparent'>SR</span>
+                      </span>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                  <div className="p-10">
+                    <h3 className={`text-3xl font-bold mb-6 transition-colors tracking-wide ${
+                      isDarkMode 
+                        ? 'text-white group-hover:text-emerald-400' 
+                        : 'text-gray-900 group-hover:text-red-600'
+                    }`}>
                       {project.title}
                     </h3>
-                    <p className="text-gray-300 mb-4 text-sm leading-relaxed">{project.description}</p>
+                    <p className={`mb-8 text-lg leading-loose tracking-wide ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                    }`}>{project.description}</p>
                     
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {project.technologies.slice(0, 3).map((tech, index) => (
-                        <span key={index} className="px-2 py-1 bg-gray-700 rounded text-xs text-gray-300">
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 3 && (
-                        <span className="px-2 py-1 bg-gray-700 rounded text-xs text-gray-300">
-                          +{project.technologies.length - 3}
-                        </span>
-                      )}
+                    {/* Horizontal line separator */}
+                    <div className={`border-t mb-6 ${
+                      isDarkMode ? 'border-gray-600' : 'border-gray-300'
+                    }`}></div>
+                    <div className='h-2'></div>
+                    <div className="mb-8">
+                      <h4 className={`text-xl font-semibold mb-6 h-10 ${
+                        isDarkMode ? 'text-teal-400' : 'text-red-600'
+                      }`}>Technologies Used</h4>
+                      <div className="flex flex-wrap gap-4">
+                        {project.technologies.map((tech, index) => (
+                          <span key={index} className={`px-5 py-3 rounded-full text-md transition-all duration-200 ${
+                            isDarkMode 
+                              ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' 
+                              : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                          }`}>
+                            <span className='text-transparent'>SR</span>
+                            {tech}
+                            <span className='text-transparent'>SR</span>
+                          </span>
+                        ))}
+                        
+                      </div>
                     </div>
-                    
-                    <div className="flex space-x-2">
+                    <div className='h-2'></div>
+                    <div className="w-full">
                       <a 
                         href={project.github} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-1 px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-sm transition-colors"
+                        className={`w-full h-8 flex items-center justify-center space-x-3 px-6 py-3 rounded-lg transition-colors text-base font-medium ${
+                          isDarkMode 
+                            ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+                            : 'bg-slate-200 hover:bg-slate-300 text-gray-900'
+                        }`}
                       >
-                        <span>📁</span>
-                        <span>Code</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="flex-shrink-0">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span className='text-transparent'>S</span>
+                        <span>View Code</span>
                       </a>
-                      {project.live && (
-                        <a 
-                          href={project.live} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="flex items-center space-x-1 px-3 py-1 bg-purple-600 hover:bg-purple-700 rounded text-sm transition-colors"
-                        >
-                          <span>🌐</span>
-                          <span>Demo</span>
-                        </a>
-                      )}
                     </div>
                   </div>
-                </div>
+                  </div>
+                  <div className='h-7'></div>
+                </React.Fragment>
               ))}
-            </div>
-          </div>
-          
-          {/* Project Stats */}
-          <div className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-8 border border-slate-600/30">
-            <h2 className="text-3xl font-bold text-pink-400 mb-6 text-center">Project Statistics</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-400 mb-2">{projects.length}</div>
-                <div className="text-gray-300">Total Projects</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-purple-400 mb-2">{featuredProjects.length}</div>
-                <div className="text-gray-300">Featured Projects</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-pink-400 mb-2">15+</div>
-                <div className="text-gray-300">Technologies Used</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-green-400 mb-2">100%</div>
-                <div className="text-gray-300">Success Rate</div>
-              </div>
+              
+              {/* Horizontal line at the end */}
+              <div className={`absolute left-1/2 transform -translate-x-1/2 w-32 h-px border-t-2 border-dotted ${
+                isDarkMode ? 'border-blue-400' : 'border-red-600'
+              }`} style={{
+                top: `${120 + (featuredProjects.length - 1) * 696 + 350 + 8}px`
+              }}></div>
             </div>
           </div>
         </div>
       </div>
+      <div className='h-5'></div>
     </div>
   );
 };

@@ -33,7 +33,7 @@ const Experience = () => {
       //   "Collaborated with global development teams",
       //   "Enhanced skills in enterprise software development"
       // ],
-      technologies: ["Alteryx", "Microsoft Office Suite", "Competitor Analysis", "Demographic Analysis", "Python", "Geospatial Analysis"]
+      technologies: ["Alteryx", "Microsoft Office Suite", "Competitor Analysis", "Demographic Analysis", "Python", "Geospatial Analysis", "Telecommunications"]
     },
     {
       title: "Full Stack Developer Intern",
