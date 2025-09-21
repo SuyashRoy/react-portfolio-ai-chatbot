@@ -162,14 +162,14 @@ app.post('/api/chat', async (req, res) => {
     
     // Create context for Gemini
     const context = `
-You are an AI assistant helping visitors learn about Yugesh Chandra Roy's professional background. 
+You are an AI assistant helping visitors learn about Suyash Roy's professional background. 
 Here is the resume data:
 
 ${JSON.stringify(resumeContext, null, 2)}
 
 Please answer the user's question: "${message}"
 
-Provide helpful, accurate information based on the resume data. If the question is not related to Yugesh's background, politely redirect the conversation back to his professional information.
+Provide helpful, accurate information based on the resume data. If the question is not related to Suyash's background, politely redirect the conversation back to his professional information.
 Keep responses concise but informative (2-3 sentences max).
 `;
 
@@ -213,19 +213,19 @@ function generateFallbackResponse(message, resumeData) {
   const msg = message.toLowerCase();
   
   if (msg.includes('skill') || msg.includes('technology')) {
-    return "Yugesh is skilled in Python, Java, SQL, HTML, CSS, JavaScript, ReactJS, and has experience with J2EE frameworks like Spring, Struts, and Hibernate. He also uses Git for version control.";
+    return "Suyash is skilled in Python, Java, SQL, HTML, CSS, JavaScript, ReactJS, and has experience with J2EE frameworks like Spring, Struts, and Hibernate. He also uses Git for version control.";
   } else if (msg.includes('education') || msg.includes('degree')) {
-    return "Yugesh is currently pursuing a Master of Science in Computer Science at the University of Southern California, starting January 2025. He has a strong academic background in computer science.";
+    return "Suyash is currently pursuing a Master of Science in Computer Science at the University of Southern California, starting January 2025. He has a strong academic background in computer science.";
   } else if (msg.includes('experience') || msg.includes('work')) {
-    return "Yugesh worked as an Analyst Intern in TMT (Tech Media Telecommunications) at Bain Capability Network in Gurgaon, India from January 2022 to June 2022. He has hands-on experience with enterprise software development.";
+    return "Suyash worked as an Analyst Intern in TMT (Tech Media Telecommunications) at Bain Capability Network in Gurgaon, India from January 2022 to June 2022. He has hands-on experience with enterprise software development.";
   } else if (msg.includes('project')) {
-    return "Yugesh has worked on various projects including UI Screen Integration for CFO applications using J2EE technologies and ReactJS. He has experience in full-stack development and enterprise software solutions.";
+    return "Suyash has worked on various projects including UI Screen Integration for CFO applications using J2EE technologies and ReactJS. He has experience in full-stack development and enterprise software solutions.";
   } else if (msg.includes('contact') || msg.includes('email')) {
-    return "You can reach out to Yugesh through the contact form on this website or connect with him on LinkedIn. He's available for opportunities and collaborations.";
+    return "You can reach out to Suyash through the contact form on this website or connect with him on LinkedIn. He's available for opportunities and collaborations.";
   } else if (msg.includes('hello') || msg.includes('hi')) {
-    return "Hello! I'm here to help you learn more about Yugesh's professional background. Feel free to ask about his skills, experience, education, or projects!";
+    return "Hello! I'm here to help you learn more about Suyash's professional background. Feel free to ask about his skills, experience, education, or projects!";
   } else {
-    return "That's an interesting question! I can help you with information about Yugesh's technical skills, work experience, education background, or projects. What specific area would you like to know more about?";
+    return "That's an interesting question! I can help you with information about Suyash's technical skills, work experience, education background, or projects. What specific area would you like to know more about?";
   }
 }
 

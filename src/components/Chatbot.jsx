@@ -84,17 +84,27 @@ const Chatbot = () => {
     const message = userMessage.toLowerCase();
     
     if (message.includes('skill') || message.includes('technology')) {
-      return "Suyash Roy is skilled in Python, Java, C#, .NET, React, Node.js, JavaScript, TypeScript, Azure, Cloud Computing, J2EE (Spring, Struts, Hibernate), and Git. He has extensive experience in full-stack development and enterprise software solutions.";
+      return "Suyash Roy is skilled in Python, Java, ReactJS, Node.js, JavaScript, TypeScript, J2EE (Spring, Struts, Hibernate), and Git. He has extensive experience in full-stack development and enterprise software solutions.";
     } else if (message.includes('education') || message.includes('degree')) {
-      return "Suyash Roy is currently pursuing a Master of Science in Computer Science at USC (3.43/4.0 GPA) and completed his Bachelor of Technology in Information Technology from KIIT with an excellent 9.19/10.0 GPA.";
+      return "Suyash Roy is currently pursuing a Master of Science in Computer Science at USC and completed his Bachelor of Technology in Information Technology from KIIT with an excellent 9.19/10.0 GPA.";
     } else if (message.includes('experience') || message.includes('work')) {
-      return "Suyash Roy is currently a Software Engineer Intern at Tesla, and has previously worked at Microsoft, Eltropy as a Full Stack Engineer, and Bain Capability Network. He has 3+ years of experience with major tech companies.";
+      return "Suyash Roy was an Associate and formely an Analyst Intern at Bain & Company's Capability Network, and has previously also interned at HighRadius as a Full Stack Developer. He has 3+ years of experience with major companies.";
     } else if (message.includes('project')) {
-      return "Suyash Roy has worked on various projects including UI screen integration using ReactJS and J2EE frameworks. He specializes in building scalable web applications. You can see more details on the Projects page.";
+      return "Suyash Roy has worked on various cases in the telecom industry and projects including UI screen integration using ReactJS and J2EE frameworks. He specializes in building scalable web applications. You can see more details on the Projects page.";
     } else if (message.includes('contact') || message.includes('email')) {
-      return "You can reach Suyash Roy at +1 (213)-348-0785, through his LinkedIn (linkedin.com/in/suyash-roy-8ab1461ba/), GitHub (github.com/SuyashRoy), or through the contact form on this website.";
+      return "You can reach Suyash Roy at his email suyashroy4@gmail.com, through his LinkedIn (linkedin.com/in/suyash-roy-8ab1461ba/), GitHub (github.com/SuyashRoy), or through the contact form on this website.";
     } else if (message.includes('hello') || message.includes('hi')) {
       return "Hello! I'm here to help you learn more about Suyash Roy. Feel free to ask about his skills, experience, education, or projects!";
+    } else if (message.includes('interests') || message.includes('hobbies')) {
+      return "Suyash is an avid reader, his favourite novel is 'The Count of Monte Cristo' by Alexandre Dumas, he loves to watch movies and TV shows, and he keeps up with the lastes pop cultute news. Suyash follows most major sports and his favourite soccerteam is Manchester United.";
+    } else if (message.includes('Bain') || message.includes('Consulting')) {
+      return "Suyash used to work in the 'LUMI' product team where he was involved in 10+ cases involving the telecom industry, more details on the Experience page.";
+    } else if (message.includes('HighRadius') || message.includes('Full Stack Developer')) {
+      return "Suyash used to work at HighRadius as a Full Stack Developer, where he was responsible for the developing web applications, more details on the Experience page.";
+    } else if (message.includes('KIIT') || message.includes('Bengaluru')) {
+      return "Suyash Roy completed his Bachelor of Technology in Information Technology from KIIT with an excellent 9.19/10.0 GPA, his coursework included Data Structures & Algorithms, Object-Oriented Programming, Database Management, Software Engineering, Web Technologies, and Computer Networks.";
+    } else if (message.includes('USC') || message.includes('Los Angeles')) {
+      return "Suyash Roy is currently pursuing a Master of Science in Computer Science at USC and is expected to graduate in December 2026.";
     } else {
       return "That's an interesting question! Based on Suyash Roy's background, I can help you with information about his technical skills, work experience, education at USC, or projects. What specific area would you like to know more about?";
     }
@@ -121,6 +131,7 @@ const Chatbot = () => {
               <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-white font-bold text-xs sm:text-sm">SR</span>
               </div>
+              <span className="text-transparent">S</span>
               <div className="min-w-0 flex-1">
                 <h3 className="text-white font-semibold text-sm sm:text-base truncate">Portfolio Assistant</h3>
                 <p className="text-gray-300 text-xs truncate">Ask about Suyash Roy</p>
@@ -135,9 +146,9 @@ const Chatbot = () => {
               </svg>
             </button>
           </div>
-
+          <div className='h-1'></div>
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 bg-gray-800/30">
+          <div className="h-5 flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 bg-gray-800/30">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -189,7 +200,7 @@ const Chatbot = () => {
                 className="px-3 sm:px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed transition-all duration-200 shadow-md"
               >
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  <path className="rotate-90" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 -7l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
               </button>
             </div>

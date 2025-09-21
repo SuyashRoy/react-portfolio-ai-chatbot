@@ -105,9 +105,11 @@ const Projects = () => {
                       {/* Status button */}
                       <div className="absolute top-4 right-4">
                         <span className="bg-black text-white border-2 border-white px-4 py-2 rounded-lg text-sm font-bold">
+                        <span className='text-transparent'>SR</span>
                           {project.id === 1 ? 'Completed' : 
                            project.id === 2 ? 'Completed' : 
                            project.id === 3 ? 'In Progress' : ''}
+                           <span className='text-transparent'>SR</span>
                         </span>
                       </div>
                     </div>
@@ -200,9 +202,11 @@ const Projects = () => {
                       {/* Status button */}
                       <div className="absolute top-3 right-3">
                         <span className="bg-black text-white border-2 border-white px-3 py-1 rounded-lg text-xs font-bold">
+                          <span className='text-transparent'>SR</span>
                           {project.id === 1 ? 'Completed' : 
                            project.id === 2 ? 'Completed' : 
                            project.id === 3 ? 'In Progress' : ''}
+                           <span className='text-transparent'>SR</span>
                         </span>
                       </div>
                     </div>
