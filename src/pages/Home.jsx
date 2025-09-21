@@ -69,10 +69,23 @@ const Home = () => {
             >
               Get In Touch
             </Link>
+            <a 
+              href="/Resume_Fall_25.pdf"
+              download="Suyash_Roy_Resume.pdf"
+              className={`flex justify-center items-center w-50 sm:w-auto min-w-[160px] px-8 sm:px-8 md:px-12 py-4 sm:py-4 text-center rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
+                isDarkMode 
+                  ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 
+                  : 'border-2 border-blue-500/60 text-gray-900 hover:bg-blue-100 hover:border-blue-500'
+              }`}
+            >
+            <span className='text-transparent'>S</span>
+              Download Resume
+              <span className='text-transparent'>R</span>
+            </a>
           </div>
           <div className="h-5"></div>
           {/* Quick Stats */}
-          <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto px-4">
+          <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
             <div className="text-center">
               <div className={`text-2xl md:text-3xl font-bold ${isDarkMode ? 'text-emerald-400' : 'text-blue-700'}`}>MS</div>
               <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Computer Science at USC</div>
@@ -88,7 +101,8 @@ const Home = () => {
           </div>
         </div>
         {/* Scroll Indicator */}
-      <div className="bottom-8 md:bottom-10 absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+       <div className="h-200 sm:h-5"></div>
+      <div className="bottom-2 md:bottom-10 absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
         <p className={`text-md md:text-sm mb-3 md:mb-4 font-medium drop-shadow-lg md:h-8 ${
           isDarkMode ? 'text-gray-200' : 'text-gray-700'
         }`}>
