@@ -3,6 +3,7 @@ const cors = require('cors');
 const pdfParse = require('pdf-parse');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 
@@ -162,14 +163,14 @@ app.post('/api/chat', async (req, res) => {
     
     // Create context for Gemini
     const context = `
-You are an AI assistant helping visitors learn about Yugesh Chandra Roy's professional background. 
+You are an AI assistant helping visitors learn about Suyash Roy's professional background. 
 Here is the resume data:
 
 ${JSON.stringify(resumeContext, null, 2)}
 
 Please answer the user's question: "${message}"
 
-Provide helpful, accurate information based on the resume data. If the question is not related to Yugesh's background, politely redirect the conversation back to his professional information.
+Provide helpful, accurate information based on the resume data. If the question is not related to Suyash's background, politely redirect the conversation back to his professional information.
 Keep responses concise but informative (2-3 sentences max).
 `;
 
@@ -213,21 +214,155 @@ function generateFallbackResponse(message, resumeData) {
   const msg = message.toLowerCase();
   
   if (msg.includes('skill') || msg.includes('technology')) {
-    return "Yugesh is skilled in Python, Java, SQL, HTML, CSS, JavaScript, ReactJS, and has experience with J2EE frameworks like Spring, Struts, and Hibernate. He also uses Git for version control.";
+    return "Suyash is skilled in Python, Java, SQL, HTML, CSS, JavaScript, ReactJS, and has experience with J2EE frameworks like Spring, Struts, and Hibernate. He also uses Git for version control.";
   } else if (msg.includes('education') || msg.includes('degree')) {
-    return "Yugesh is currently pursuing a Master of Science in Computer Science at the University of Southern California, starting January 2025. He has a strong academic background in computer science.";
+    return "Suyash is currently pursuing a Master of Science in Computer Science at the University of Southern California, starting January 2025. He has a strong academic background in computer science.";
   } else if (msg.includes('experience') || msg.includes('work')) {
-    return "Yugesh worked as an Analyst Intern in TMT (Tech Media Telecommunications) at Bain Capability Network in Gurgaon, India from January 2022 to June 2022. He has hands-on experience with enterprise software development.";
+    return "Suyash worked as an Analyst Intern in TMT (Tech Media Telecommunications) at Bain Capability Network in Gurgaon, India from January 2022 to June 2022. He has hands-on experience with enterprise software development.";
   } else if (msg.includes('project')) {
-    return "Yugesh has worked on various projects including UI Screen Integration for CFO applications using J2EE technologies and ReactJS. He has experience in full-stack development and enterprise software solutions.";
+    return "Suyash has worked on various projects including UI Screen Integration for CFO applications using J2EE technologies and ReactJS. He has experience in full-stack development and enterprise software solutions.";
   } else if (msg.includes('contact') || msg.includes('email')) {
-    return "You can reach out to Yugesh through the contact form on this website or connect with him on LinkedIn. He's available for opportunities and collaborations.";
+    return "You can reach out to Suyash through the contact form on this website or connect with him on LinkedIn. He's available for opportunities and collaborations.";
   } else if (msg.includes('hello') || msg.includes('hi')) {
-    return "Hello! I'm here to help you learn more about Yugesh's professional background. Feel free to ask about his skills, experience, education, or projects!";
+    return "Hello! I'm here to help you learn more about Suyash's professional background. Feel free to ask about his skills, experience, education, or projects!";
   } else {
-    return "That's an interesting question! I can help you with information about Yugesh's technical skills, work experience, education background, or projects. What specific area would you like to know more about?";
+    return "That's an interesting question! I can help you with information about Suyash's technical skills, work experience, education background, or projects. What specific area would you like to know more about?";
   }
 }
+
+// Telegram Bot Configuration
+const TELEGRAM_BOT_TOKEN = '8206435880:AAH0a8Ocv3VQhq-_z-1VoSUPCHiKgdApaVQ';
+const TELEGRAM_CHAT_ID = '-1003005879000';
+
+// Function to send message via Telegram using native HTTPS
+function sendTelegramMessage(text) {
+  return new Promise((resolve) => {
+    const payload = JSON.stringify({
+      chat_id: TELEGRAM_CHAT_ID,
+      text: text,
+      parse_mode: 'HTML'
+    });
+
+    const options = {
+      hostname: 'api.telegram.org',
+      port: 443,
+      path: `/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(payload)
+      }
+    };
+
+    console.log('Sending Telegram message...');
+    console.log('Payload:', payload);
+
+    const req = https.request(options, (res) => {
+      let data = '';
+
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      res.on('end', () => {
+        try {
+          const response = JSON.parse(data);
+          console.log('Telegram API response:', response);
+          
+          if (response.ok) {
+            console.log('Message sent successfully to Telegram');
+            resolve(true);
+          } else {
+            console.error('Telegram API error:', response.description);
+            resolve(false);
+          }
+        } catch (error) {
+          console.error('Error parsing Telegram response:', error);
+          resolve(false);
+        }
+      });
+    });
+
+    req.on('error', (error) => {
+      console.error('Error sending Telegram message:', error);
+      resolve(false);
+    });
+
+    req.write(payload);
+    req.end();
+  });
+}
+
+// Contact form endpoint
+app.post('/api/contact', async (req, res) => {
+  try {
+    console.log('Received contact form submission:', req.body);
+    const { name, email, subject, message } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      console.log('Validation failed: Missing required fields');
+      return res.status(400).json({
+        success: false,
+        error: 'All fields are required'
+      });
+    }
+
+    // Format message for Telegram
+    const telegramMessage = `
+🔔 <b>New Contact Form Submission</b>
+
+👤 <b>Name:</b> ${name}
+📧 <b>Email:</b> ${email}
+📋 <b>Subject:</b> ${subject}
+
+💬 <b>Message:</b>
+${message}
+
+⏰ <b>Time:</b> ${new Date().toLocaleString()}
+    `.trim();
+
+    // Send message to Telegram
+    const success = await sendTelegramMessage(telegramMessage);
+
+    if (success) {
+      res.json({
+        success: true,
+        message: 'Message sent successfully!'
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        error: 'Failed to send message'
+      });
+    }
+  } catch (error) {
+    console.error('Error in contact endpoint:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error'
+    });
+  }
+});
+
+// Test Telegram endpoint
+app.get('/api/test-telegram', async (req, res) => {
+  try {
+    const testMessage = '🔧 <b>Test Message</b>\n\nThis is a test message from your portfolio contact form. If you receive this, the integration is working!';
+    const success = await sendTelegramMessage(testMessage);
+    
+    res.json({
+      success: success,
+      message: success ? 'Test message sent successfully!' : 'Failed to send test message'
+    });
+  } catch (error) {
+    console.error('Error in test endpoint:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error'
+    });
+  }
+});
 
 // Basic route for testing
 app.get('/', (req, res) => {

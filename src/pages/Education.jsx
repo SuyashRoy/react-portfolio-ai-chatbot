@@ -55,25 +55,25 @@ const Education = () => {
       <div className="relative z-10 mx-auto px-4 py-20 pt-24">
         <div className="w-full mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
+          <div className="text-center mb-12 md:mb-16">
+            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-600' 
                 : 'from-blue-400 to-blue-500'
-            } bg-clip-text text-transparent`}>
+            } bg-clip-text text-transparent px-4`}>
               Education
             </h1>
           </div>
           
           {/* Education Timeline */}
           <div className="mb-16">
-            <div className="h-3"></div>
-            <h2 className={`text-3xl font-bold mb-8 text-center h-14 ${
+            <div className="h-10 sm:h-3"></div>
+            <h2 className={`text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center h-14 ${
               isDarkMode ? 'text-teal-500' : 'text-sky-600'
             }`}>Academic Background</h2>
-            <div className="flex flex-col lg:flex-row justify-center items-stretch gap-8">
+            <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch gap-6 md:gap-8">
               {educationData.map((edu, index) => (
-                <div key={index} className={`backdrop-blur-sm rounded-xl p-6 border transition-all duration-300 w-full max-w-md h-full flex flex-col ${
+                <div key={index} className={`backdrop-blur-sm rounded-xl p-6 border transition-all duration-300 w-full max-w-md mx-auto lg:mx-0 h-full flex flex-col ${
                   isDarkMode 
                     ? 'bg-slate-800/50 border-slate-600/30' 
                     : 'bg-orange-100 border-slate-200/50'
@@ -178,15 +178,15 @@ const Education = () => {
           </div> */}
           
           {/* Learning Philosophy */}
-          <div className={`backdrop-blur-sm rounded-xl p-8 ${
+          <div className={`backdrop-blur-sm rounded-xl p-6 md:p-8 ${
             isDarkMode 
               ? 'bg-slate-800/30 border-slate-600/30' 
               : 'bg-yellow-50 border-slate-200/50'
           }`}>
-            <h2 className={`text-3xl font-bold mb-6 text-center ${
+            <h2 className={`text-2xl md:text-3xl font-bold mb-6 text-center ${
               isDarkMode ? 'text-pink-400' : 'text-pink-400'
             }`}>Learning Philosophy</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <div>
                 <h3 className={`text-xl font-semibold mb-4 text-center ${
                   isDarkMode ? 'text-white' : 'text-gray-900'
@@ -213,6 +213,7 @@ const Education = () => {
           </div>
         </div>
       </div>
+      <div className="h-10"></div>
     </div>
   );
 };

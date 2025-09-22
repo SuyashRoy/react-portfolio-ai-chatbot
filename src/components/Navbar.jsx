@@ -43,13 +43,13 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center justify-center flex-1 px-8">
-            <div className="flex items-center space-x-12">
+          <div className="hidden lg:flex items-center justify-center flex-1 px-8">
+            <div className="flex items-center space-x-8 xl:space-x-12">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`w-35 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 whitespace-nowrap w-40 ${
                     isActive(item.path)
                       ? `${isDarkMode ? 'text-emerald-400' : 'text-blue-600'}`
                       : `${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`
@@ -61,8 +61,8 @@ const Navbar = () => {
             </div>
           </div>
           
-          {/* Theme Toggle */}
-          <div className="flex-shrink-0">
+          {/* Theme Toggle - Desktop */}
+          <div className="hidden lg:flex flex-shrink-0">
             <button
               onClick={toggleTheme}
               className={`p-2 rounded-lg transition-all duration-300 flex items-center ${
@@ -83,11 +83,11 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2 flex-shrink-0">
+          <div className="lg:hidden flex items-center space-x-2 flex-shrink-0">
             <button
               onClick={toggleTheme}
               className={`p-2 rounded-lg transition-all duration-300 flex items-center ${
-                isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-blue-600 hover:text-blue-800 hover:bg-yellow-100'
+                isDarkMode ? 'text-gray-300 hover:text-white' : 'text-blue-600 hover:text-blue-800'
               }`}
               aria-label="Toggle theme"
             >
@@ -104,7 +104,7 @@ const Navbar = () => {
             
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 rounded-lg transition-all duration-300 flex items-center ${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-yellow-100'} focus:outline-none`}
+              className={`p-2 rounded-lg transition-all duration-300 flex items-center ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'} focus:outline-none`}
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMenuOpen ? (
@@ -119,18 +119,18 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 ${
-              isDarkMode ? 'bg-slate-800/50' : 'bg-yellow-50/90'
+              isDarkMode ? 'bg-slate-800/95' : 'bg-yellow-50/95'
             } backdrop-blur-md rounded-lg mt-2 mb-4 border ${
               isDarkMode ? 'border-slate-600/30' : 'border-yellow-200/50'
-            }`}>
+            } shadow-xl`}>
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
+                  className={`block px-4 py-3 rounded-md text-base font-medium transition-all duration-300 ${
                     isActive(item.path)
                       ? `${isDarkMode ? 'text-emerald-400 bg-emerald-600/20' : 'text-blue-600 bg-blue-100'}`
                       : `${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-slate-100'}`

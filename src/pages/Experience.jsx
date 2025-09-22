@@ -93,26 +93,26 @@ const Experience = () => {
       <div className="relative z-10 mx-auto px-4 py-20 pt-24">
         <div>
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
+          <div className="text-center mb-12 md:mb-16">
+            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-600' 
                 : 'from-blue-400 to-blue-500'
-            } bg-clip-text text-transparent`}>
+            } bg-clip-text text-transparent px-4`}>
               Experience
             </h1>
           </div>
           
           {/* Experience Timeline */}
           <div className="mb-16">
-            <div className="h-3"></div>
-            <h2 className={`text-3xl font-bold mb-8 text-center h-14 ${
+            <div className="h-10 sm:h-3"></div>
+            <h2 className={`text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center h-14 ${
               isDarkMode ? 'text-teal-500' : 'text-sky-600'
             }`}>Professional Experience</h2>
             {/* First Row - Two Cards */}
-            <div className="flex flex-col lg:flex-row justify-center items-stretch gap-8 mb-8">
+            <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch gap-6 md:gap-8 mb-6 md:mb-8">
               {experiences.slice(0, 2).map((exp, index) => (
-                <div key={index} className={`backdrop-blur-sm rounded-xl border transition-all duration-300 w-full max-w-md h-full flex flex-col overflow-hidden ${
+                <div key={index} className={`backdrop-blur-sm rounded-xl border transition-all duration-300 w-full max-w-md mx-auto lg:mx-0 h-full flex flex-col overflow-hidden ${
                   isDarkMode 
                     ? 'bg-slate-800/50 border-slate-600/30' 
                     : 'bg-orange-100 border-slate-200/50'
@@ -186,8 +186,8 @@ const Experience = () => {
             
             {/* Second Row - Single Card in Center */}
             <div className='h-5'></div>
-            <div className="flex justify-center items-stretch">
-              <div className={`backdrop-blur-sm rounded-xl border transition-all duration-300 w-full max-w-md h-full flex flex-col overflow-hidden ${
+            <div className="flex justify-center items-center">
+              <div className={`backdrop-blur-sm rounded-xl border transition-all duration-300 w-full max-w-md mx-auto h-full flex flex-col overflow-hidden ${
                 isDarkMode 
                   ? 'bg-slate-800/50 border-slate-600/30' 
                   : 'bg-orange-100 border-slate-200/50'
@@ -257,7 +257,7 @@ const Experience = () => {
                 </div>
               </div>
             </div>
-            <div className='h-15'></div>
+            <div className='h-5'></div>
             {/* Scroll Indicator */}
             {/* <div className="flex flex-col items-center mt-16 mb-6">
               <div className={`text-sm font-medium h-8 mb-3 ${
@@ -286,19 +286,19 @@ const Experience = () => {
             {/* <div className="h-3"></div> */}
           </div>
           {/* <div className='h-3'></div> */}
-          {/* Skills Overview */}
-          <div className="mb-16">
-            <h2 className={`text-3xl font-bold mb-8 text-center h-14 ${
+            {/* Skills Overview */}
+          <div className="mb-12 md:mb-16">
+            <h2 className={`text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center ${
               isDarkMode ? 'text-purple-400' : 'text-purple-600'
             }`}>Technical Skills</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 h-25">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {skills.map((skill, index) => (
                 <div key={index} className={`backdrop-blur-sm rounded-xl p-6 border ${
                   isDarkMode 
                     ? 'bg-gray-800/50 border-gray-700' 
                     : 'bg-orange-50 border-slate-200/50'
                 }`}>
-                  <h3 className={`text-xl font-bold mb-4 text-center h-10 ${
+                  <h3 className={`text-xl font-bold mb-4 text-center h-9 ${
                     isDarkMode ? 'text-white' : 'text-gray-900'
                   }`}>{skill.category}</h3>
                   <div className="flex flex-wrap gap-2 justify-center">
@@ -321,44 +321,44 @@ const Experience = () => {
           </div>
           <div className='h-5'></div>
           {/* Career Highlights */}
-          <div className={`backdrop-blur-sm rounded-xl p-8 border ${
+          <div className={`backdrop-blur-sm rounded-xl p-6 md:p-8 border ${
             isDarkMode 
               ? 'bg-slate-800/30 border-slate-600/30' 
               : 'bg-orange-50 border-slate-200/50'
           }`}>
-            <h2 className={`text-3xl font-bold mb-6 text-center ${
+            <h2 className={`text-2xl md:text-3xl font-bold mb-6 text-center ${
               isDarkMode ? 'text-pink-400' : 'text-pink-600'
             }`}>Career Highlights</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               <div className="text-center">
-                <div className={`text-4xl font-bold mb-2 ${
+                <div className={`text-2xl md:text-4xl font-bold mb-2 ${
                   isDarkMode ? 'text-emerald-400' : 'text-blue-600'
                 }`}>3+</div>
-                <div className={`${
+                <div className={`text-sm md:text-base ${
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>Years Experience</div>
               </div>
               <div className="text-center">
-                <div className={`text-4xl font-bold mb-2 ${
+                <div className={`text-2xl md:text-4xl font-bold mb-2 ${
                   isDarkMode ? 'text-purple-400' : 'text-purple-400'
                 }`}>2</div>
-                <div className={`${
+                <div className={`text-sm md:text-base ${
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>Major Companies</div>
               </div>
               <div className="text-center">
-                <div className={`text-4xl font-bold mb-2 ${
+                <div className={`text-2xl md:text-4xl font-bold mb-2 ${
                   isDarkMode ? 'text-pink-400' : 'text-pink-400'
                 }`}>10+</div>
-                <div className={`${
+                <div className={`text-sm md:text-base ${
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>Technologies Used</div>
               </div>
               <div className="text-center">
-                <div className={`text-4xl font-bold mb-2 ${
+                <div className={`text-xl md:text-3xl lg:text-4xl font-bold mb-2 ${
                   isDarkMode ? 'text-green-400' : 'text-blue-500'
                 }`}>Enterprise</div>
-                <div className={`${
+                <div className={`text-sm md:text-base ${
                   isDarkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>Level Projects</div>
               </div>
@@ -366,7 +366,7 @@ const Experience = () => {
           </div>
         </div>
       </div>
-      <div className='h-7'></div>
+      <div className='h-10 md:h-7'></div>
     </div>
   );
 };
