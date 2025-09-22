@@ -137,7 +137,7 @@ const Home = () => {
             } bg-clip-text text-transparent px-4`}>
               Ready to Learn More?
             </h2>
-            <p className={`text-lg md:text-xl mb-8 md:mb-12 leading-relaxed px-4 h-10 ${
+            <p className={`text-lg md:text-xl mb-8 md:mb-12 leading-relaxed px-4 h-14 md:h-10 ${
               isDarkMode ? 'text-gray-300' : 'text-gray-700'
             }`}>
               Discover my journey, skills, and experiences in detail
