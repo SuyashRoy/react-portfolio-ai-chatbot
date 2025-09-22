@@ -3,6 +3,7 @@ const cors = require('cors');
 const pdfParse = require('pdf-parse');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 
@@ -228,6 +229,140 @@ function generateFallbackResponse(message, resumeData) {
     return "That's an interesting question! I can help you with information about Suyash's technical skills, work experience, education background, or projects. What specific area would you like to know more about?";
   }
 }
+
+// Telegram Bot Configuration
+const TELEGRAM_BOT_TOKEN = '8206435880:AAH0a8Ocv3VQhq-_z-1VoSUPCHiKgdApaVQ';
+const TELEGRAM_CHAT_ID = '-1003005879000';
+
+// Function to send message via Telegram using native HTTPS
+function sendTelegramMessage(text) {
+  return new Promise((resolve) => {
+    const payload = JSON.stringify({
+      chat_id: TELEGRAM_CHAT_ID,
+      text: text,
+      parse_mode: 'HTML'
+    });
+
+    const options = {
+      hostname: 'api.telegram.org',
+      port: 443,
+      path: `/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(payload)
+      }
+    };
+
+    console.log('Sending Telegram message...');
+    console.log('Payload:', payload);
+
+    const req = https.request(options, (res) => {
+      let data = '';
+
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      res.on('end', () => {
+        try {
+          const response = JSON.parse(data);
+          console.log('Telegram API response:', response);
+          
+          if (response.ok) {
+            console.log('Message sent successfully to Telegram');
+            resolve(true);
+          } else {
+            console.error('Telegram API error:', response.description);
+            resolve(false);
+          }
+        } catch (error) {
+          console.error('Error parsing Telegram response:', error);
+          resolve(false);
+        }
+      });
+    });
+
+    req.on('error', (error) => {
+      console.error('Error sending Telegram message:', error);
+      resolve(false);
+    });
+
+    req.write(payload);
+    req.end();
+  });
+}
+
+// Contact form endpoint
+app.post('/api/contact', async (req, res) => {
+  try {
+    console.log('Received contact form submission:', req.body);
+    const { name, email, subject, message } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      console.log('Validation failed: Missing required fields');
+      return res.status(400).json({
+        success: false,
+        error: 'All fields are required'
+      });
+    }
+
+    // Format message for Telegram
+    const telegramMessage = `
+🔔 <b>New Contact Form Submission</b>
+
+👤 <b>Name:</b> ${name}
+📧 <b>Email:</b> ${email}
+📋 <b>Subject:</b> ${subject}
+
+💬 <b>Message:</b>
+${message}
+
+⏰ <b>Time:</b> ${new Date().toLocaleString()}
+    `.trim();
+
+    // Send message to Telegram
+    const success = await sendTelegramMessage(telegramMessage);
+
+    if (success) {
+      res.json({
+        success: true,
+        message: 'Message sent successfully!'
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        error: 'Failed to send message'
+      });
+    }
+  } catch (error) {
+    console.error('Error in contact endpoint:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error'
+    });
+  }
+});
+
+// Test Telegram endpoint
+app.get('/api/test-telegram', async (req, res) => {
+  try {
+    const testMessage = '🔧 <b>Test Message</b>\n\nThis is a test message from your portfolio contact form. If you receive this, the integration is working!';
+    const success = await sendTelegramMessage(testMessage);
+    
+    res.json({
+      success: success,
+      message: success ? 'Test message sent successfully!' : 'Failed to send test message'
+    });
+  } catch (error) {
+    console.error('Error in test endpoint:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error'
+    });
+  }
+});
 
 // Basic route for testing
 app.get('/', (req, res) => {

@@ -26,7 +26,7 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('http://localhost:5000/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const Contact = () => {
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         setSubmitStatus('error');
-        console.error('Failed to send email:', result.error);
+        console.error('Failed to send message:', result.error);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -280,7 +280,7 @@ const Contact = () => {
                         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="font-medium">Message sent successfully! I'll get back to you soon.</span>
+                        <span className="font-medium">Message sent successfully via Telegram! I'll get back to you soon.</span>
                       </div>
                     </div>
                   )}
