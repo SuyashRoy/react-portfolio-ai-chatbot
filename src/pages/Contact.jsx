@@ -26,7 +26,7 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('http://localhost:5000/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const Contact = () => {
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         setSubmitStatus('error');
-        console.error('Failed to send email:', result.error);
+        console.error('Failed to send message:', result.error);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -117,16 +117,16 @@ const Contact = () => {
           <div className="text-center mb-16">
             <div className="mb-6 h-20">
             </div>
-            <h1 className={`text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r h-20 ${
+            <h1 className={`h-20 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r ${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-600' 
                 : 'from-blue-400 to-blue-500'
-            } bg-clip-text text-transparent`}>
+            } bg-clip-text text-transparent px-4`}>
               Let's Work Together
             </h1>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-7 gap-10 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-7 gap-6 md:gap-8 lg:gap-10 mb-12 md:mb-16">
             {/* Contact Form */}
             <div className="lg:col-start-2 lg:col-span-3">
               {/* Send a Message Card */}
@@ -280,7 +280,7 @@ const Contact = () => {
                         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="font-medium">Message sent successfully! I'll get back to you soon.</span>
+                        <span className="font-medium">Message sent successfully via Telegram! I'll get back to you soon.</span>
                       </div>
                     </div>
                   )}
@@ -310,8 +310,8 @@ const Contact = () => {
                 isDarkMode 
                   ? 'bg-slate-800/50 border-slate-700/50' 
                   : 'bg-white/90 border-slate-200/50'
-              } backdrop-blur-sm rounded-2xl p-6 border shadow-xl`}>
-                <h3 className={`text-2xl font-bold mb-6 ${
+              } backdrop-blur-sm rounded-2xl p-4 md:p-6 border shadow-xl`}>
+                <h3 className={`text-xl md:text-2xl font-bold mb-4 md:mb-6 ${
                   isDarkMode ? 'text-white' : 'text-gray-900'
                 }`}>
                   Contact Information

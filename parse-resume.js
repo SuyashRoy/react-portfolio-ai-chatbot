@@ -12,19 +12,19 @@ async function parseResume() {
       // Create sample resume data
       const sampleResumeData = {
         personalInfo: {
-          name: "Yugesh Chandra Roy",
-          email: "yugesh@example.com",
-          phone: "+1 (555) 123-4567",
-          location: "San Francisco, CA",
-          linkedin: "linkedin.com/in/yugesh",
-          github: "github.com/yugesh"
+          name: "Suyash Roy",
+          email: "suyashroy4@gmail.com",
+          phone: "+1 (213)-348-0785",
+          location: "Los Angeles, CA",
+          linkedin: "linkedin.com/in/suyash-roy-8ab1461ba/",
+          github: "github.com/SuyashRoy"
         },
         education: [
           {
-            degree: "Bachelor of Science in Computer Science",
-            institution: "University of California, Berkeley",
-            year: "2021 - 2025",
-            gpa: "3.8/4.0",
+            degree: "Master of Science in Computer Science",
+            institution: "University of Southern California, Los Angeles, CA",
+            year: "January, 2025 - December, 2026",
+            gpa: "3.43/4.0",
             description: "Focused on software engineering, algorithms, and data structures. Active in computer science clubs and hackathons."
           }
         ],

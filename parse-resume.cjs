@@ -12,29 +12,29 @@ async function parseResume() {
       // Create sample resume data
       const sampleResumeData = {
         personalInfo: {
-          name: "Yugesh Chandra Roy",
-          email: "yugesh@example.com",
-          phone: "+1 (555) 123-4567",
-          location: "San Francisco, CA",
-          linkedin: "linkedin.com/in/yugesh",
-          github: "github.com/yugesh"
+          name: "Suyash Roy",
+          email: "suyashroy4@gmail.com",
+          phone: "+1 (213)-348-0785",
+          location: "Los Angeles, CA",
+          linkedin: "linkedin.com/in/suyash-roy-8ab1461ba/",
+          github: "github.com/SuyashRoy"
         },
         education: [
           {
-            degree: "Bachelor of Science in Computer Science",
-            institution: "University of California, Berkeley",
-            year: "2021 - 2025",
-            gpa: "3.8/4.0",
+            degree: "Masters in Science in Computer Science",
+            institution: "University of Southern California, Los Angeles, CA",
+            year: "January, 2025 - December, 2026",
+            gpa: "3.43/4.0",
             description: "Focused on software engineering, algorithms, and data structures. Active in computer science clubs and hackathons."
           }
         ],
         experience: [
           {
             title: "Full-Stack Developer",
-            company: "Tech Company Inc.",
-            location: "San Francisco, CA",
-            period: "2023 - Present",
-            type: "Full-time",
+            company: "HighRadius",
+            location: "Bhubaneswar, India",
+            period: "May 2021 - December 2021",
+            type: "Internship",
             description: "Leading development of scalable web applications using React, Node.js, and cloud technologies.",
             achievements: [
               "Increased application performance by 40% through code optimization",

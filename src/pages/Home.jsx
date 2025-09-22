@@ -27,42 +27,31 @@ const Home = () => {
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 pt-16">
         <div className="text-center max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className={`text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r leading-tight ${
+            <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8 bg-gradient-to-r leading-tight ${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-500' 
                 : 'from-blue-400 to-blue-500'
             } bg-clip-text text-transparent`}>
               Hi, I'm Suyash Roy
             </h1>
-            <p className={`text-xl md:text-2xl mb-8 leading-relaxed ${
+            <p className={`text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 leading-relaxed px-4 ${
               isDarkMode ? 'text-gray-300' : 'text-gray-700'
             }`}>
               Computer Science Graduate Student & Software Developer
             </p>
-            <p className={`text-lg mb-12 max-w-2xl mx-auto h-16 leading-relaxed flex ${
+            <p className={`md:text-lg mb-8 md:mb-12 leading-relaxed px-4 ${
               isDarkMode ? 'text-gray-400' : 'text-gray-600'
             }`}>
-            <span className="flex items-center text-transparent">text transparent</span>
               Currently pursuing MS in Computer Science at USC. Experienced in enterprise software development 
               with expertise in J2EE frameworks and modern web technologies.
             </p>
           </div>
           <div className="h-10"></div>
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center my-8 flex-wrap">
-            {/* <Link 
-              to="/projects" 
-              className={`px-12 py-4 mx-4 text-center rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl ${
-                isDarkMode 
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white hover:from-emerald-700 hover:to-teal-800 border border-emerald-500/20' 
-                  : 'bg-gradient-to-r from-emerald-700 to-teal-800 text-white hover:from-emerald-800 hover:to-teal-900 border border-emerald-600/30'
-              }`}
-            >
-              View My Work
-            </Link> */}
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-6 justify-center items-center my-8 px-4">
             <Link 
               to="/projects" 
-              className={`w-40 px-12 py-4 mx-4 text-center rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
+              className={`flex justify-center items-center w-50 sm:w-auto min-w-[160px] px-8 sm:px-8 md:px-12 py-4 sm:py-4 text-center rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
                 isDarkMode 
                   ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 
                   : 'border-2 border-blue-500/60 text-gray-900 hover:bg-blue-100 hover:border-blue-500'
@@ -72,7 +61,7 @@ const Home = () => {
             </Link>
             <Link 
               to="/contact" 
-              className={`w-40 px-12 py-4 mx-4 text-center rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
+              className={`flex justify-center items-center w-50 sm:w-auto min-w-[160px] px-8 sm:px-8 md:px-12 py-4 sm:py-4 text-center rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
                 isDarkMode 
                   ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 
                   : 'border-2 border-blue-500/60 text-gray-900 hover:bg-blue-100 hover:border-blue-500'
@@ -80,38 +69,51 @@ const Home = () => {
             >
               Get In Touch
             </Link>
+            <a 
+              href="/Resume_Fall_25.pdf"
+              download="Suyash_Roy_Resume.pdf"
+              className={`flex justify-center items-center w-50 sm:w-auto min-w-[160px] px-8 sm:px-8 md:px-12 py-4 sm:py-4 text-center rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
+                isDarkMode 
+                  ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 
+                  : 'border-2 border-blue-500/60 text-gray-900 hover:bg-blue-100 hover:border-blue-500'
+              }`}
+            >
+            <span className='text-transparent'>S</span>
+              Download Resume
+              <span className='text-transparent'>R</span>
+            </a>
           </div>
           <div className="h-5"></div>
           {/* Quick Stats */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+          <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
             <div className="text-center">
-              <div className={`text-3xl font-bold ${isDarkMode ? 'text-emerald-400' : 'text-blue-700'}`}>MS</div>
-              <div className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Computer Science at USC</div>
+              <div className={`text-2xl md:text-3xl font-bold ${isDarkMode ? 'text-emerald-400' : 'text-blue-700'}`}>MS</div>
+              <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Computer Science at USC</div>
             </div>
             <div className="text-center">
-              <div className={`text-3xl font-bold ${isDarkMode ? 'text-teal-400' : 'text-blue-500'}`}>3.43/4.0</div>
-              <div className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>MS GPA</div>
+              <div className={`text-2xl md:text-3xl font-bold ${isDarkMode ? 'text-teal-400' : 'text-blue-500'}`}>3.43/4.0</div>
+              <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>MS GPA</div>
             </div>
             <div className="text-center">
-              <div className={`text-3xl font-bold ${isDarkMode ? 'text-green-400' : 'text-blue-600'}`}>Actively Seeking</div>
-              <div className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Internships</div>
+              <div className={`text-xl md:text-2xl lg:text-3xl font-bold ${isDarkMode ? 'text-green-400' : 'text-blue-600'}`}>Actively Seeking</div>
+              <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Internships</div>
             </div>
           </div>
         </div>
         {/* Scroll Indicator */}
-      <div className="bottom-10 absolute items-center justify-center flex flex-col">
-      {/* container left-1/2 transform z-50 flex flex-col items-center */}
-        <p className={`text-sm mb-4 font-medium drop-shadow-lg h-8 ${
+       <div className="h-200 sm:h-5"></div>
+      <div className="bottom-2 md:bottom-10 absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+        <p className={`text-md md:text-sm mb-3 md:mb-4 font-medium drop-shadow-lg md:h-8 ${
           isDarkMode ? 'text-gray-200' : 'text-gray-700'
         }`}>
           Scroll down to know more
         </p>
         <button 
           onClick={scrollDown}
-          className={`animate-bounce p-3 rounded-full transition-all duration-300 hover:scale-110 drop-shadow-lg `}
+          className={`animate-bounce p-2 md:p-3 rounded-full transition-all duration-300 hover:scale-110 drop-shadow-lg flex justify-center items-center`}
           aria-label="Scroll down"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </button>
@@ -127,36 +129,35 @@ const Home = () => {
           : 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100'
       }`}>
         <div className="text-center max-w-3xl mx-auto">
-          <div className="mb-12">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r ${
+          <div className="mb-8 md:mb-12">
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r ${
               isDarkMode 
                 ? 'from-emerald-400 via-teal-500 to-green-500' 
                 : 'from-blue-500 to-blue-600'
-            } bg-clip-text text-transparent`}>
+            } bg-clip-text text-transparent px-4`}>
               Ready to Learn More?
             </h2>
-            <p className={`text-xl mb-12 leading-relaxed ${
+            <p className={`text-lg md:text-xl mb-8 md:mb-12 leading-relaxed px-4 h-10 ${
               isDarkMode ? 'text-gray-300' : 'text-gray-700'
             }`}>
               Discover my journey, skills, and experiences in detail
             </p>
           </div>
-          <div className="h-5"></div>
           <Link 
             to="/about" 
-            className={`inline-block px-16 py-5 text-center rounded-full font-semibold text-xl shadow-lg hover:shadow-xl ${
+            className={`sm:flex sm:justify-center sm:items-center md:inline-block px-8 sm:px-12 md:px-16 py-4 md:py-5 text-center rounded-full font-semibold text-lg md:text-xl shadow-lg hover:shadow-xl mx-4 ${
               isDarkMode 
                 ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white hover:from-emerald-700 hover:to-teal-800' 
                 : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800'
             }`}
           >
-          <span className="text-transparent">SR</span>
+            <span className="text-transparent">S</span>
             Continue to About
-          <span className="text-transparent">SR</span>
+            <span className="text-transparent">R</span>
           </Link>
-          <div className="h-2"></div>
-          <div className="mt-16">
-            <p className={`text-sm ${
+          <div className="h-3"></div>
+          <div className="mt-12 md:mt-16">
+            <p className={`text-sm px-4 ${
               isDarkMode ? 'text-gray-400' : 'text-gray-600'
             }`}>
               Scroll down or click above to continue your exploration

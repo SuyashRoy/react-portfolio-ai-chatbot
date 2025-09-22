@@ -1,29 +1,113 @@
 {
-  "personalInfo": {},
+  "personalInfo": {
+    "name": "Suyash Roy",
+    "email": "suyashroy4@gmail.com",
+    "phone": "+1 (213)-348-0785",
+    "location": "Los Angeles, CA",
+    "linkedin": "linkedin.com/in/suyash-roy-8ab1461ba/",
+    "github": "github.com/SuyashRoy",
+    "professional interests": "Software Development, Machine Learning, Artificial Intelligence, Web Development",
+    "hobbies": "Reading, Watching Movies, Listening to Music, Playing Soccer, Watching Sports"
+  },
   "education": [
     {
-      "degree": "University of Southern CaliforniaJanuary 2025-Present",
+      "degree": "University of Southern California",
       "institution": "Master of Science in Computer Science",
-      "year": "2025",
-      "gpa": "3.8/4.0"
+      "year": "January, 2025 - December, 2026",
+      "gpa": "3.43/4.0"
     }
   ],
   "experience": [
     {
-      "company": "Analyst Intern, TMT (Tech Media Telecommunications)January 2022-June 2022",
-      "position": "Bain Capability Network, Gurgaon, India",
-      "duration": "2022"
+      "company": "Bain Capability Network, Gurgaon, India",
+      "position": "Associate, TMT (Tech Media Telecommunications)",
+      "duration": "July 2022-December 2024",
+      "description": "Contributed to Bain's 'LUMI' telecom product, driving CAPEX/OPEX strategies, cost savings, and market expansion using geospatial analysis. Led due diligence, forecasting models, and optimized workflows, delivering key insights and cost reductions across telecom projects. More details on the Experience Tab."
+    },
+    {
+      "company": "Bain Capability Network, Gurgaon, India",
+      "position": "Analyst Intern, TMT (Tech Media Telecommunications)",
+      "duration": "January 2022-June 2022",
+      "description": "Involved in the 'LUMI' product team, serving for a major NA Telco provider, innovated a performance metric 'Likelihood To Switch' (LTS) to assess market attractiveness, applied across 5+ cases. More details on the Experience Tab."
+    },
+    {
+      "company": "HighRadius, Bhubaneswar, India",
+      "position": "Full Stack Developer Intern",
+      "duration": "May 2021-December 2021",
+      "description": "Leveraged J2EE frameworks (Spring, Struts, and Hibernate) along with ReactJS to design and setup UI Screen Integration for enterprise applications, focusing on UI integration across multiple databases. Led end-to-end development of key functionality, ensuring seamless front-end and back-end integration, and tested peer deliverables for defect-free performance."
     }
   ],
   "skills": {
-    "frontend": [
-      "Leveraged J2EE (Spring, Struts and Hibernate) along with ReactJS to design and setup UI Screen Integration for the 'CFO-",
-      "Languages: Python, Java, SQL, HTML, CSS, JavaScript, ReactJS",
-      "DevOps & Version Control: Git"
-    ],
-    "backend": [],
-    "tools": []
+    "frontend": ["ReactJS", "JavaScript", "HTML", "CSS"],
+    "backend": ["Java", "Spring", "Struts", "Hibernate", "SQL", "Python"],
+    "tools": ["Git", "Alteryx", "Microsoft Office Suite", "Software Engineering", "Heavy.AI"]
   },
-  "projects": [],
-  "certifications": []
+  "projects": [
+    {
+      "name": "AI-Powered Portfolio Website",
+      "description": "A modern portfolio website with AI chatbot integration with particle animations, AI-powered chatbot and responsive design.",
+      "technologies": ["React", "Node.js", "Tailwind CSS", "Gemini AI", "TSParticles"]
+    },
+    {
+      "name": "InstaCam",
+      "description": "InstaCam is a social media app. It is made using React library and routing is done using React router. This app talks to a backend express app to fetch all the dynamic data from MongoDB atlas using the mongoose library.",
+      "technologies": ["React", "Express", "MongoDB", "Redux"]
+    },
+    {
+      "name": "Mental Health Medical RAG with Semantic Analysis",
+      "description": "A group project where we are building a medical RAG with semantic analysis to analyse and classify the concern levels regarding mental health via social media posts.",
+      "technologies": ["Machine Learning", "TypeScript", "SQL", "Natural Language Processing", "Big Data Analytics"]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Front-End Web Development with React",
+      "description": "An online non-credit course authorized by The Hong Kong University of Science and Technology and offered through Coursera",
+      "technologies": ["ReactJS", "JavaScript", "HTML", "CSS"],
+      "date": "December, 2020",
+      "issuer": "The Hong Kong University of Science and Technology",
+      "certifier": "Coursera"
+    },
+    {
+      "name": "Front-End Web UI Frameworks and Tools: Bootstrap 4",
+      "description": "An online non-credit course authorized by The Hong Kong University of Science and Technology and offered through Coursera",
+      "technologies": ["Bootstrap 4", "HTML", "CSS", "JavaScript"],
+      "date": "August, 2020",
+      "issuer": "The Hong Kong University of Science and Technology",
+      "certifier": "Coursera"
+    },
+    {
+      "name": "Modern JavaScript: ES6 Basics",
+      "description": "an online non-credit project authorized by Deprecated Guided Projects and offered through Coursera",
+      "technologies": ["JavaScript", "ES6"],
+      "date": "July, 2020",
+      "issuer": "Coursera",
+      "certifier": "Coursera"
+    },
+    {
+      "name": "Advanced Styling with Responsive Design",
+      "description": "an online non-credit course authorized by University of Michigan and offered through Coursera",
+      "technologies": ["HTML", "CSS", "Bootstrap"],
+      "date": "July, 2020",
+      "issuer": "University of Michigan",
+      "certifier": "Coursera"
+    },
+    {
+      "name": "Entrepreneurship I: Laying the Foundation",
+      "description": "an online non-credit course authorized by University of Illinois Urbana-Champaign and offered through Coursera",
+      "technologies": ["Soft Skills", "Entrepreneurship", "Written Communication", "Public Speaking"],
+      "date": "January, 2022",
+      "issuer": "University of Illinois Urbana-Champaign",
+      "certifier": "Coursera"
+    },
+    {
+      "name": "Entrepreneurship II: Preparing for Launch",
+      "description": "An online non-credit course authorized by The Hong Kong University of Science and Technology and offered through Coursera",
+      "technologies": ["Soft Skills", "Entrepreneurship", "Written Communication", "Public Speaking"],
+      "date": "January, 2022",
+      "issuer": "University of Illinois Urbana-Champaign",
+      "certifier": "Coursera"
+    }
+    
+  ]
 }
