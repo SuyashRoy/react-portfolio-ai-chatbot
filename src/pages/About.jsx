@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 import ParticleBackground from '../components/ParticleBackground';
 
 const About = () => {
   const { isDarkMode } = useTheme();
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
+  const scrollDown = () => {
+    const bottomSection = document.querySelector('#bottom-section');
+    if (bottomSection) {
+      bottomSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    } else {
+      // Fallback: scroll to the bottom of the page
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
   
   return (
     <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
@@ -176,8 +198,70 @@ const About = () => {
             </div>
           </div>
         </div>
+        <div className='h-25'></div>
+        {/* Scroll Indicator */}
+        <div className="h-5 sm:h-5"></div>
+        <div className="bottom-2 md:bottom-10 absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+          <p className={`text-md md:text-sm mb-3 md:mb-4 font-medium drop-shadow-lg md:h-8 ${
+            isDarkMode ? 'text-gray-200' : 'text-gray-700'
+          }`}>
+            Scroll down to know more
+          </p>
+          <button 
+            onClick={scrollDown}
+            className={`animate-bounce p-2 md:p-3 rounded-full transition-all duration-300 hover:scale-110 drop-shadow-lg flex justify-center items-center`}
+            aria-label="Scroll down"
+          >
+            <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </button>
+        </div>
       </div>
-      <div className="h-10"></div>
+
+      {/* Bottom Section - Continue to Education */}
+      <div id="bottom-section" className={`relative z-10 min-h-screen flex items-center justify-center px-4 ${
+        isDarkMode 
+          ? 'bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950' 
+          : 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100'
+      }`}>
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="mb-8 md:mb-12">
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r ${
+              isDarkMode 
+                ? 'from-emerald-400 via-teal-500 to-green-500' 
+                : 'from-blue-500 to-blue-600'
+            } bg-clip-text text-transparent px-4`}>
+              Ready to Learn More?
+            </h2>
+            <p className={`text-lg md:text-xl mb-8 md:mb-12 leading-relaxed px-4 h-14 md:h-10 ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              Explore my educational background and academic achievements
+            </p>
+          </div>
+          <Link 
+            to="/education" 
+            className={`sm:flex sm:justify-center sm:items-center md:inline-block px-8 sm:px-12 md:px-16 py-4 md:py-5 text-center rounded-full font-semibold text-lg md:text-xl shadow-lg hover:shadow-xl mx-4 ${
+              isDarkMode 
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white hover:from-emerald-700 hover:to-teal-800' 
+                : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800'
+            }`}
+          >
+            <span className="text-transparent">S</span>
+            Continue to Education
+            <span className="text-transparent">R</span>
+          </Link>
+          <div className="h-3"></div>
+          <div className="mt-12 md:mt-16">
+            <p className={`text-sm px-4 ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}>
+              Scroll down or click above to continue your exploration
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
