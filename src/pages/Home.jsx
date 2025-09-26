@@ -70,8 +70,8 @@ const Home = () => {
               Get In Touch
             </Link>
             <a 
-              href="/Resume_Fall_25.pdf"
-              download="Suyash_Roy_Resume.pdf"
+              href="/Resume_Project_Oriented.pdf"
+              download="Suyash_Roy_Resume_Project_Oriented.pdf"
               className={`flex justify-center items-center w-50 sm:w-auto min-w-[160px] px-8 sm:px-8 md:px-12 py-4 sm:py-4 text-center rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
                 isDarkMode 
                   ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 

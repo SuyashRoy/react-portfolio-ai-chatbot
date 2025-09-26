@@ -34,7 +34,7 @@ app.post('/api/parse-resume', async (req, res) => {
       });
     }
 
-    const resumePath = path.join(__dirname, 'Resume_Fall_25.pdf');
+    const resumePath = path.join(__dirname, 'Resume_Project_Oriented.pdf');
     
     if (!fs.existsSync(resumePath)) {
       return res.status(404).json({ error: 'Resume PDF not found' });
