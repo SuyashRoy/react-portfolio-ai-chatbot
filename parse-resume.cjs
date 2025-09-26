@@ -4,7 +4,7 @@ const path = require('path');
 
 async function parseResume() {
   try {
-    const resumePath = path.join(__dirname, 'Resume_Fall_25.pdf');
+    const resumePath = path.join(__dirname, 'Resume_Project_Oriented.pdf');
     
     if (!fs.existsSync(resumePath)) {
       console.log('Resume PDF not found. Creating sample resume data...');
