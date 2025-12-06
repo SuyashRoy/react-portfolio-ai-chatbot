@@ -52,12 +52,12 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: "Mental Health Medical RAG with Semantic Analysis",
-      description: "A group project where we are building a medical RAG with semantic analysis to analyse and classify the concern levels regarding mental health via social media posts.",
+      title: "Mental Health Signal Detector",
+      description: "A group project where we built a mental health semantic analysis tool classify the intent and concern levels enhanced by RAG-grounded empathetic suggestions regarding mental health via social media posts.",
       image: "/pexels-googledeepmind-18069362.jpg",
       technologies: ["Machine Learning", "TypeScript", "SQL", "Natural Language Processing", "Big Data Analytics"],
       category: "web",
-      github: "https://github.com/username/taskmanager",
+      github: "https://github.com/Gaurav-Zanpure/group-23-mh-signals",
       live: "https://taskmanager-demo.com",
       featured: true
     }
