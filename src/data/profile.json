@@ -1,0 +1,279 @@
+{
+  "name": "Suyash Roy",
+  "headline": "AI/ML Engineer",
+  "tagline": "I build retrieval systems, LLM agents and data pipelines that hold up in production.",
+  "location": "Los Angeles, CA",
+  "status": "MS CS @ USC · Graduating Dec 2026",
+  "availability": "Open to full-time AI/ML roles",
+  "resume": "/Suyash_Roy_Resume.pdf",
+  "links": {
+    "email": "suyashroy4@gmail.com",
+    "linkedin": "https://linkedin.com/in/suyash-roy-8ab1461ba/",
+    "github": "https://github.com/SuyashRoy",
+    "website": "https://suyashroy.me"
+  },
+  "stats": [
+    { "value": "3.71", "label": "MS GPA at USC" },
+    { "value": "4+ yrs", "label": "Building in industry" },
+    { "value": "100K+", "label": "Documents through LLM pipelines" },
+    { "value": "6M+", "label": "Households modeled" }
+  ],
+  "about": [
+    "I'm a Computer Science graduate student at the University of Southern California, focused on machine learning, retrieval and agentic LLM systems. I like the full path from messy data to a deployed tool someone relies on every day.",
+    "Right now I lead a two-person team at Brasa Capital Management building BrasaSuite, a set of AI applications used by the firm's investment professionals, and I research hallucination attribution in medical vision-language models at USC.",
+    "Before USC I spent three years at Bain Capability Network building ML and geospatial models for telecom and private-equity cases, and I started out writing Java and React at HighRadius."
+  ],
+  "focus": [
+    { "title": "Retrieval & Ranking", "text": "Embeddings, vector search, RAG and recommendation systems that return the right thing quickly." },
+    { "title": "LLM Agents in Production", "text": "Human-in-the-loop pipelines, MCP servers and agent workflows with real observability." },
+    { "title": "Applied ML & Geospatial", "text": "Propensity, churn and demand models on large census, telecom and mobility datasets." }
+  ],
+  "skills": [
+    { "group": "Languages", "items": ["Python", "SQL", "TypeScript", "JavaScript", "Java", "C++"] },
+    { "group": "Machine Learning", "items": ["PyTorch", "TensorFlow", "Hugging Face", "Scikit-learn", "XGBoost", "LoRA / PEFT", "Vision-Language Models", "NLP"] },
+    { "group": "Retrieval & Agents", "items": ["RAG", "FAISS", "BGE Embeddings", "LangGraph", "MCP", "Ranking & Personalization", "Model Evaluation"] },
+    { "group": "Data & Infra", "items": ["PostgreSQL", "PostGIS", "MongoDB", "Redis", "Pandas", "Docker", "AWS", "Vercel", "SLURM", "CI/CD"] },
+    { "group": "Web", "items": ["React", "Next.js", "Node.js", "Express", "FastAPI", "Drizzle ORM", "Spring"] }
+  ],
+  "education": [
+    {
+      "school": "University of Southern California",
+      "short": "USC",
+      "degree": "Master of Science in Computer Science",
+      "dates": "Jan 2025 – Dec 2026 (expected)",
+      "gpa": "3.71 / 4.0",
+      "location": "Los Angeles, CA",
+      "image": "/USC-EG-GC-Campus-3@2x.jpg",
+      "summary": "Graduate coursework centered on machine learning, deep learning, NLP and information retrieval, alongside research on hallucinations in medical vision-language models.",
+      "courses": [
+        { "code": "CSCI 566", "name": "Deep Learning and Its Applications" },
+        { "code": "CSCI 585", "name": "Database Systems" },
+        { "code": "CSCI 544", "name": "Applied Natural Language Processing" },
+        { "code": "CSCI 572", "name": "Information Retrieval & Web Search Engines" },
+        { "code": "DSCI 552", "name": "Machine Learning for Data Science" },
+        { "code": "CSCI 561", "name": "Foundations of Artificial Intelligence" },
+        { "code": "CSCI 570", "name": "Analysis of Algorithms" }
+      ]
+    },
+    {
+      "school": "Kalinga Institute of Industrial Technology",
+      "short": "KIIT",
+      "degree": "Bachelor of Technology in Information Technology",
+      "dates": "Jun 2018 – Jun 2022",
+      "gpa": "9.19 / 10",
+      "location": "Bhubaneswar, India",
+      "image": "/KIIT-Campus-Front-Library-1200x416.jpg",
+      "summary": "Foundation in software engineering, data structures, databases and systems, with a capstone building a full-stack social media platform.",
+      "courses": [
+        { "code": "", "name": "Data Structures & Algorithms" },
+        { "code": "", "name": "Object-Oriented Programming" },
+        { "code": "", "name": "Database Management" },
+        { "code": "", "name": "Operating Systems" },
+        { "code": "", "name": "Computer Networks" },
+        { "code": "", "name": "Machine Learning" }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "AI Implementation & Strategy Intern",
+      "company": "Brasa Capital Management",
+      "location": "Los Angeles, CA",
+      "dates": "Jun 2026 – Present",
+      "current": true,
+      "summary": "Leading a 2-person team building BrasaSuite: four AI-enabled applications used by 20–25 investment professionals.",
+      "highlights": [
+        "Own delivery end to end, from data exploration to production deployment, iterating directly with daily users.",
+        "Deployed a human-in-the-loop LLM document pipeline that ingested 100K+ SharePoint files and now processes ~6K per week into structured PostgreSQL/PostGIS data for investment analysis.",
+        "Designed schemas for versioned investment metrics and geospatial analytics; own monitoring, code review, go-live testing and on-call for production tools.",
+        "Built a OneNote MCP server, scraper and dashboard that give nontechnical users self-serve data discovery, secured with Microsoft Entra ID."
+      ],
+      "tech": ["LLMs", "MCP", "Next.js", "TypeScript", "PostgreSQL", "PostGIS", "Drizzle ORM", "Entra ID"]
+    },
+    {
+      "role": "Research Assistant",
+      "company": "University of Southern California",
+      "location": "Los Angeles, CA",
+      "dates": "Apr 2026 – Present",
+      "current": true,
+      "summary": "Researching where hallucinations in medical vision-language models come from in radiology report generation.",
+      "highlights": [
+        "Fine-tuned CXR-LLaVA with LoRA in PyTorch on 10K image–report pairs and ran batch inference over 5,924 test images on USC's SLURM GPU cluster with zero errors.",
+        "Built a claim-level evaluation framework that attributes hallucinations across 5 evidence sources using RadGraph extraction and token likelihoods.",
+        "Synthesized 50+ papers into a source-based hallucination taxonomy."
+      ],
+      "tech": ["PyTorch", "LoRA", "Vision-Language Models", "RadGraph", "SLURM"]
+    },
+    {
+      "role": "Associate Software Developer (AI / ML)",
+      "company": "Bain Capability Network",
+      "location": "Gurugram, India",
+      "dates": "Jan 2022 – Dec 2024",
+      "logo": "/Bain&Company.png",
+      "summary": "Built ML and geospatial models behind telecom strategy and private-equity due-diligence cases.",
+      "highlights": [
+        "Deployed Random Forest and XGBoost regression models on geospatial and census data covering 6M+ households, cutting RMSE by 18% to predict high-IRR deployment markets.",
+        "Created 'LTS', a broadband subscriber churn-propensity score used across 5+ market-expansion and acquisition cases.",
+        "Built churn-prediction feature pipelines across 10+ global cases and Python batch pipelines over 6M+ telecom records, optimizing memory and runtime.",
+        "Modeled geospatial demand with spatial joins over 5K+ telecom towers and 100K+ mobility data points."
+      ],
+      "tech": ["Python", "XGBoost", "Random Forest", "GeoPandas", "Spatial Joins", "Alteryx"]
+    },
+    {
+      "role": "Full Stack Developer Intern, CFO Tech",
+      "company": "HighRadius",
+      "location": "Bhubaneswar, India",
+      "dates": "May 2021 – Dec 2021",
+      "logo": "/HighRadius",
+      "summary": "Built backend services and UI for enterprise SaaS finance workflows.",
+      "highlights": [
+        "Developed REST APIs with Java Spring/Hibernate and ReactJS components for enterprise SaaS workflows.",
+        "Served as peer tester and authored a root-cause-analysis (RCA) checklist adopted by the team."
+      ],
+      "tech": ["Java", "Spring", "Hibernate", "React", "REST APIs"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "CareerAgent",
+      "role": "Lead Coder",
+      "dates": "May 2026 – Present",
+      "status": "In progress",
+      "category": "ai",
+      "featured": true,
+      "hue": 265,
+      "summary": "An agentic career platform that discovers openings, ranks them against your resume, tailors your application and runs a live voice mock interview.",
+      "highlights": [
+        "Job recommendation engine that ranks openings by combining 1024-dim BGE embeddings, FAISS similarity search and deterministic keyword-match scoring.",
+        "Four shipped agents (discovery, semantic matching, resume tailoring and real-time voice interviews) with LangGraph/Playwright fallbacks and Llama 3.3 critique."
+      ],
+      "tech": ["LangGraph", "FAISS", "BGE", "Playwright", "Llama 3.3", "LiveKit", "Python"],
+      "github": "https://github.com/SuyashRoy/career-agent"
+    },
+    {
+      "title": "NetConnect AI",
+      "role": "Lead Coder",
+      "dates": "Jan – Feb 2026",
+      "status": "Completed",
+      "category": "ai",
+      "featured": true,
+      "hue": 195,
+      "summary": "A RAG-powered broadband recommender: enter an address, see every real provider and plan available there, and get advice from a grounded chatbot.",
+      "highlights": [
+        "Geocodes an address to its census block and queries 3.6M FCC availability records across 389 providers in PostgreSQL in about 700 ms.",
+        "Gemini chatbot grounded in user requirements, provider data and Google Places reviews, backed by a Pandas ETL rollup and a MongoDB cache with 4-tier fallbacks."
+      ],
+      "tech": ["RAG", "Gemini", "React", "Express", "PostgreSQL", "MongoDB", "Pandas"],
+      "github": "https://github.com/SuyashRoy/NetConnect-AI"
+    },
+    {
+      "title": "Broadband Market Scanner",
+      "role": "Lead Coder",
+      "dates": "Feb – Apr 2026",
+      "status": "Completed",
+      "category": "data",
+      "featured": true,
+      "hue": 160,
+      "summary": "A hyperlocal fiber-deployment forecasting platform that maps provider coverage and predicts future fiber builds at the census-block level.",
+      "highlights": [
+        "Reproducible Python, PostGIS and GeoPandas pipeline integrating FCC and Census data across 200+ broadband providers.",
+        "XGBoost forecasts with temporal cross-validation, served through FastAPI + Redis to a React/Mapbox GL analytics dashboard."
+      ],
+      "tech": ["XGBoost", "PostGIS", "GeoPandas", "FastAPI", "Redis", "React", "Mapbox GL"],
+      "github": "https://github.com/SuyashRoy/broadband-market-scanner"
+    },
+    {
+      "title": "Mental Health Signal Detector",
+      "role": "Lead Coder",
+      "dates": "Aug – Dec 2025",
+      "status": "Completed",
+      "category": "ai",
+      "featured": true,
+      "hue": 330,
+      "summary": "A RAG-assisted NLP pipeline that classifies intent and concern level in mental-health posts and suggests grounded, empathetic resources.",
+      "highlights": [
+        "Classification pipeline over 10K+ Reddit posts from 15+ communities, improving intent classification by 10%.",
+        "Fine-tuned DistilRoBERTa, BERT and MiniLM with LoRA and benchmarked them on a hand-curated 500-sample evaluation set."
+      ],
+      "tech": ["NLP", "RAG", "LoRA", "BERT", "DistilRoBERTa", "MiniLM"],
+      "github": "https://github.com/Gaurav-Zanpure/group-23-mh-signals"
+    },
+    {
+      "title": "GenAI Document Extraction",
+      "role": "Proof of concept",
+      "dates": "2026",
+      "status": "Completed",
+      "category": "ai",
+      "hue": 25,
+      "summary": "GenAI-assisted review for mortgage documents: extracts pay stubs, W-2s and bank statements, redacts PII, and flags discrepancies for loan officers.",
+      "highlights": [
+        "PII redaction before LLM processing, type-specific extraction prompts and a discrepancy engine against self-reported applicant data.",
+        "Spring Boot + PostgreSQL service with an Angular/NgRx review dashboard and a full audit trail."
+      ],
+      "tech": ["Claude API", "Java 17", "Spring Boot", "PostgreSQL", "Angular"],
+      "github": "https://github.com/SuyashRoy/genai-document-extraction-poc"
+    },
+    {
+      "title": "Agentic Travel Recommendations API",
+      "role": "Proof of concept",
+      "dates": "2026",
+      "status": "Completed",
+      "category": "ai",
+      "hue": 210,
+      "summary": "A multi-tenant recommendations service exposed as both a REST API and an MCP server, so AI agents can fetch member profiles and request partner-aware suggestions.",
+      "highlights": [
+        "Partner-specific configuration, branding and pricing rules on shared infrastructure.",
+        "TypeScript service with unit and integration tests, a CLI demo and an stdio MCP transport."
+      ],
+      "tech": ["MCP", "TypeScript", "Node.js", "REST APIs"],
+      "github": "https://github.com/SuyashRoy/arrivia-ai-concierge"
+    },
+    {
+      "title": "Edge AI Chatbot",
+      "role": "Solo",
+      "dates": "2025",
+      "status": "Live",
+      "category": "web",
+      "hue": 40,
+      "summary": "A serverless chatbot on Cloudflare's edge running Llama 3.3 70B, with per-session conversation memory in Durable Objects.",
+      "highlights": [
+        "Workers AI inference with persistent, per-browser conversation history.",
+        "Zero-infrastructure deployment on Cloudflare's global network."
+      ],
+      "tech": ["Cloudflare Workers", "Workers AI", "Durable Objects", "Llama 3.3"],
+      "github": "https://github.com/SuyashRoy/cf_ai_simple_chatbot",
+      "live": "https://cf-ai-simple-chatbot.suyashroy13.workers.dev"
+    },
+    {
+      "title": "AI-Powered Portfolio",
+      "role": "Solo",
+      "dates": "2025 – 2026",
+      "status": "Live",
+      "category": "web",
+      "hue": 185,
+      "summary": "This site: a React portfolio with a hand-built canvas comet sky and a Gemini-backed assistant that answers questions about my work.",
+      "highlights": [
+        "Custom canvas renderer for the starfield and comet, tuned for 60fps with reduced-motion support.",
+        "Resume data lives in a single JSON file shared by the UI and the chatbot."
+      ],
+      "tech": ["React", "Tailwind CSS", "Canvas", "Node.js", "Gemini"],
+      "github": "https://github.com/SuyashRoy/react-portfolio-ai-chatbot",
+      "live": "https://suyashroy.me"
+    },
+    {
+      "title": "InstaCam",
+      "role": "Team Member",
+      "dates": "Jan – Mar 2022",
+      "status": "Completed",
+      "category": "web",
+      "hue": 300,
+      "summary": "An undergraduate capstone social media app combining ideas from several platforms, built on React and an Express/MongoDB backend.",
+      "highlights": [
+        "React Router front end talking to an Express API backed by MongoDB Atlas via Mongoose."
+      ],
+      "tech": ["React", "Redux", "Express", "MongoDB"],
+      "github": "https://github.com/SuyashRoy/instacam"
+    }
+  ],
+  "interests": "Suyash is an avid reader (his favourite novel is 'The Count of Monte Cristo' by Alexandre Dumas), loves movies and TV, keeps up with pop culture, follows most major sports and supports Manchester United."
+}

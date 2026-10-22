@@ -1,148 +1,132 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
+import profile from '../data/profile.json';
+
+const navItems = [
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
+  { path: '/education', label: 'Education' },
+  { path: '/experience', label: 'Experience' },
+  { path: '/projects', label: 'Projects' },
+  { path: '/contact', label: 'Contact' },
+];
+
+const SunIcon = () => (
+  <svg className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path strokeLinecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M20.35 15.35A9 9 0 0 1 8.65 3.65 9 9 0 1 0 20.35 15.35Z" />
+  </svg>
+);
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
+  const location = useLocation();
 
-  const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/education', label: 'Education' },
-    { path: '/experience', label: 'Experience' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/contact', label: 'Contact' }
-  ];
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
+  useEffect(() => setIsMenuOpen(false), [location.pathname]);
+
+  const iconButton =
+    'grid h-10 w-10 place-items-center rounded-full text-fg-muted transition-colors hover:bg-surface-hover hover:text-fg';
 
   return (
-    <nav className={`${
-      isDarkMode ? 'bg-slate-900/95 text-white border-slate-700/50' : 'bg-yellow-50/95 text-gray-900 border-yellow-200/50'
-    } backdrop-blur-md fixed top-0 w-full shadow-xl z-40 border-b transition-colors duration-300`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 w-full">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
-          <span className="text-transparent">S</span>
-            <div className={`w-8 h-8 bg-gradient-to-r ${
-              isDarkMode ? 'from-emerald-500 to-teal-600' : 'from-blue-500 to-blue-600'
-            } rounded-lg flex items-center justify-center `}>
-              <span className="text-white font-bold text-sm">SR</span>
-            </div>
-            <span className="text-transparent">R</span>
-            <span className={`text-xl font-bold bg-gradient-to-r ${
-              isDarkMode ? 'from-emerald-400 to-teal-500' : 'from-blue-500 to-blue-600'
-            } bg-clip-text text-transparent`}>
-              Suyash Roy
-            </span>
-          </Link>
+    <nav className="fixed inset-x-0 top-0 z-40 px-3 pt-3 sm:px-6 sm:pt-4">
+      <div
+        className={`mx-auto flex h-14 max-w-6xl items-center justify-between rounded-full border px-2 pl-4 transition-all duration-500 ${
+          scrolled || isMenuOpen
+            ? 'glass border-line shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]'
+            : 'border-transparent'
+        }`}
+      >
+        <Link to="/" className="flex items-center gap-2.5" aria-label="Suyash Roy, home">
+          <img src="/favicon.svg" alt="" className="h-7 w-7 rounded-lg" />
+          <span className="font-display text-[15px] font-semibold tracking-tight text-fg">{profile.name}</span>
+        </Link>
 
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden lg:flex items-center justify-center flex-1 px-8">
-            <div className="flex items-center space-x-8 xl:space-x-12">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 whitespace-nowrap w-40 ${
-                    isActive(item.path)
-                      ? `${isDarkMode ? 'text-emerald-400' : 'text-blue-600'}`
-                      : `${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-          
-          {/* Theme Toggle - Desktop */}
-          <div className="hidden lg:flex flex-shrink-0">
-            <button
-              onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-all duration-300 flex items-center ${
-                isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-blue-600 hover:text-blue-800 hover:bg-yellow-100'
-              }`}
-              aria-label="Toggle theme"
+        <div className="hidden items-center gap-1 lg:flex">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              end
+              className={({ isActive }) =>
+                `relative rounded-full px-3.5 py-2 text-sm transition-colors ${
+                  isActive ? 'bg-surface-hover text-fg' : 'text-fg-muted hover:text-fg'
+                }`
+              }
             >
-              {isDarkMode ? (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              )}
-            </button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center space-x-2 flex-shrink-0">
-            <button
-              onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-all duration-300 flex items-center ${
-                isDarkMode ? 'text-gray-300 hover:text-white' : 'text-blue-600 hover:text-blue-800'
-              }`}
-              aria-label="Toggle theme"
-            >
-              {isDarkMode ? (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              )}
-            </button>
-            
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 rounded-lg transition-all duration-300 flex items-center ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'} focus:outline-none`}
-            >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
+              {item.label}
+            </NavLink>
+          ))}
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden">
-            <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 ${
-              isDarkMode ? 'bg-slate-800/95' : 'bg-yellow-50/95'
-            } backdrop-blur-md rounded-lg mt-2 mb-4 border ${
-              isDarkMode ? 'border-slate-600/30' : 'border-yellow-200/50'
-            } shadow-xl`}>
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block px-4 py-3 rounded-md text-base font-medium transition-all duration-300 ${
-                    isActive(item.path)
-                      ? `${isDarkMode ? 'text-emerald-400 bg-emerald-600/20' : 'text-blue-600 bg-blue-100'}`
-                      : `${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-slate-700/50' : 'text-gray-600 hover:text-gray-900 hover:bg-slate-100'}`
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="flex items-center gap-1">
+          <button onClick={toggleTheme} className={iconButton} aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} theme`}>
+            {isDarkMode ? <SunIcon /> : <MoonIcon />}
+          </button>
+          <a
+            href={profile.resume}
+            download="Suyash_Roy_Resume.pdf"
+            className="hidden h-10 items-center rounded-full bg-fg px-4 text-sm font-medium text-bg transition-opacity hover:opacity-85 sm:inline-flex"
+          >
+            Résumé
+          </a>
+          <button
+            onClick={() => setIsMenuOpen((o) => !o)}
+            className={`${iconButton} lg:hidden`}
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              {isMenuOpen ? (
+                <path strokeLinecap="round" d="M6 18 18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" d="M4 8h16M4 16h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {isMenuOpen && (
+        <div className="glass mx-auto mt-2 max-w-6xl rounded-3xl p-2 shadow-2xl lg:hidden">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              end
+              className={({ isActive }) =>
+                `block rounded-2xl px-4 py-3 text-base transition-colors ${
+                  isActive ? 'bg-surface-hover text-fg' : 'text-fg-muted hover:text-fg'
+                }`
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+          <a
+            href={profile.resume}
+            download="Suyash_Roy_Resume.pdf"
+            className="mt-1 block rounded-2xl bg-fg px-4 py-3 text-center text-base font-medium text-bg sm:hidden"
+          >
+            Download résumé
+          </a>
+        </div>
+      )}
     </nav>
   );
 };

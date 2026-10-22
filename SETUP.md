@@ -13,11 +13,9 @@
    ```
 
 3. **Create environment file**
-   Create `.env` in the root directory:
-   ```env
-   GEMINI_API_KEY=your_gemini_api_key_here
-   PORT=5000
-   NODE_ENV=development
+   Copy the template and fill in your keys (see comments in the file for what each one does):
+   ```bash
+   cp .env.example .env
    ```
 
 4. **Start the application**

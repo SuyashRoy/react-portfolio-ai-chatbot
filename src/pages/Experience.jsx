@@ -1,458 +1,73 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useTheme } from '../contexts/ThemeContext';
-import ParticleBackground from '../components/ParticleBackground';
+import React from 'react';
+import profile from '../data/profile.json';
+import { Card, Container, NextPage, PageHeader, Reveal, Tag } from '../components/ui';
 
-const Experience = () => {
-  const { isDarkMode } = useTheme();
-  
-  // Scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  
-  const scrollDown = () => {
-    const bottomSection = document.querySelector('#bottom-section');
-    if (bottomSection) {
-      bottomSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    } else {
-      // Fallback: scroll to the bottom of the page
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth'
-      });
-    }
-  };
-  const experiences = [
-    {
-      title: "Associate",
-      company: "Bain Capability Network",
-      location: "Gurugram, India",
-      period: "July 2022 - December 2024",
-      type: "Full-time",
-      description: "Contributed to Bain's 'LUMI' telecom product, driving CAPEX/OPEX strategies, cost savings, and market expansion using geospatial analysis. Led due diligence, forecasting models, and optimized workflows, delivering key insights and cost reductions across telecom projects.",
-      // achievements: [
-      //   "Developed software solutions for automotive applications",
-      //   "Collaborated with cross-functional teams on high-impact projects",
-      //   "Gained experience with scalable software architecture",
-      //   "Contributed to Tesla's innovative technology stack"
-      // ],
-      technologies: ["Go-to-Market Strategy (GTM)", "Cost Optimization", "Competitor Analysis", "Machine Learning", "Heavy.AI", "Alteryx", "Market Research"]
-    },
-    {
-      title: "Analyst Intern",
-      company: "Bain Capability Network",
-      location: "Gurugram, India",
-      period: "January 2022 - June 2022",
-      type: "Internship",
-      description: "Worked with a leading NA Telco on market expansion for wireless offerings, analyzing 6M+ households using data and machine learning. Developed the 'Likelihood To Switch' (LTS) metric to assess market attractiveness, applied across 5+ cases. Focused on strategic, analytical, and communication skills.",
-      // achievements: [
-      //   "Contributed to multiple high-profile software projects",
-      //   "Gained experience with Microsoft's technology ecosystem",
-      //   "Collaborated with global development teams",
-      //   "Enhanced skills in enterprise software development"
-      // ],
-      technologies: ["Alteryx", "Microsoft Office Suite", "Competitor Analysis", "Demographic Analysis", "Python", "Geospatial Analysis", "Telecommunications"]
-    },
-    {
-      title: "Full Stack Developer Intern",
-      company: "HighRadius",
-      location: "Bhubaneswar, India",
-      period: "May 2021 - December 2021",
-      type: "Internship",
-      description: "Developed full-stack solutions using J2EE (Spring, Struts, Hibernate) and ReactJS, focusing on UI integration across multiple databases. Led end-to-end development of key functionality, ensuring seamless front-end and back-end integration, and tested peer deliverables for defect-free performance.",
-      // achievements: [
-      //   "Built end-to-end software solutions",
-      //   "Implemented both frontend and backend components",
-      //   "Delivered high-quality software products",
-      //   "Collaborated with product and design teams"
-      // ],
-      technologies: ["React", "TypeScript", "JavaScript", "SQL", "Spring", "Struts", "Hibernate"]
-    },
-    {
-      title: "Analyst Intern, TMT (Tech Media Telecommunications)",
-      company: "Bain Capability Network",
-      location: "Gurgaon, India",
-      period: "January 2022 - June 2022",
-      type: "Internship",
-      description: "Leveraged J2EE frameworks (Spring, Struts, and Hibernate) along with ReactJS to design and setup UI Screen Integration for enterprise applications in the telecommunications sector.",
-      achievements: [
-        "Successfully integrated UI screens using ReactJS with J2EE backend",
-        "Worked on enterprise-level CFO application systems",
-        "Gained experience with Spring, Struts, and Hibernate frameworks",
-        "Contributed to telecommunications technology analysis projects"
-      ],
-      technologies: ["ReactJS", "J2EE", "Spring", "Struts", "Hibernate", "JavaScript", "HTML", "CSS"]
-    }
-  ];
+const Experience = () => (
+  <>
+    <PageHeader eyebrow="Experience" title="Where I've built things">
+      Four-plus years across enterprise SaaS, consulting analytics, ML research and production AI.
+    </PageHeader>
 
-  const skills = [
-    {
-      category: "Frontend",
-      items: ["ReactJS", "TypeScript","JavaScript", "HTML", "CSS"]
-    },
-    {
-      category: "Backend & Frameworks",
-      items: ["Python", "Node.js", "Spring", "Struts", "Hibernate", "SQL", "MongoDB"]
-    },
-    {
-      category: "Miscellaneous Tools & Technologies",
-      items: ["Git", "Alteryx", "Microsoft Office Suite", "Software Engineering", "Heavy.AI"]
-    }
-  ];
+    <Container className="max-w-5xl">
+      <ol className="relative">
+        {/* The timeline rail fades out like a comet tail */}
+        <span
+          aria-hidden="true"
+          className="absolute bottom-0 left-[7px] top-2 w-px bg-gradient-to-b from-accent via-accent-2/50 to-transparent md:left-[calc(12rem+7px)]"
+        />
+        {profile.experience.map((job, i) => (
+          <Reveal as="li" key={job.company + job.role} delay={i * 60} className="relative pb-10 pl-10 md:grid md:grid-cols-[12rem_minmax(0,1fr)] md:gap-0 md:pl-0">
+            <div className="mb-3 md:mb-0 md:pr-10 md:pt-6 md:text-right">
+              <p className="whitespace-nowrap font-mono text-xs text-fg-muted">{job.dates}</p>
+              <p className="mt-1 text-xs text-fg-subtle">{job.location}</p>
+            </div>
 
-  return (
-    <div className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
-      isDarkMode 
-        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
-        : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 text-gray-900'
-    }`}>
-      <ParticleBackground />
-      
-      <div className="relative z-10 mx-auto px-4 py-20 pt-24">
-        <div>
-          {/* Header */}
-          <div className="text-center mb-12 md:mb-16">
-            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
-              isDarkMode 
-                ? 'from-emerald-400 via-teal-500 to-green-600' 
-                : 'from-blue-400 to-blue-500'
-            } bg-clip-text text-transparent px-4`}>
-              Experience
-            </h1>
-          </div>
-          
-          {/* Experience Timeline */}
-          <div className="mb-16">
-            <div className="h-10 sm:h-3"></div>
-            <h2 className={`text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center h-14 ${
-              isDarkMode ? 'text-teal-500' : 'text-sky-600'
-            }`}>Professional Experience</h2>
-            {/* First Row - Two Cards */}
-            <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch gap-6 md:gap-8 mb-6 md:mb-8">
-              {experiences.slice(0, 2).map((exp, index) => (
-                <div key={index} className={`backdrop-blur-sm rounded-xl border transition-all duration-300 w-full max-w-md mx-auto lg:mx-0 h-full flex flex-col overflow-hidden ${
-                  isDarkMode 
-                    ? 'bg-slate-800/50 border-slate-600/30' 
-                    : 'bg-orange-100 border-slate-200/50'
-                }`}>
-                  {/* Company Image - At Top */}
-                  <div className="w-full">
-                    <img 
-                      src="/Bain&Company.png" 
-                      alt="Bain and Company"
-                      className="w-full h-20 object-contain rounded-t-xl bg-white"
-                    />
-                  </div>
-                  
-                  {/* Experience Details */}
-                  <div className="text-center flex-grow flex flex-col p-6">
-                    <h3 className={`text-xl font-bold mb-6 h-8 ${
-                      isDarkMode ? 'text-white' : 'text-gray-900'
-                    }`}>{exp.title}</h3>
-                    
-                    <h4 className={`text-lg mb-6 h-7 ${
-                      isDarkMode ? 'text-emerald-400' : 'text-rose-700'
-                    }`}>{exp.company}</h4>
-                    
-                    {/* Period and Location - Centered */}
-                    <div className="text-center mb-6 h-8">
-                      <div className={`text-lg font-semibold ${
-                        isDarkMode ? 'text-green-400' : 'text-blue-500'
-                      }`}>{exp.period}</div>
-                    </div>
-                    
-                    {/* Location */}
-                    <div className="text-center mb-6 h-6">
-                      <div className={`text-sm ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}>{exp.location}</div>
-                    </div>
-                    
-                    <p className={`mb-8 text-sm leading-relaxed h-30 ${
-                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                    }`}>{exp.description}</p>
-                    
-                    {/* Divider Line */}
-                    <div className={`w-full h-px my-8 ${
-                      isDarkMode ? 'bg-gray-600' : 'bg-gray-300'
-                    }`}></div>
-                    
-                    {/* Key Technologies Section */}
-                    <div className="mt-auto">
-                      <h5 className={`text-md font-semibold mb-4 text-center h-8 ${
-                        isDarkMode ? 'text-white' : 'text-gray-500'
-                      }`}>Key Technologies</h5>
-                      <div className="flex flex-wrap gap-2 justify-center">
-                        {exp.technologies.map((tech, techIndex) => (
-                          <span key={techIndex} className={`px-2 py-1 rounded-full text-xs ${
-                            isDarkMode 
-                              ? 'bg-gray-700 text-gray-300' 
-                              : 'bg-slate-100 text-slate-700'
-                          }`}>
-                            <span className='text-transparent'>SR</span>
-                            {tech}
-                            <span className='text-transparent'>SR</span>
-                          </span>
-                        ))}
-                      </div>
-                      <div className='h-5'></div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {/* Second Row - Single Card in Center */}
-            <div className='h-5'></div>
-            <div className="flex justify-center items-center">
-              <div className={`backdrop-blur-sm rounded-xl border transition-all duration-300 w-full max-w-md mx-auto h-full flex flex-col overflow-hidden ${
-                isDarkMode 
-                  ? 'bg-slate-800/50 border-slate-600/30' 
-                  : 'bg-orange-100 border-slate-200/50'
-              }`}>
-                {/* Company Image - At Top */}
-                <div className="w-full">
-                  <img 
-                    src="/HighRadius" 
-                    alt="HighRadius"
-                    className="w-full h-20 object-contain rounded-t-xl bg-white"
-                  />
-                </div>
-                
-                {/* Experience Details */}
-                <div className="text-center flex-grow flex flex-col p-6">
-                  <h3 className={`text-xl font-bold mb-6 h-7 ${
-                    isDarkMode ? 'text-white' : 'text-gray-900'
-                  }`}>{experiences[2].title}</h3>
-                  
-                  <h4 className={`text-lg mb-6 h-7 ${
-                    isDarkMode ? 'text-emerald-400' : 'text-rose-700'
-                  }`}>{experiences[2].company}</h4>
-                  
-                  {/* Period and Location - Centered */}
-                  <div className="text-center mb-6 h-8">
-                    <div className={`text-lg font-semibold ${
-                      isDarkMode ? 'text-green-400' : 'text-blue-500'
-                    }`}>{experiences[2].period}</div>
-                  </div>
-                  
-                  {/* Location */}
-                  <div className="text-center mb-6 h-6">
-                    <div className={`text-sm ${
-                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                    }`}>{experiences[2].location}</div>
-                  </div>
-                  
-                  <p className={`mb-8 text-sm leading-relaxed h-30 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                  }`}>{experiences[2].description}</p>
-                  
-                  {/* Divider Line */}
-                  <div className={`w-full h-px my-8 ${
-                    isDarkMode ? 'bg-gray-600' : 'bg-gray-300'
-                  }`}></div>
-                  
-                  {/* Key Technologies Section */}
-                  <div className="mt-auto">
-                    <h5 className={`text-md font-semibold mb-4 text-center h-8 ${
-                      isDarkMode ? 'text-white' : 'text-gray-500'
-                    }`}>Key Technologies</h5>
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      {experiences[2].technologies.map((tech, techIndex) => (
-                        <span key={techIndex} className={`px-2 py-1 rounded-full text-xs ${
-                          isDarkMode 
-                            ? 'bg-gray-700 text-gray-300' 
-                            : 'bg-slate-100 text-slate-700'
-                        }`}>
-                          <span className='text-transparent'>SR</span>
-                          {tech}
-                          <span className='text-transparent'>SR</span>
-                        </span>
-                      ))}
-                    </div>
-                    <div className='h-5'></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='h-5'></div>
-            {/* Scroll Indicator */}
-            {/* <div className="flex flex-col items-center mt-16 mb-6">
-              <div className={`text-sm font-medium h-8 mb-3 ${
-                isDarkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Scroll down for Technical Skills & Career Highlights
-              </div>
-              <div className="flex flex-col items-center animate-bounce">
-                <svg 
-                  className={`w-6 h-6 ${
-                    isDarkMode ? 'text-emerald-400' : 'text-blue-500'
-                  }`} 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </div>
-            </div> */}
-            {/* <div className="h-3"></div> */}
-          </div>
-          {/* <div className='h-3'></div> */}
-            {/* Skills Overview */}
-          <div className="mb-12 md:mb-16">
-            <h2 className={`text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center ${
-              isDarkMode ? 'text-purple-400' : 'text-purple-600'
-            }`}>Technical Skills</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {skills.map((skill, index) => (
-                <div key={index} className={`backdrop-blur-sm rounded-xl p-6 border ${
-                  isDarkMode 
-                    ? 'bg-gray-800/50 border-gray-700' 
-                    : 'bg-orange-50 border-slate-200/50'
-                }`}>
-                  <h3 className={`text-xl font-bold mb-4 text-center h-9 ${
-                    isDarkMode ? 'text-white' : 'text-gray-900'
-                  }`}>{skill.category}</h3>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {skill.items.map((item, itemIndex) => (
-                      <span key={itemIndex} className={`px-3 py-1 rounded-full text-sm ${
-                        isDarkMode 
-                          ? 'bg-gray-700 text-gray-300' 
-                          : 'bg-slate-100 text-slate-700'
-                      }`}>
-                      <span className='text-transparent'>SR</span>
-                        {item}
-                      <span className='text-transparent'>SR</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className='h-5'></div>
-          </div>
-          <div className='h-5'></div>
-          {/* Career Highlights */}
-          <div className={`backdrop-blur-sm rounded-xl p-6 md:p-8 border ${
-            isDarkMode 
-              ? 'bg-slate-800/30 border-slate-600/30' 
-              : 'bg-orange-50 border-slate-200/50'
-          }`}>
-            <h2 className={`text-2xl md:text-3xl font-bold mb-6 text-center ${
-              isDarkMode ? 'text-pink-400' : 'text-pink-600'
-            }`}>Career Highlights</h2>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              <div className="text-center">
-                <div className={`text-2xl md:text-4xl font-bold mb-2 ${
-                  isDarkMode ? 'text-emerald-400' : 'text-blue-600'
-                }`}>3+</div>
-                <div className={`text-sm md:text-base ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className={`text-2xl md:text-4xl font-bold mb-2 ${
-                  isDarkMode ? 'text-purple-400' : 'text-purple-400'
-                }`}>2</div>
-                <div className={`text-sm md:text-base ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>Major Companies</div>
-              </div>
-              <div className="text-center">
-                <div className={`text-2xl md:text-4xl font-bold mb-2 ${
-                  isDarkMode ? 'text-pink-400' : 'text-pink-400'
-                }`}>10+</div>
-                <div className={`text-sm md:text-base ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>Technologies Used</div>
-              </div>
-              <div className="text-center">
-                <div className={`text-xl md:text-3xl lg:text-4xl font-bold mb-2 ${
-                  isDarkMode ? 'text-green-400' : 'text-blue-500'
-                }`}>Enterprise</div>
-                <div className={`text-sm md:text-base ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>Level Projects</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='h-25'></div>
-        {/* Scroll Indicator */}
-        <div className="h-5 sm:h-5"></div>
-        <div className="bottom-2 md:bottom-10 absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-          <p className={`text-md md:text-sm mb-3 md:mb-4 font-medium drop-shadow-lg md:h-8 ${
-            isDarkMode ? 'text-gray-200' : 'text-gray-700'
-          }`}>
-            Scroll down to know more
-          </p>
-          <button 
-            onClick={scrollDown}
-            className={`animate-bounce p-2 md:p-3 rounded-full transition-all duration-300 hover:scale-110 drop-shadow-lg flex justify-center items-center`}
-            aria-label="Scroll down"
-          >
-            <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </button>
-        </div>
-      </div>
+            <span
+              aria-hidden="true"
+              className={`absolute left-0 top-1 grid h-[15px] w-[15px] place-items-center rounded-full border md:left-[12rem] md:top-7 ${
+                job.current ? 'border-accent bg-bg shadow-[0_0_14px_var(--glow)]' : 'border-line-strong bg-bg'
+              }`}
+            >
+              <span className={`h-[5px] w-[5px] rounded-full ${job.current ? 'bg-accent' : 'bg-fg-subtle'}`} />
+            </span>
 
-      {/* Bottom Section - Continue to Projects */}
-      <div id="bottom-section" className={`relative z-10 min-h-screen flex items-center justify-center px-4 ${
-        isDarkMode 
-          ? 'bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950' 
-          : 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100'
-      }`}>
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="mb-8 md:mb-12">
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r ${
-              isDarkMode 
-                ? 'from-emerald-400 via-teal-500 to-green-500' 
-                : 'from-blue-500 to-blue-600'
-            } bg-clip-text text-transparent px-4`}>
-              Ready to Learn More?
-            </h2>
-            <p className={`text-lg md:text-xl mb-8 md:mb-12 leading-relaxed px-4 h-14 md:h-10 ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-700'
-            }`}>
-              Explore my projects and see what I've built
-            </p>
-          </div>
-          <Link 
-            to="/projects" 
-            className={`sm:flex sm:justify-center sm:items-center md:inline-block px-8 sm:px-12 md:px-16 py-4 md:py-5 text-center rounded-full font-semibold text-lg md:text-xl shadow-lg hover:shadow-xl mx-4 ${
-              isDarkMode 
-                ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white hover:from-emerald-700 hover:to-teal-800' 
-                : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800'
-            }`}
-          >
-            <span className="text-transparent">S</span>
-            Continue to Projects
-            <span className="text-transparent">R</span>
-          </Link>
-          <div className="h-3"></div>
-          <div className="mt-12 md:mt-16">
-            <p className={`text-sm px-4 ${
-              isDarkMode ? 'text-gray-400' : 'text-gray-600'
-            }`}>
-              Scroll down or click above to continue your exploration
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+            <Card as="article" className="p-6 sm:p-7 md:ml-10">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h2 className="font-display text-xl font-semibold tracking-tight text-fg sm:text-2xl">{job.role}</h2>
+                  <p className="mt-1 text-accent">{job.company}</p>
+                </div>
+                {job.current && (
+                  <span className="rounded-full border border-emerald-400/40 bg-emerald-300/10 px-2.5 py-1 font-mono text-[11px] text-emerald-700 dark:text-emerald-300">
+                    Current
+                  </span>
+                )}
+              </div>
+
+              <p className="mt-4 text-sm leading-relaxed text-fg sm:text-base">{job.summary}</p>
+
+              <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-fg-muted">
+                {job.highlights.map((h) => (
+                  <li key={h} className="flex gap-3">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {job.tech.map((t) => (
+                  <Tag key={t}>{t}</Tag>
+                ))}
+              </div>
+            </Card>
+          </Reveal>
+        ))}
+      </ol>
+    </Container>
+
+    <NextPage to="/projects" label="Projects" hint={`${profile.projects.length} things I've built, from agents to geospatial forecasting.`} />
+  </>
+);
 
 export default Experience;

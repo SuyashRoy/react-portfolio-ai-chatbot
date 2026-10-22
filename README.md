@@ -9,7 +9,7 @@ A modern, responsive portfolio website featuring AI chatbot integration, elegant
 ## ✨ Key Features
 
 ### 🎨 **Modern Design & UX**
-- **🌠 Particle Background**: Beautiful TSParticles meteor shower animation
+- **☄️ Comet Sky**: Hand-built canvas starfield with a sweeping comet (ion + dust tails), shooting stars and mouse parallax; respects reduced-motion
 - **🎯 Smooth Navigation**: Seamless scrolling with scroll indicators across all tabs
 - **📱 Fully Responsive**: Mobile-first design with elegant layouts for all screen sizes
 - **🌓 Theme Support**: Dynamic dark/light mode with consistent styling

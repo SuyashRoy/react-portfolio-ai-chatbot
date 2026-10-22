@@ -34,7 +34,7 @@ app.post('/api/parse-resume', async (req, res) => {
       });
     }
 
-    const resumePath = path.join(__dirname, 'Resume_Project_Oriented.pdf');
+    const resumePath = path.join(__dirname, 'public', 'Suyash_Roy_Resume.pdf');
     
     if (!fs.existsSync(resumePath)) {
       return res.status(404).json({ error: 'Resume PDF not found' });
@@ -147,96 +147,54 @@ function extractStructuredData(text) {
   return structuredData;
 }
 
-// Chat endpoint for Gemini AI
+// Chat endpoint for Gemini AI. Uses the same profile data as the website (src/data/profile.json).
+const profilePath = path.join(__dirname, 'src', 'data', 'profile.json');
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+
 app.post('/api/chat', async (req, res) => {
+  const { message } = req.body || {};
+  if (!message || typeof message !== 'string' || message.length > 1000) {
+    return res.status(400).json({ error: 'A message under 1000 characters is required' });
+  }
+
+  // Without a key the client answers from its own copy of profile.json
+  if (!process.env.GEMINI_API_KEY) {
+    return res.status(503).json({ error: 'Chat model not configured' });
+  }
+
   try {
-    const { message, resumeData } = req.body;
-    
-    // Load resume data if not provided
-    let resumeContext = resumeData;
-    if (!resumeContext) {
-      const resumeDataPath = path.join(__dirname, 'resume-data.json');
-      if (fs.existsSync(resumeDataPath)) {
-        resumeContext = JSON.parse(fs.readFileSync(resumeDataPath, 'utf8'));
-      }
-    }
-    
-    // Create context for Gemini
+    const profile = JSON.parse(fs.readFileSync(profilePath, 'utf8'));
     const context = `
-You are an AI assistant helping visitors learn about Suyash Roy's professional background. 
-Here is the resume data:
+You are an AI assistant helping visitors learn about Suyash Roy's professional background.
+Here is his profile data:
 
-${JSON.stringify(resumeContext, null, 2)}
+${JSON.stringify(profile, null, 2)}
 
-Please answer the user's question: "${message}"
-
-Provide helpful, accurate information based on the resume data. If the question is not related to Suyash's background, politely redirect the conversation back to his professional information.
+Answer the visitor's question using only this data. If the question is not related to Suyash's background, politely redirect the conversation back to his professional information.
 Keep responses concise but informative (2-3 sentences max).
-`;
 
-    try {
-      // Use Gemini AI if API key is available
-      if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'demo-key') {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const result = await model.generateContent(context);
-        const response = await result.response;
-        const text = response.text();
-        
-        res.json({
-          message: text,
-          source: 'gemini'
-        });
-      } else {
-        // Fallback to rule-based responses
-        const fallbackResponse = generateFallbackResponse(message, resumeContext);
-        res.json({
-          message: fallbackResponse,
-          source: 'fallback'
-        });
-      }
-    } catch (geminiError) {
-      console.error('Gemini API error:', geminiError);
-      // Fallback to rule-based responses
-      const fallbackResponse = generateFallbackResponse(message, resumeContext);
-      res.json({
-        message: fallbackResponse,
-        source: 'fallback'
-      });
-    }
+Visitor's question: """${message}"""
+`;
+    const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
+    const result = await model.generateContent(context);
+    res.json({ message: result.response.text(), source: 'gemini' });
   } catch (error) {
-    console.error('Error in chat endpoint:', error);
-    res.status(500).json({ error: 'Failed to process chat message' });
+    console.error('Gemini API error:', error);
+    res.status(503).json({ error: 'Chat model unavailable' });
   }
 });
 
-// Fallback response generator
-function generateFallbackResponse(message, resumeData) {
-  const msg = message.toLowerCase();
-  
-  if (msg.includes('skill') || msg.includes('technology')) {
-    return "Suyash is skilled in Python, Java, SQL, HTML, CSS, JavaScript, ReactJS, and has experience with J2EE frameworks like Spring, Struts, and Hibernate. He also uses Git for version control.";
-  } else if (msg.includes('education') || msg.includes('degree')) {
-    return "Suyash is currently pursuing a Master of Science in Computer Science at the University of Southern California, starting January 2025. He has a strong academic background in computer science.";
-  } else if (msg.includes('experience') || msg.includes('work')) {
-    return "Suyash worked as an Analyst Intern in TMT (Tech Media Telecommunications) at Bain Capability Network in Gurgaon, India from January 2022 to June 2022. He has hands-on experience with enterprise software development.";
-  } else if (msg.includes('project')) {
-    return "Suyash has worked on various projects including UI Screen Integration for CFO applications using J2EE technologies and ReactJS. He has experience in full-stack development and enterprise software solutions.";
-  } else if (msg.includes('contact') || msg.includes('email')) {
-    return "You can reach out to Suyash through the contact form on this website or connect with him on LinkedIn. He's available for opportunities and collaborations.";
-  } else if (msg.includes('hello') || msg.includes('hi')) {
-    return "Hello! I'm here to help you learn more about Suyash's professional background. Feel free to ask about his skills, experience, education, or projects!";
-  } else {
-    return "That's an interesting question! I can help you with information about Suyash's technical skills, work experience, education background, or projects. What specific area would you like to know more about?";
-  }
-}
-
 // Telegram Bot Configuration
-const TELEGRAM_BOT_TOKEN = 'REDACTED';
-const TELEGRAM_CHAT_ID = '-1003005879000';
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 // Function to send message via Telegram using native HTTPS
 function sendTelegramMessage(text) {
   return new Promise((resolve) => {
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+      console.error('TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID are not set');
+      return resolve(false);
+    }
     const payload = JSON.stringify({
       chat_id: TELEGRAM_CHAT_ID,
       text: text,
@@ -255,7 +213,6 @@ function sendTelegramMessage(text) {
     };
 
     console.log('Sending Telegram message...');
-    console.log('Payload:', payload);
 
     const req = https.request(options, (res) => {
       let data = '';
@@ -296,8 +253,8 @@ function sendTelegramMessage(text) {
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {
   try {
-    console.log('Received contact form submission:', req.body);
     const { name, email, subject, message } = req.body;
+    const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
@@ -312,12 +269,12 @@ app.post('/api/contact', async (req, res) => {
     const telegramMessage = `
 🔔 <b>New Contact Form Submission</b>
 
-👤 <b>Name:</b> ${name}
-📧 <b>Email:</b> ${email}
-📋 <b>Subject:</b> ${subject}
+👤 <b>Name:</b> ${esc(name)}
+📧 <b>Email:</b> ${esc(email)}
+📋 <b>Subject:</b> ${esc(subject)}
 
 💬 <b>Message:</b>
-${message}
+${esc(message)}
 
 ⏰ <b>Time:</b> ${new Date().toLocaleString()}
     `.trim();

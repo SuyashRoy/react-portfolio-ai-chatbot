@@ -1,8 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
+import CometSky from './components/CometSky';
 import Home from './pages/Home';
 import About from './pages/About';
 import Education from './pages/Education';
@@ -11,14 +13,17 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 
 const AppContent = () => {
-  const { isDarkMode, colors } = useTheme();
-  
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
-    <Router>
-      <div className={`min-h-screen transition-colors duration-300 ${
-        isDarkMode ? 'bg-slate-900' : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50'
-      }`}>
-        <Navbar />
+    <div className="relative min-h-screen bg-bg text-fg">
+      <CometSky intensity={pathname === '/' ? 'hero' : 'calm'} />
+      <Navbar />
+      <main className="relative z-10">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -27,18 +32,19 @@ const AppContent = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-        <Chatbot />
-      </div>
-    </Router>
+      </main>
+      <Footer />
+      <Chatbot />
+    </div>
   );
 };
 
-const App = () => {
-  return (
-    <ThemeProvider>
+const App = () => (
+  <ThemeProvider>
+    <Router>
       <AppContent />
-    </ThemeProvider>
-  );
-};
+    </Router>
+  </ThemeProvider>
+);
 
 export default App;

@@ -1,171 +1,144 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../contexts/ThemeContext';
-import ParticleBackground from '../components/ParticleBackground';
+import profile from '../data/profile.json';
+import ProjectCard from '../components/ProjectCard';
+import { ArrowIcon, Button, Card, Container, Eyebrow, NextPage, Reveal, SectionTitle } from '../components/ui';
+
+const focusWords = ['retrieval systems', 'LLM agents', 'ML pipelines', 'RAG products'];
+
+// Cycles through focusWords with a soft vertical swap
+const RotatingWord = () => {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const id = setInterval(() => setI((n) => (n + 1) % focusWords.length), 2600);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <span key={i} className="word-in inline-block font-medium text-fg">
+      {focusWords[i]}
+    </span>
+  );
+};
+
+const current = [
+  { kind: 'Work', title: profile.experience[0].company, sub: profile.experience[0].role, text: profile.experience[0].summary, to: '/experience' },
+  { kind: 'Research', title: 'USC Research', sub: profile.experience[1].role, text: profile.experience[1].summary, to: '/experience' },
+  { kind: 'Building', title: profile.projects[0].title, sub: profile.projects[0].role, text: profile.projects[0].summary, to: '/projects' },
+];
 
 const Home = () => {
-  const { isDarkMode } = useTheme();
-  
-  const scrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth'
-    });
-  };
-  
-  return (
-    <div className={`relative transition-colors duration-300 ${
-      isDarkMode 
-        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white' 
-        : 'bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 text-gray-900'
-    }`}>
-      <ParticleBackground />
-      {/* <div className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-6xl font-bold">
-      SR
-      </div> */}
-      {/* Hero Section */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 pt-16">
-        <div className="text-center max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8 bg-gradient-to-r leading-tight ${
-              isDarkMode 
-                ? 'from-emerald-400 via-teal-500 to-green-500' 
-                : 'from-blue-400 to-blue-500'
-            } bg-clip-text text-transparent`}>
-              Hi, I'm Suyash Roy
-            </h1>
-            <p className={`text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 leading-relaxed px-4 ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-700'
-            }`}>
-              Computer Science Graduate Student & Software Developer
-            </p>
-            <p className={`md:text-lg mb-8 md:mb-12 leading-relaxed px-4 ${
-              isDarkMode ? 'text-gray-400' : 'text-gray-600'
-            }`}>
-              Currently pursuing MS in Computer Science at USC. Experienced in enterprise software development 
-              with expertise in J2EE frameworks and modern web technologies.
-            </p>
-          </div>
-          <div className="h-10"></div>
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-6 justify-center items-center my-8 px-4">
-            <Link 
-              to="/projects" 
-              className={`flex justify-center items-center w-50 sm:w-auto min-w-[160px] px-8 sm:px-8 md:px-12 py-4 sm:py-4 text-center rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
-                isDarkMode 
-                  ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 
-                  : 'border-2 border-blue-500/60 text-gray-900 hover:bg-blue-100 hover:border-blue-500'
-              }`}
-            >
-              View My Work
-            </Link>
-            <Link 
-              to="/contact" 
-              className={`flex justify-center items-center w-50 sm:w-auto min-w-[160px] px-8 sm:px-8 md:px-12 py-4 sm:py-4 text-center rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
-                isDarkMode 
-                  ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 
-                  : 'border-2 border-blue-500/60 text-gray-900 hover:bg-blue-100 hover:border-blue-500'
-              }`}
-            >
-              Get In Touch
-            </Link>
-            <a 
-              href="/Resume_Project_Oriented.pdf"
-              download="Suyash_Roy_Resume_Project_Oriented.pdf"
-              className={`flex justify-center items-center w-50 sm:w-auto min-w-[160px] px-8 sm:px-8 md:px-12 py-4 sm:py-4 text-center rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm ${
-                isDarkMode 
-                  ? 'border-2 border-emerald-500/50 text-white hover:bg-emerald-600/20 hover:border-emerald-400' 
-                  : 'border-2 border-blue-500/60 text-gray-900 hover:bg-blue-100 hover:border-blue-500'
-              }`}
-            >
-            <span className='text-transparent'>S</span>
-              Download Resume
-              <span className='text-transparent'>R</span>
-            </a>
-          </div>
-          <div className="h-5"></div>
-          {/* Quick Stats */}
-          <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
-            <div className="text-center">
-              <div className={`text-2xl md:text-3xl font-bold ${isDarkMode ? 'text-emerald-400' : 'text-blue-700'}`}>MS</div>
-              <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Computer Science at USC</div>
-            </div>
-            <div className="text-center">
-              <div className={`text-2xl md:text-3xl font-bold ${isDarkMode ? 'text-teal-400' : 'text-blue-500'}`}>3.43/4.0</div>
-              <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>MS GPA</div>
-            </div>
-            <div className="text-center">
-              <div className={`text-xl md:text-2xl lg:text-3xl font-bold ${isDarkMode ? 'text-green-400' : 'text-blue-600'}`}>Actively Seeking</div>
-              <div className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Internships</div>
-            </div>
-          </div>
-        </div>
-        {/* Scroll Indicator */}
-       <div className="h-200 sm:h-5"></div>
-      <div className="bottom-2 md:bottom-10 absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-        <p className={`text-md md:text-sm mb-3 md:mb-4 font-medium drop-shadow-lg md:h-8 ${
-          isDarkMode ? 'text-gray-200' : 'text-gray-700'
-        }`}>
-          Scroll down to know more
-        </p>
-        <button 
-          onClick={scrollDown}
-          className={`animate-bounce p-2 md:p-3 rounded-full transition-all duration-300 hover:scale-110 drop-shadow-lg flex justify-center items-center`}
-          aria-label="Scroll down"
-        >
-          <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </button>
-      </div>
-      </div>
+  const featured = profile.projects.filter((p) => p.featured).slice(0, 3);
 
-      
-      
-      {/* Bottom Section - Continue to About */}
-      <div className={`relative z-10 min-h-screen flex items-center justify-center px-4 ${
-        isDarkMode 
-          ? 'bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950' 
-          : 'bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100'
-      }`}>
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="mb-8 md:mb-12">
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r ${
-              isDarkMode 
-                ? 'from-emerald-400 via-teal-500 to-green-500' 
-                : 'from-blue-500 to-blue-600'
-            } bg-clip-text text-transparent px-4`}>
-              Ready to Learn More?
-            </h2>
-            <p className={`text-lg md:text-xl mb-8 md:mb-12 leading-relaxed px-4 h-14 md:h-10 ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-700'
-            }`}>
-              Discover my journey, skills, and experiences in detail
-            </p>
+  return (
+    <>
+      {/* Hero */}
+      <section className="relative flex min-h-[100svh] flex-col items-center justify-center px-4 pb-24 pt-28 text-center">
+        <Reveal className="flex flex-col items-center">
+          <span className="glass inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 text-xs text-fg-muted sm:text-sm">
+            <span className="pulse-dot h-2 w-2 rounded-full bg-emerald-400" />
+            {profile.availability} · {profile.status.split(' · ')[1]}
+          </span>
+
+          <h1 className="mt-8 font-display text-[clamp(3.25rem,13vw,9.5rem)] font-semibold leading-[0.9] tracking-[-0.045em]">
+            <span className="text-gradient">{profile.name}</span>
+          </h1>
+
+          <p className="mt-6 font-mono text-xs uppercase tracking-[0.3em] text-accent sm:text-sm">
+            {profile.headline} · MS CS @ USC
+          </p>
+
+          <p className="mx-auto mt-6 max-w-xl text-lg text-fg-muted sm:text-xl">
+            I build <RotatingWord />
+            <br className="sm:hidden" /> that hold up in production.
+          </p>
+        </Reveal>
+
+        <Reveal delay={150} className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
+          <Button to="/projects">
+            View my work <ArrowIcon />
+          </Button>
+          <Button href={profile.resume} download="Suyash_Roy_Resume.pdf" variant="ghost">
+            Download résumé
+          </Button>
+          <Button to="/contact" variant="ghost">
+            Get in touch
+          </Button>
+        </Reveal>
+
+        <Reveal delay={300} className="mt-16 w-full max-w-4xl">
+          <dl className="glass grid grid-cols-2 divide-line overflow-hidden rounded-2xl sm:grid-cols-4 sm:divide-x">
+            {profile.stats.map((s) => (
+              <div key={s.label} className="px-4 py-5 sm:py-6">
+                <dt className="sr-only">{s.label}</dt>
+                <dd className="font-display text-2xl font-semibold tracking-tight text-fg sm:text-3xl">{s.value}</dd>
+                <dd className="mt-1 text-xs text-fg-subtle sm:text-sm">{s.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+
+        <a
+          href="#now"
+          className="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-fg-subtle transition-colors hover:text-fg"
+        >
+          Scroll
+          <span className="relative h-9 w-5 rounded-full border border-line-strong">
+            <span className="absolute left-1/2 top-1.5 h-2 w-1 -translate-x-1/2 animate-bounce rounded-full bg-fg-muted" />
+          </span>
+        </a>
+      </section>
+
+      {/* Right now */}
+      <section id="now" className="scroll-mt-24 py-16">
+        <Container>
+          <Reveal>
+            <SectionTitle eyebrow="Right now" title="What I'm working on" />
+          </Reveal>
+          <div className="grid gap-4 md:grid-cols-3">
+            {current.map((c, i) => (
+              <Reveal key={c.kind} delay={i * 100}>
+                <Card as={Link} to={c.to} className="group flex h-full flex-col p-6">
+                  <Eyebrow>{c.kind}</Eyebrow>
+                  <h3 className="mt-3 font-display text-xl font-semibold tracking-tight text-fg">{c.title}</h3>
+                  <p className="text-sm text-fg-subtle">{c.sub}</p>
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-fg-muted">{c.text}</p>
+                  <span className="mt-6 inline-flex items-center gap-1.5 text-sm text-fg">
+                    Read more <ArrowIcon />
+                  </span>
+                </Card>
+              </Reveal>
+            ))}
           </div>
-          <Link 
-            to="/about" 
-            className={`sm:flex sm:justify-center sm:items-center md:inline-block px-8 sm:px-12 md:px-16 py-4 md:py-5 text-center rounded-full font-semibold text-lg md:text-xl shadow-lg hover:shadow-xl mx-4 ${
-              isDarkMode 
-                ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white hover:from-emerald-700 hover:to-teal-800' 
-                : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800'
-            }`}
-          >
-            <span className="text-transparent">S</span>
-            Continue to About
-            <span className="text-transparent">R</span>
-          </Link>
-          <div className="h-3"></div>
-          <div className="mt-12 md:mt-16">
-            <p className={`text-sm px-4 ${
-              isDarkMode ? 'text-gray-400' : 'text-gray-600'
-            }`}>
-              Scroll down or click above to continue your exploration
-            </p>
+        </Container>
+      </section>
+
+      {/* Selected work */}
+      <section className="py-16">
+        <Container>
+          <Reveal>
+            <SectionTitle
+              eyebrow="Selected work"
+              title="Recent projects"
+              action={
+                <Link to="/projects" className="group inline-flex items-center gap-1.5 text-sm text-fg-muted transition-colors hover:text-fg">
+                  All {profile.projects.length} projects <ArrowIcon />
+                </Link>
+              }
+            />
+          </Reveal>
+          <div className="grid gap-4 md:grid-cols-3">
+            {featured.map((p, i) => (
+              <Reveal key={p.title} delay={i * 100}>
+                <ProjectCard project={p} showHighlights={false} />
+              </Reveal>
+            ))}
           </div>
-        </div>
-      </div>
-    </div>
+        </Container>
+      </section>
+
+      <NextPage to="/about" label="About me" hint="The story, the skills and what I care about building." />
+    </>
   );
 };
 
