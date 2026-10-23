@@ -105,7 +105,7 @@
       "tech": ["PyTorch", "LoRA", "Vision-Language Models", "RadGraph", "SLURM"]
     },
     {
-      "role": "Associate Software Developer (AI / ML)",
+      "role": "Associate",
       "company": "Bain Capability Network",
       "location": "Gurugram, India",
       "dates": "Jan 2022 – Dec 2024",
@@ -148,7 +148,14 @@
         "Four shipped agents (discovery, semantic matching, resume tailoring and real-time voice interviews) with LangGraph/Playwright fallbacks and Llama 3.3 critique."
       ],
       "tech": ["LangGraph", "FAISS", "BGE", "Playwright", "Llama 3.3", "LiveKit", "Python"],
-      "github": "https://github.com/SuyashRoy/career-agent"
+      "github": "https://github.com/SuyashRoy/career-agent",
+      "step": 8,
+      "oneLiner": "Agents that find jobs, rank them against your resume and mock-interview you.",
+      "image": {
+        "src": "/images/projects/career-agent.webp",
+        "alt": "A winding mountain road seen from above",
+        "credit": { "photographer": "Kotryna Juskaite", "profile": "https://unsplash.com/@kotrynajuskaite", "source": "https://unsplash.com/photos/an-aerial-view-of-a-winding-road-in-the-mountains-rOTX65lw7-E", "license": "Unsplash License" }
+      }
     },
     {
       "title": "NetConnect AI",
@@ -164,7 +171,14 @@
         "Gemini chatbot grounded in user requirements, provider data and Google Places reviews, backed by a Pandas ETL rollup and a MongoDB cache with 4-tier fallbacks."
       ],
       "tech": ["RAG", "Gemini", "React", "Express", "PostgreSQL", "MongoDB", "Pandas"],
-      "github": "https://github.com/SuyashRoy/NetConnect-AI"
+      "github": "https://github.com/SuyashRoy/NetConnect-AI",
+      "step": 5,
+      "oneLiner": "Enter an address, see every real broadband plan, ask a grounded chatbot.",
+      "image": {
+        "src": "/images/projects/netconnect.webp",
+        "alt": "Glowing fiber-optic strands",
+        "credit": { "photographer": "S A", "profile": "https://unsplash.com/@sraze", "source": "https://unsplash.com/photos/blury-lights-illuminate-fiber-optic-cables-eMoMpSKE8eE", "license": "Unsplash License" }
+      }
     },
     {
       "title": "Broadband Market Scanner",
@@ -180,7 +194,14 @@
         "XGBoost forecasts with temporal cross-validation, served through FastAPI + Redis to a React/Mapbox GL analytics dashboard."
       ],
       "tech": ["XGBoost", "PostGIS", "GeoPandas", "FastAPI", "Redis", "React", "Mapbox GL"],
-      "github": "https://github.com/SuyashRoy/broadband-market-scanner"
+      "github": "https://github.com/SuyashRoy/broadband-market-scanner",
+      "step": 7,
+      "oneLiner": "Forecasts where fiber gets built next, down to the census block.",
+      "image": {
+        "src": "/images/projects/market-scanner.webp",
+        "alt": "A city grid lit up at night, seen from above",
+        "credit": { "photographer": "Tahamie Farooqui", "profile": "https://unsplash.com/@tami171091", "source": "https://unsplash.com/photos/aerial-view-of-a-city-at-night-with-glowing-lights-uZF3nuUiGUk", "license": "Unsplash License" }
+      }
     },
     {
       "title": "Mental Health Signal Detector",
@@ -196,53 +217,14 @@
         "Fine-tuned DistilRoBERTa, BERT and MiniLM with LoRA and benchmarked them on a hand-curated 500-sample evaluation set."
       ],
       "tech": ["NLP", "RAG", "LoRA", "BERT", "DistilRoBERTa", "MiniLM"],
-      "github": "https://github.com/Gaurav-Zanpure/group-23-mh-signals"
-    },
-    {
-      "title": "GenAI Document Extraction",
-      "role": "Proof of concept",
-      "dates": "2026",
-      "status": "Completed",
-      "category": "ai",
-      "hue": 25,
-      "summary": "GenAI-assisted review for mortgage documents: extracts pay stubs, W-2s and bank statements, redacts PII, and flags discrepancies for loan officers.",
-      "highlights": [
-        "PII redaction before LLM processing, type-specific extraction prompts and a discrepancy engine against self-reported applicant data.",
-        "Spring Boot + PostgreSQL service with an Angular/NgRx review dashboard and a full audit trail."
-      ],
-      "tech": ["Claude API", "Java 17", "Spring Boot", "PostgreSQL", "Angular"],
-      "github": "https://github.com/SuyashRoy/genai-document-extraction-poc"
-    },
-    {
-      "title": "Agentic Travel Recommendations API",
-      "role": "Proof of concept",
-      "dates": "2026",
-      "status": "Completed",
-      "category": "ai",
-      "hue": 210,
-      "summary": "A multi-tenant recommendations service exposed as both a REST API and an MCP server, so AI agents can fetch member profiles and request partner-aware suggestions.",
-      "highlights": [
-        "Partner-specific configuration, branding and pricing rules on shared infrastructure.",
-        "TypeScript service with unit and integration tests, a CLI demo and an stdio MCP transport."
-      ],
-      "tech": ["MCP", "TypeScript", "Node.js", "REST APIs"],
-      "github": "https://github.com/SuyashRoy/arrivia-ai-concierge"
-    },
-    {
-      "title": "Edge AI Chatbot",
-      "role": "Solo",
-      "dates": "2025",
-      "status": "Live",
-      "category": "web",
-      "hue": 40,
-      "summary": "A serverless chatbot on Cloudflare's edge running Llama 3.3 70B, with per-session conversation memory in Durable Objects.",
-      "highlights": [
-        "Workers AI inference with persistent, per-browser conversation history.",
-        "Zero-infrastructure deployment on Cloudflare's global network."
-      ],
-      "tech": ["Cloudflare Workers", "Workers AI", "Durable Objects", "Llama 3.3"],
-      "github": "https://github.com/SuyashRoy/cf_ai_simple_chatbot",
-      "live": "https://cf-ai-simple-chatbot.suyashroy13.workers.dev"
+      "github": "https://github.com/Gaurav-Zanpure/group-23-mh-signals",
+      "step": 3,
+      "oneLiner": "RAG-assisted NLP that reads concern level in mental-health posts.",
+      "image": {
+        "src": "/images/projects/mental-health.webp",
+        "alt": "Mist drifting over a forest at sunrise",
+        "credit": { "photographer": "Daniil Silantev", "profile": "https://unsplash.com/@betagamma", "source": "https://unsplash.com/photos/misty-forest-landscape-with-warm-sunlight-breaking-through-3pW91fGAKiE", "license": "Unsplash License" }
+      }
     },
     {
       "title": "AI-Powered Portfolio",
@@ -258,7 +240,14 @@
       ],
       "tech": ["React", "Tailwind CSS", "Canvas", "Node.js", "Gemini"],
       "github": "https://github.com/SuyashRoy/react-portfolio-ai-chatbot",
-      "live": "https://suyashroy.me"
+      "live": "https://suyashroy.me",
+      "step": 2,
+      "oneLiner": "This site: a hand-drawn comet sky and an assistant that knows my work.",
+      "image": {
+        "src": "/images/projects/portfolio.webp",
+        "alt": "The Milky Way over a dark horizon",
+        "credit": { "photographer": "Tobias Rademacher", "profile": "https://unsplash.com/@tobbes_rd", "source": "https://unsplash.com/photos/milky-way-and-stars-in-a-dark-night-sky-oQR1B87HsNs", "license": "Unsplash License" }
+      }
     },
     {
       "title": "InstaCam",
@@ -272,7 +261,57 @@
         "React Router front end talking to an Express API backed by MongoDB Atlas via Mongoose."
       ],
       "tech": ["React", "Redux", "Express", "MongoDB"],
-      "github": "https://github.com/SuyashRoy/instacam"
+      "github": "https://github.com/SuyashRoy/instacam",
+      "step": 1,
+      "oneLiner": "A social app that remixes ideas from the platforms I grew up on.",
+      "image": {
+        "src": "/images/projects/instacam.webp",
+        "alt": "Close-up of a camera lens aperture",
+        "credit": { "photographer": "Fidel Fernando", "profile": "https://unsplash.com/@fifernando", "source": "https://unsplash.com/photos/a-close-up-view-of-a-camera-lens--g8LDVfGv2E", "license": "Unsplash License" }
+      }
+    },
+    {
+      "title": "Market Demographics: FCC Data Prep",
+      "role": "Lead Coder",
+      "dates": "Fall 2025 – Jan 2026",
+      "status": "Completed",
+      "category": "data",
+      "hue": 20,
+      "summary": "The data-prep layer behind NetConnect AI and Broadband Market Scanner: U.S. Census demographics and FCC broadband data cleaned, joined and loaded into PostGIS.",
+      "highlights": [
+        "Jupyter notebooks that clean and merge Census demographic data with FCC broadband availability into a single master dataset.",
+        "Shell and SQL scripts that load Census shapefiles into PostGIS and verify the spatial setup for downstream apps."
+      ],
+      "tech": ["Python", "Pandas", "Jupyter", "PostgreSQL", "PostGIS"],
+      "github": "https://github.com/SuyashRoy/market-demographics-fcc-pipeline",
+      "step": 4,
+      "oneLiner": "The Census + FCC data layer that NetConnect and Market Scanner are built on.",
+      "image": {
+        "src": "/images/projects/fcc-data-prep.webp",
+        "alt": "Close-up of a topographic map with contour lines",
+        "credit": { "photographer": "Etienne Girardet", "profile": "https://unsplash.com/@etiennegirardet", "source": "https://unsplash.com/photos/a-close-up-of-a-map-with-red-lines-r9mw4_XkUwY", "license": "Unsplash License" }
+      }
+    },
+    {
+      "title": "HotpotQA Hallucination Mitigation",
+      "role": "Team Member · 7-person team",
+      "dates": "Jan – May 2026",
+      "status": "Completed",
+      "category": "ai",
+      "hue": 280,
+      "summary": "A CSCI 566 Deep Learning team project studying how to reduce hallucination in multi-hop question answering on HotpotQA, combining consensus decoding, symbolic reasoning and LoRA fine-tuning.",
+      "highlights": [
+        "Eight-configuration ablation toggling self-consistency/MBR voting, Datalog fact extraction with step-wise verification, and a LoRA adapter on Qwen2.5 7B.",
+        "LoRA adapter trained on ~2K teacher-labelled grounded chain-of-thought examples, filtered by answer correctness and supporting-fact grounding."
+      ],
+      "tech": ["Qwen2.5 7B", "LoRA", "vLLM", "Datalog (Soufflé)", "Gemini", "W&B"],
+      "step": 6,
+      "oneLiner": "Consensus decoding, symbolic checks and LoRA, combined to cut hallucination in multi-hop QA.",
+      "image": {
+        "src": "/images/projects/hotpotqa.webp",
+        "alt": "Wooden library card catalog drawers",
+        "credit": { "photographer": "Erol Ahmed", "profile": "https://unsplash.com/@erol", "source": "https://unsplash.com/photos/close-up-photography-of-brown-wooden-card-catalog-Y3KEBQlB1Zk", "license": "Unsplash License" }
+      }
     }
   ],
   "interests": "Suyash is an avid reader (his favourite novel is 'The Count of Monte Cristo' by Alexandre Dumas), loves movies and TV, keeps up with pop culture, follows most major sports and supports Manchester United."
