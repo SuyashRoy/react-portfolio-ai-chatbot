@@ -3,15 +3,10 @@ const cors = require('cors');
 const pdfParse = require('pdf-parse');
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-// Initialize Gemini AI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'demo-key');
 
 // Middleware
 app.use(cors());
@@ -147,179 +142,12 @@ function extractStructuredData(text) {
   return structuredData;
 }
 
-// Chat endpoint for Gemini AI. Uses the same profile data as the website (src/data/profile.json).
-const profilePath = path.join(__dirname, 'src', 'data', 'profile.json');
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
-
-app.post('/api/chat', async (req, res) => {
-  const { message } = req.body || {};
-  if (!message || typeof message !== 'string' || message.length > 1000) {
-    return res.status(400).json({ error: 'A message under 1000 characters is required' });
-  }
-
-  // Without a key the client answers from its own copy of profile.json
-  if (!process.env.GEMINI_API_KEY) {
-    return res.status(503).json({ error: 'Chat model not configured' });
-  }
-
-  try {
-    const profile = JSON.parse(fs.readFileSync(profilePath, 'utf8'));
-    const context = `
-You are an AI assistant helping visitors learn about Suyash Roy's professional background.
-Here is his profile data:
-
-${JSON.stringify(profile, null, 2)}
-
-Answer the visitor's question using only this data. If the question is not related to Suyash's background, politely redirect the conversation back to his professional information.
-Keep responses concise but informative (2-3 sentences max).
-
-Visitor's question: """${message}"""
-`;
-    const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
-    const result = await model.generateContent(context);
-    res.json({ message: result.response.text(), source: 'gemini' });
-  } catch (error) {
-    console.error('Gemini API error:', error);
-    res.status(503).json({ error: 'Chat model unavailable' });
-  }
-});
-
-// Telegram Bot Configuration
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-
-// Function to send message via Telegram using native HTTPS
-function sendTelegramMessage(text) {
-  return new Promise((resolve) => {
-    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-      console.error('TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID are not set');
-      return resolve(false);
-    }
-    const payload = JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
-      text: text,
-      parse_mode: 'HTML'
-    });
-
-    const options = {
-      hostname: 'api.telegram.org',
-      port: 443,
-      path: `/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(payload)
-      }
-    };
-
-    console.log('Sending Telegram message...');
-
-    const req = https.request(options, (res) => {
-      let data = '';
-
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-
-      res.on('end', () => {
-        try {
-          const response = JSON.parse(data);
-          console.log('Telegram API response:', response);
-          
-          if (response.ok) {
-            console.log('Message sent successfully to Telegram');
-            resolve(true);
-          } else {
-            console.error('Telegram API error:', response.description);
-            resolve(false);
-          }
-        } catch (error) {
-          console.error('Error parsing Telegram response:', error);
-          resolve(false);
-        }
-      });
-    });
-
-    req.on('error', (error) => {
-      console.error('Error sending Telegram message:', error);
-      resolve(false);
-    });
-
-    req.write(payload);
-    req.end();
-  });
-}
-
-// Contact form endpoint
-app.post('/api/contact', async (req, res) => {
-  try {
-    const { name, email, subject, message } = req.body;
-    const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-    // Validate required fields
-    if (!name || !email || !subject || !message) {
-      console.log('Validation failed: Missing required fields');
-      return res.status(400).json({
-        success: false,
-        error: 'All fields are required'
-      });
-    }
-
-    // Format message for Telegram
-    const telegramMessage = `
-🔔 <b>New Contact Form Submission</b>
-
-👤 <b>Name:</b> ${esc(name)}
-📧 <b>Email:</b> ${esc(email)}
-📋 <b>Subject:</b> ${esc(subject)}
-
-💬 <b>Message:</b>
-${esc(message)}
-
-⏰ <b>Time:</b> ${new Date().toLocaleString()}
-    `.trim();
-
-    // Send message to Telegram
-    const success = await sendTelegramMessage(telegramMessage);
-
-    if (success) {
-      res.json({
-        success: true,
-        message: 'Message sent successfully!'
-      });
-    } else {
-      res.status(500).json({
-        success: false,
-        error: 'Failed to send message'
-      });
-    }
-  } catch (error) {
-    console.error('Error in contact endpoint:', error);
-    res.status(500).json({
-      success: false,
-      error: 'Internal server error'
-    });
-  }
-});
-
-// Test Telegram endpoint
-app.get('/api/test-telegram', async (req, res) => {
-  try {
-    const testMessage = '🔧 <b>Test Message</b>\n\nThis is a test message from your portfolio contact form. If you receive this, the integration is working!';
-    const success = await sendTelegramMessage(testMessage);
-    
-    res.json({
-      success: success,
-      message: success ? 'Test message sent successfully!' : 'Failed to send test message'
-    });
-  } catch (error) {
-    console.error('Error in test endpoint:', error);
-    res.status(500).json({
-      success: false,
-      error: 'Internal server error'
-    });
-  }
-});
+// /api/chat and /api/contact live in api/ as Vercel serverless functions.
+// Mount the same handlers here so local dev runs exactly what production runs.
+const mount = (route, file) =>
+  app.all(route, async (req, res) => (await import(`./api/${file}`)).default(req, res));
+mount('/api/chat', 'chat.js');
+mount('/api/contact', 'contact.js');
 
 // Basic route for testing
 app.get('/', (req, res) => {
