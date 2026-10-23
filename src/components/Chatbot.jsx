@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import profile from '../data/profile.json';
 import { API_URL } from '../lib/api';
 
+// The server gives Gemini 9s; abort a little later to cover cold starts, then answer locally
+const CHAT_TIMEOUT_MS = 10000;
+
 const suggestions = ['What is he working on now?', 'Top projects?', 'Skills', 'Education'];
 
 const list = (items) => items.join(', ').replace(/, ([^,]*)$/, ' and $1');
@@ -81,6 +84,7 @@ const Chatbot = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message }),
+        signal: AbortSignal.timeout(CHAT_TIMEOUT_MS),
       });
       if (!response.ok) throw new Error('Failed to get response');
       reply = (await response.json()).message;
@@ -131,7 +135,7 @@ const Chatbot = () => {
               </div>
             ))}
             {isTyping && (
-              <div className="flex gap-1 rounded-2xl rounded-bl-md border border-line bg-surface px-4 py-3.5 w-fit" aria-label="Assistant is typing">
+              <div className="flex gap-1 rounded-2xl rounded-bl-md border border-line bg-surface px-4 py-3.5 w-fit" role="status" aria-label="Assistant is typing">
                 {[0, 0.15, 0.3].map((d) => (
                   <span key={d} className="h-1.5 w-1.5 animate-bounce rounded-full bg-fg-muted" style={{ animationDelay: `${d}s` }} />
                 ))}
@@ -165,6 +169,7 @@ const Chatbot = () => {
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
+              maxLength={1000}
               placeholder="Ask about Suyash…"
               className="h-11 flex-1 rounded-full border border-line bg-surface px-4 text-sm text-fg placeholder:text-fg-subtle focus:border-accent focus:outline-none"
             />

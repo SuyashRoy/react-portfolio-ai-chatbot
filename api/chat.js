@@ -7,6 +7,9 @@ import { rateLimit } from './_lib/rateLimit.js';
 // vercel.json includeFiles ships profile.json with this function
 const profile = JSON.parse(readFileSync(new URL('../src/data/profile.json', import.meta.url), 'utf8'));
 
+// Give up on Gemini after this long; the client then answers from profile.json
+const GEMINI_TIMEOUT_MS = 9000;
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -40,7 +43,10 @@ Keep responses concise but informative (2-3 sentences max).
 Visitor's question: """${message}"""
 `;
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-3.8-flash' });
+    const model = genAI.getGenerativeModel(
+      { model: process.env.GEMINI_MODEL || 'gemini-3.8-flash' },
+      { timeout: GEMINI_TIMEOUT_MS }
+    );
     const result = await model.generateContent(context);
     return res.status(200).json({ message: result.response.text(), source: 'gemini' });
   } catch (error) {
