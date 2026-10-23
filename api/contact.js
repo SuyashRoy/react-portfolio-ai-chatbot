@@ -1,5 +1,10 @@
 // POST /api/contact: forwards contact-form submissions to a Telegram chat.
 // Runs as a Vercel serverless function; server.cjs mounts the same handler for local dev.
+import { rateLimit } from './_lib/rateLimit.js';
+
+// Max characters per field; the form enforces the same limits with maxLength
+const LIMITS = { name: 100, email: 254, subject: 150, message: 5000 };
+
 const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 async function sendTelegramMessage(text) {
@@ -30,10 +35,23 @@ export default async function handler(req, res) {
     return res.status(405).json({ success: false, error: 'Method not allowed' });
   }
 
+  if (!rateLimit(req, res, { name: 'contact', limit: 3, windowMs: 10 * 60_000 })) {
+    return res.status(429).json({ success: false, error: 'Too many requests' });
+  }
+
   try {
-    const { name, email, subject, message } = req.body || {};
-    if (!name || !email || !subject || !message) {
+    const { name, email, subject, message, website } = req.body || {};
+
+    // Honeypot: people never see the "website" field, bots fill it. Pretend it worked.
+    if (website) return res.status(200).json({ success: true, message: 'Message sent successfully!' });
+
+    const fields = { name, email, subject, message };
+    if (Object.values(fields).some((v) => typeof v !== 'string' || !v.trim())) {
       return res.status(400).json({ success: false, error: 'All fields are required' });
+    }
+    const tooLong = Object.keys(LIMITS).find((k) => fields[k].length > LIMITS[k]);
+    if (tooLong) {
+      return res.status(400).json({ success: false, error: `${tooLong} must be at most ${LIMITS[tooLong]} characters` });
     }
 
     const telegramMessage = `

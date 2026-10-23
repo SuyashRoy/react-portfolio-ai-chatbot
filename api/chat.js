@@ -2,6 +2,7 @@
 // Runs as a Vercel serverless function; server.cjs mounts the same handler for local dev.
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { readFileSync } from 'node:fs';
+import { rateLimit } from './_lib/rateLimit.js';
 
 // vercel.json includeFiles ships profile.json with this function
 const profile = JSON.parse(readFileSync(new URL('../src/data/profile.json', import.meta.url), 'utf8'));
@@ -10,6 +11,10 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  if (!rateLimit(req, res, { name: 'chat', limit: 12, windowMs: 60_000 })) {
+    return res.status(429).json({ error: 'Too many requests' });
   }
 
   const { message } = req.body || {};

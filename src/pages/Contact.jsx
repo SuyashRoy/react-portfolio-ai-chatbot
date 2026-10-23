@@ -13,7 +13,8 @@ const fieldClass =
   'w-full rounded-xl border border-line bg-surface px-4 py-3 text-fg placeholder:text-fg-subtle transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  // `website` is a honeypot: hidden from people, filled in by bots, dropped by the server
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', website: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
@@ -31,9 +32,9 @@ const Contact = () => {
       const result = await response.json();
       if (result.success) {
         setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '', website: '' });
       } else {
-        setSubmitStatus('error');
+        setSubmitStatus(response.status === 429 ? 'limited' : 'error');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -87,25 +88,36 @@ const Contact = () => {
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="block">
                   <span className="mb-1.5 block text-sm text-fg-muted">Name</span>
-                  <input name="name" required value={formData.name} onChange={handleChange} className={fieldClass} placeholder="Your name" autoComplete="name" />
+                  <input name="name" required maxLength={100} value={formData.name} onChange={handleChange} className={fieldClass} placeholder="Your name" autoComplete="name" />
                 </label>
                 <label className="block">
                   <span className="mb-1.5 block text-sm text-fg-muted">Email</span>
-                  <input type="email" name="email" required value={formData.email} onChange={handleChange} className={fieldClass} placeholder="you@company.com" autoComplete="email" />
+                  <input type="email" name="email" required maxLength={254} value={formData.email} onChange={handleChange} className={fieldClass} placeholder="you@company.com" autoComplete="email" />
                 </label>
               </div>
               <label className="block">
                 <span className="mb-1.5 block text-sm text-fg-muted">Subject</span>
-                <input name="subject" required value={formData.subject} onChange={handleChange} className={fieldClass} placeholder="What's this about?" />
+                <input name="subject" required maxLength={150} value={formData.subject} onChange={handleChange} className={fieldClass} placeholder="What's this about?" />
               </label>
               <label className="block">
                 <span className="mb-1.5 block text-sm text-fg-muted">Message</span>
-                <textarea name="message" required rows={6} value={formData.message} onChange={handleChange} className={`${fieldClass} resize-none`} placeholder="Tell me a bit about the role or idea…" />
+                <textarea name="message" required maxLength={5000} rows={6} value={formData.message} onChange={handleChange} className={`${fieldClass} resize-none`} placeholder="Tell me a bit about the role or idea…" />
+              </label>
+
+              <label className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+                Website
+                <input name="website" tabIndex={-1} autoComplete="off" value={formData.website} onChange={handleChange} />
               </label>
 
               <div className="flex flex-col-reverse items-start gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
                 <p className="min-h-5 text-sm" role="status">
                   {submitStatus === 'success' && <span className="text-emerald-600 dark:text-emerald-300">Thanks! Your message is on its way.</span>}
+                  {submitStatus === 'limited' && (
+                    <span className="text-rose-700 dark:text-rose-300">
+                      That's a few messages in a row. Try again in a few minutes, or email{' '}
+                      <a className="underline" href={`mailto:${profile.links.email}`}>{profile.links.email}</a>.
+                    </span>
+                  )}
                   {submitStatus === 'error' && (
                     <span className="text-rose-700 dark:text-rose-300">
                       Couldn't send right now. Email me at{' '}
