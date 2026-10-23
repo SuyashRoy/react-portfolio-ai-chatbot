@@ -1,3 +1,6 @@
 {
+  "functions": {
+    "api/chat.js": { "includeFiles": "src/data/profile.json" }
+  },
   "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
 }

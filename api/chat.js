@@ -1,9 +1,10 @@
 // POST /api/chat: answers questions about Suyash with Gemini, grounded in profile.json.
 // Runs as a Vercel serverless function; server.cjs mounts the same handler for local dev.
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { createRequire } from 'node:module';
+import { readFileSync } from 'node:fs';
 
-const profile = createRequire(import.meta.url)('../src/data/profile.json');
+// vercel.json includeFiles ships profile.json with this function
+const profile = JSON.parse(readFileSync(new URL('../src/data/profile.json', import.meta.url), 'utf8'));
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
