@@ -38,7 +38,7 @@ const About = () => (
             {profile.focus.map((f, i) => (
               <Reveal key={f.title} delay={i * 100}>
                 <Card className="h-full p-5">
-                  <span className="font-mono text-xs text-accent">0{i + 1}</span>
+                  <span className="font-mono text-xs text-accent-text">0{i + 1}</span>
                   <h3 className="mt-2 font-display text-base font-semibold text-fg">{f.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-fg-muted">{f.text}</p>
                 </Card>

@@ -42,7 +42,7 @@ const Education = () => (
                 <div className="mt-3 flex flex-wrap gap-2">
                   {edu.courses.map((c) => (
                     <Tag key={c.name} className="gap-2 px-3 py-1.5 text-xs text-fg">
-                      {c.code && <span className="text-accent">{c.code}</span>}
+                      {c.code && <span className="text-accent-text">{c.code}</span>}
                       {c.name}
                     </Tag>
                   ))}

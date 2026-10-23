@@ -49,7 +49,7 @@ export const Card = ({ as: Tag = 'div', className, children, ...rest }) => (
 );
 
 export const Eyebrow = ({ children, className }) => (
-  <p className={cx('font-mono text-xs uppercase tracking-[0.22em] text-accent', className)}>{children}</p>
+  <p className={cx('font-mono text-xs uppercase tracking-[0.22em] text-accent-text', className)}>{children}</p>
 );
 
 export const PageHeader = ({ eyebrow, title, children }) => (
@@ -146,7 +146,7 @@ export const NextPage = ({ to, label, hint }) => (
         <p className="mt-2 font-display text-2xl font-semibold tracking-tight text-fg sm:text-4xl">{label}</p>
         {hint && <p className="mt-2 text-sm text-fg-muted sm:text-base">{hint}</p>}
       </div>
-      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-line-strong text-fg transition-all duration-300 group-hover:border-accent group-hover:text-accent sm:h-16 sm:w-16">
+      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-line-strong text-fg transition-all duration-300 group-hover:border-accent group-hover:text-accent-text sm:h-16 sm:w-16">
         <ArrowIcon className="h-5 w-5 sm:h-6 sm:w-6" />
       </span>
     </Link>

@@ -19,7 +19,7 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const theme = isDarkMode ? 'dark' : 'light';
     document.documentElement.dataset.theme = theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDarkMode ? '#04050d' : '#f6f7fb');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDarkMode ? '#04050d' : '#fbf7ec');
   }, [isDarkMode]);
 
   const toggleTheme = () => {

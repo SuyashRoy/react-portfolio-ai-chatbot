@@ -35,7 +35,7 @@ const Experience = () => (
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h2 className="font-display text-xl font-semibold tracking-tight text-fg sm:text-2xl">{job.role}</h2>
-                  <p className="mt-1 text-accent">{job.company}</p>
+                  <p className="mt-1 text-accent-text">{job.company}</p>
                 </div>
                 {job.current && (
                   <span className="rounded-full border border-emerald-400/40 bg-emerald-300/10 px-2.5 py-1 font-mono text-[11px] text-emerald-700 dark:text-emerald-300">

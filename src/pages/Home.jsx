@@ -44,7 +44,7 @@ const Home = () => {
             <span className="text-gradient">{profile.name}</span>
           </h1>
 
-          <p className="mt-6 font-mono text-xs uppercase tracking-[0.3em] text-accent sm:text-sm">
+          <p className="mt-6 font-mono text-xs uppercase tracking-[0.3em] text-accent-text sm:text-sm">
             {profile.headline} · MS CS @ USC
           </p>
 

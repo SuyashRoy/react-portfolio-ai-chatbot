@@ -63,7 +63,7 @@ const Contact = () => {
                   rel="noreferrer"
                   className="group flex items-center gap-4 p-5"
                 >
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-line bg-surface text-accent">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-line bg-surface text-accent-text">
                     <Icon className="h-5 w-5" />
                   </span>
                   <span className="min-w-0 flex-1">
@@ -107,7 +107,7 @@ const Contact = () => {
                 <p className="min-h-5 text-sm" role="status">
                   {submitStatus === 'success' && <span className="text-emerald-600 dark:text-emerald-300">Thanks! Your message is on its way.</span>}
                   {submitStatus === 'error' && (
-                    <span className="text-rose-600 dark:text-rose-300">
+                    <span className="text-rose-700 dark:text-rose-300">
                       Couldn't send right now. Email me at{' '}
                       <a className="underline" href={`mailto:${profile.links.email}`}>{profile.links.email}</a>.
                     </span>
